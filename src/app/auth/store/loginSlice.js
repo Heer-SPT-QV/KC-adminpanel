@@ -11,7 +11,6 @@ export const submitLogin =
 			.signInWithEmailAndPassword(email, password)
 			.then(user => {
 				dispatch(setUserData(user));
-
 				return dispatch(loginSuccess());
 			})
 			.catch(errors => {

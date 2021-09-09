@@ -2,7 +2,7 @@ import { useDeepCompareEffect } from '@fuse/hooks';
 import FuseLayouts from '@fuse/layouts/FuseLayouts';
 import _ from '@lodash';
 import { makeStyles } from '@material-ui/core/styles';
-import AppContext from 'app/AppContext';
+import { Context } from 'app/AppContext';
 import { generateSettings, setSettings } from 'app/store/fuse/settingsSlice';
 import { memo, useContext, useMemo, useCallback, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -77,7 +77,7 @@ function FuseLayout(props) {
 	const settings = useSelector(({ fuse }) => fuse.settings.current);
 	const defaultSettings = useSelector(({ fuse }) => fuse.settings.defaults);
 
-	const appContext = useContext(AppContext);
+	const appContext = useContext(Context);
 	const { routes } = appContext;
 	const classes = useStyles(props);
 	const location = useLocation();

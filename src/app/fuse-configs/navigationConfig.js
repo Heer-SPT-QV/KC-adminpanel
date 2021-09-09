@@ -1,3 +1,4 @@
+import { authRoles } from 'app/auth';
 import i18next from 'i18next';
 import ar from './navigation-i18n/ar';
 import en from './navigation-i18n/en';
@@ -22,6 +23,56 @@ const navigationConfig = [
 				type: 'item',
 				icon: 'whatshot',
 				url: '/example'
+			},
+			{
+				id: 'ingredients',
+				title: 'Ingredients',
+				translate: 'Ingredients',
+				type: 'item',
+				icon: 'whatshot',
+				url: '/ingredients'
+			},
+			{
+				id: 'allergy',
+				title: 'Allergy',
+				translate: 'allergy',
+				type: 'item',
+				icon: 'whatshot',
+				url: '/allergies'
+			},
+			{
+				id: 'users',
+				title: 'Users',
+				translate: 'users',
+				type: 'item',
+				icon: 'whatshot',
+				url: '/users'
+			},
+
+			{
+				id: 'productTypes',
+				title: 'ProductTypes',
+				translate: 'ProductTypes',
+				type: 'item',
+				icon: 'whatshot',
+				url: '/productTypes'
+			},
+
+			{
+				id: 'products',
+				title: 'Products',
+				translate: 'Products',
+				type: 'item',
+				icon: 'whatshot',
+				url: '/products'
+			},
+			{
+				id: 'stores',
+				title: 'Stores',
+				translate: 'Stores',
+				type: 'item',
+				icon: 'whatshot',
+				url: '/stores'
 			}
 		]
 	}

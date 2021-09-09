@@ -60,7 +60,7 @@ function FuseShortcuts(props) {
 		setSearchText(newSearchText);
 
 		if (newSearchText.length !== 0 && navigation) {
-			setSearchResults(navigation.filter(item => item.title.toLowerCase().includes(newSearchText.toLowerCase())));
+			setSearchResults(navigation.filter(item => item.name.toLowerCase().includes(newSearchText.toLowerCase())));
 			return;
 		}
 		setSearchResults(null);
@@ -80,7 +80,7 @@ function FuseShortcuts(props) {
 						{item.icon ? (
 							<Icon>{item.icon}</Icon>
 						) : (
-							<span className="text-20 font-semibold uppercase text-center">{item.title[0]}</span>
+							<span className="font-semibold text-center uppercase text-20">{item.title[0]}</span>
 						)}
 					</ListItemIcon>
 					<ListItemText primary={item.title} />
@@ -138,7 +138,7 @@ function FuseShortcuts(props) {
 										{_item.icon ? (
 											<Icon>{_item.icon}</Icon>
 										) : (
-											<span className="text-20 font-semibold uppercase">{_item.title[0]}</span>
+											<span className="font-semibold uppercase text-20">{_item.title[0]}</span>
 										)}
 									</IconButton>
 								</Tooltip>

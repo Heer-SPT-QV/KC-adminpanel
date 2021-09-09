@@ -1,5 +1,5 @@
 import FuseUtils from '@fuse/utils';
-import AppContext from 'app/AppContext';
+import { Context } from 'app/AppContext';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { matchRoutes } from 'react-router-config';
@@ -80,6 +80,6 @@ function mapStateToProps({ auth }) {
 	};
 }
 
-FuseAuthorization.contextType = AppContext;
+FuseAuthorization.contextType = Context;
 
 export default withRouter(connect(mapStateToProps)(FuseAuthorization));

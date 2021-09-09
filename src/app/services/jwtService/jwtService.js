@@ -1,6 +1,9 @@
 import FuseUtils from '@fuse/utils/FuseUtils';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import { API } from '../../shared-components/API';
+// import React from 'react';
+// import { useHistory } from 'react-router';
 /* eslint-disable camelcase */
 
 class JwtService extends FuseUtils.EventEmitter {
@@ -16,7 +19,7 @@ class JwtService extends FuseUtils.EventEmitter {
 			},
 			err => {
 				return new Promise((resolve, reject) => {
-					if (err.response.status === 401 && err.config && !err.config.__isRetryRequest) {
+					if (err.response === 401 && err.config && !err.config.__isRetryRequest) {
 						// if you ever get an unauthorized response, logout the user
 						this.emit('onAutoLogout', 'Invalid access_token');
 						this.setSession(null);
@@ -47,7 +50,8 @@ class JwtService extends FuseUtils.EventEmitter {
 
 	createUser = data => {
 		return new Promise((resolve, reject) => {
-			axios.post('/api/auth/register', data).then(response => {
+			axios.post(`${API}/register`, data).then(response => {
+				console.log('response', response);
 				if (response.data.user) {
 					this.setSession(response.data.access_token);
 					resolve(response.data.user);
@@ -59,37 +63,39 @@ class JwtService extends FuseUtils.EventEmitter {
 	};
 
 	signInWithEmailAndPassword = (email, password) => {
+		const data = {
+			username: email,
+			password
+		};
+
 		return new Promise((resolve, reject) => {
 			axios
-				.get('/api/auth', {
-					data: {
-						email,
-						password
-					}
-				})
+				.post(`${API}/login`, data)
 				.then(response => {
-					if (response.data.user) {
-						this.setSession(response.data.access_token);
-						resolve(response.data.user);
+					if (response.data.success) {
+						this.setSession(response.data?.body?.token || '');
+						resolve(response.data?.body?.user || {});
 					} else {
 						reject(response.data.error);
 					}
-				});
+				})
+				.catch(err => console.log('err', err));
 		});
 	};
 
 	signInWithToken = () => {
 		return new Promise((resolve, reject) => {
 			axios
-				.get('/api/auth/access-token', {
+				.get(`${API}/user/token`, {
 					data: {
 						access_token: this.getAccessToken()
 					}
 				})
 				.then(response => {
-					if (response.data.user) {
-						this.setSession(response.data.access_token);
-						resolve(response.data.user);
+					console.log('for token', response);
+					if (response.data.body.user) {
+						this.setSession(response.data.body.token);
+						resolve(response.data.body.user);
 					} else {
 						this.logout();
 						reject(new Error('Failed to login with token.'));

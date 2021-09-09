@@ -2,7 +2,7 @@ import FuseDialog from '@fuse/core/FuseDialog';
 import FuseMessage from '@fuse/core/FuseMessage';
 import FuseSuspense from '@fuse/core/FuseSuspense';
 import { makeStyles } from '@material-ui/core/styles';
-import AppContext from 'app/AppContext';
+import { Context } from 'app/AppContext';
 import SettingsPanel from 'app/fuse-layouts/shared-components/SettingsPanel';
 import clsx from 'clsx';
 import { memo, useContext } from 'react';
@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 function Layout1(props) {
 	const config = useSelector(({ fuse }) => fuse.settings.current.layout.config);
-	const appContext = useContext(AppContext);
+	const appContext = useContext(Context);
 	const { routes } = appContext;
 	const classes = useStyles({ ...props, config });
 
@@ -45,7 +45,7 @@ function Layout1(props) {
 			<div className="flex flex-auto min-w-0">
 				{config.navbar.display && config.navbar.position === 'left' && <NavbarWrapperLayout1 />}
 
-				<main id="fuse-main" className="flex flex-col flex-auto min-h-screen min-w-0 relative z-10">
+				<main id="fuse-main" className="relative z-10 flex flex-col flex-auto min-w-0 min-h-screen">
 					{config.toolbar.display && (
 						<ToolbarLayout1 className={config.toolbar.style === 'fixed' && 'sticky top-0'} />
 					)}
@@ -54,7 +54,7 @@ function Layout1(props) {
 						<SettingsPanel />
 					</div>
 
-					<div className="flex flex-col flex-auto min-h-0 relative z-10">
+					<div className="relative z-10 flex flex-col flex-auto min-h-0">
 						<FuseDialog />
 
 						<FuseSuspense>{renderRoutes(routes)}</FuseSuspense>

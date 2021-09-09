@@ -1,3 +1,4 @@
+import DateFnsUtils from '@date-io/date-fns';
 import FuseAuthorization from '@fuse/core/FuseAuthorization';
 import FuseLayout from '@fuse/core/FuseLayout';
 import FuseTheme from '@fuse/core/FuseTheme';
@@ -7,13 +8,14 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { create } from 'jss';
 import jssExtend from 'jss-plugin-extend';
 import rtl from 'jss-rtl';
+import { SnackbarProvider } from 'notistack';
 import Provider from 'react-redux/es/components/Provider';
 import { Router } from 'react-router-dom';
-import { SnackbarProvider } from 'notistack';
-import DateFnsUtils from '@date-io/date-fns';
-import AppContext from './AppContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// import 'react-h5-audio-player/lib/styles.css';
+import { ContextProvider } from './AppContext';
 import { Auth } from './auth';
-import routes from './fuse-configs/routesConfig';
 import store from './store';
 
 const jss = create({
@@ -26,11 +28,7 @@ const generateClassName = createGenerateClassName({ disableGlobal: true });
 
 const App = () => {
 	return (
-		<AppContext.Provider
-			value={{
-				routes
-			}}
-		>
+		<ContextProvider>
 			<StylesProvider jss={jss} generateClassName={generateClassName}>
 				<Provider store={store}>
 					<MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -57,7 +55,8 @@ const App = () => {
 					</MuiPickersUtilsProvider>
 				</Provider>
 			</StylesProvider>
-		</AppContext.Provider>
+			<ToastContainer />
+		</ContextProvider>
 	);
 };
 

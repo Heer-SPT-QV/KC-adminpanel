@@ -1,5 +1,11 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
+import routes from './fuse-configs/routesConfig';
 
-const AppContext = createContext({});
+export const Context = createContext(null);
 
-export default AppContext;
+export const ContextProvider = ({ children }) => {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [user, setUser] = useState(null);
+
+	return <Context.Provider value={{ isLoggedIn, setIsLoggedIn, user, setUser, routes }}>{children}</Context.Provider>;
+};

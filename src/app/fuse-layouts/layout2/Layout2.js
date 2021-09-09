@@ -2,7 +2,7 @@ import FuseDialog from '@fuse/core/FuseDialog';
 import FuseMessage from '@fuse/core/FuseMessage';
 import FuseSuspense from '@fuse/core/FuseSuspense';
 import { makeStyles } from '@material-ui/core/styles';
-import AppContext from 'app/AppContext';
+import { Context } from 'app/AppContext';
 import SettingsPanel from 'app/fuse-layouts/shared-components/SettingsPanel';
 import clsx from 'clsx';
 import { memo } from 'react';
@@ -37,13 +37,13 @@ function Layout2(props) {
 	const classes = useStyles({ ...props, config });
 
 	return (
-		<AppContext.Consumer>
+		<Context.Consumer>
 			{({ routes }) => (
 				<div id="fuse-layout" className={clsx(classes.root, config.mode, 'w-full flex flex')}>
 					{config.leftSidePanel.display && <LeftSideLayout2 />}
 
 					<div className="flex flex-col flex-auto min-w-0">
-						<main id="fuse-main" className="flex flex-col flex-auto min-h-screen min-w-0 relative">
+						<main id="fuse-main" className="relative flex flex-col flex-auto min-w-0 min-h-screen">
 							{config.navbar.display && (
 								<NavbarWrapperLayout2
 									className={clsx(config.navbar.style === 'fixed' && 'sticky top-0 z-50')}
@@ -63,7 +63,7 @@ function Layout2(props) {
 								<SettingsPanel />
 							</div>
 
-							<div className="flex flex-col flex-auto min-h-0 relative z-10">
+							<div className="relative z-10 flex flex-col flex-auto min-h-0">
 								<FuseDialog />
 
 								<FuseSuspense>{renderRoutes(routes)}</FuseSuspense>
@@ -81,7 +81,7 @@ function Layout2(props) {
 					<FuseMessage />
 				</div>
 			)}
-		</AppContext.Consumer>
+		</Context.Consumer>
 	);
 }
 

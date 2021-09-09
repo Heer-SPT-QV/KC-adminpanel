@@ -76,22 +76,21 @@ export const setUserData = user => async (dispatch, getState) => {
          */
 
 	history.location.state = {
-		redirectUrl: user.redirectUrl // for example 'apps/academy'
+		redirectUrl: user?.redirectUrl || '/' // for example 'apps/academy'
 	};
 
 	/*
     Set User Settings
      */
-	dispatch(setDefaultSettings(user.data.settings));
+	dispatch(setDefaultSettings(user?.data?.settings));
 
 	dispatch(setUser(user));
 };
 
 export const updateUserSettings = settings => async (dispatch, getState) => {
 	const oldUser = getState().auth.user;
-	const user = _.merge({}, oldUser, { data: { settings } });
 
-	dispatch(updateUserData(user));
+	const user = _.merge({}, oldUser, { data: { settings } });
 
 	return dispatch(setUserData(user));
 };
@@ -201,7 +200,17 @@ const userSlice = createSlice({
 	name: 'auth/user',
 	initialState,
 	reducers: {
-		setUser: (state, action) => action.payload,
+		setUser: (state, action) => {
+			return {
+				role: ['admin'],
+				data: {
+					displayName: action.payload.firstName,
+					email: action.payload.email,
+					photoURL: action.payload.imageUrl || 'assets/images/avatars/Velazquez.jpg',
+					shortcuts: ['calendar', 'mail', 'contacts', 'todo']
+				}
+			};
+		},
 		userLoggedOut: (state, action) => initialState
 	},
 	extraReducers: {}
