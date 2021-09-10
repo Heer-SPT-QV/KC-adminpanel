@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
 	const response = await axios.get(`${API}/ingredient?id=${params}`);
 	const data = await response.data;
-	console.log(data);
+	// console.log(data);
 
 	// return data === undefined ? null : data;
 	return data.body;
@@ -40,7 +40,7 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 	axios
 		.patch(`${API}/ingredient/update`, { ...proData })
 		.then(response => {
-			console.log('upadted ingr', response);
+			// console.log('upadted ingr', response);
 			toast.success('User Updated');
 			const { data } = response;
 			return data.body;

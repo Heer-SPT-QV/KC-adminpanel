@@ -54,7 +54,7 @@ export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveP
 	axios
 		.post(`${API}/allergy/add`, Prodata)
 		.then(response => {
-			console.log(response);
+			// console.log(response);
 			toast.success('Category Created');
 			return response.data;
 		})

@@ -5,7 +5,7 @@ function BasicInfoTab(props) {
 	const methods = useFormContext();
 	const { control, formState } = methods;
 	const { errors } = formState;
-	console.log(control);
+	// console.log(control);
 	return (
 		<div>
 			<Controller

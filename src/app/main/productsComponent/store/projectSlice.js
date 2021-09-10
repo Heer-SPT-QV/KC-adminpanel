@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
 	const response = await axios.get(`${API}/allergy?id=${params}`);
 	const data = await response.data;
-	console.log(data.body);
+	// console.log(data.body);
 	return data.body;
 	// return data === undefined ? null : data;
 });

@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat, page, rowsPerPage }) => {
 	const response = await axios.get(`${API}/productType/all`);
 	const data = await response.data;
-	console.log('data of ingredient', data.body);
+	// console.log('data of ingredient', data.body);
 	setTotalCat(data.totalPages);
 
 	return data.body;
@@ -22,7 +22,7 @@ export const removeCategoy = createAsyncThunk(
 			axios
 				.delete(`${API}/productType/delete?id=${id}`)
 				.then(resp => {
-					console.log();
+					// console.log();
 					toast.success(`productType deleted Successfully ${id}`);
 				})
 				.catch(() => {
