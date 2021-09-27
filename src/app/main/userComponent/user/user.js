@@ -53,7 +53,7 @@ function Category(props) {
 			// console.log(productId);
 
 			if (userId === 'new') {
-				console.log('gone new');
+				// console.log('gone new');
 				/**
 				 * Create New Product data
 				 */

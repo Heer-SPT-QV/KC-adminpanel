@@ -5,7 +5,7 @@ import { API } from 'app/shared-components/API';
 import { toast } from 'react-toastify';
 
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
-	const response = await axios.get(`${API}/allergy?id=${params}`);
+	const response = await axios.get(`${API}/product?id=${params}`);
 	const data = await response.data;
 	// console.log(data.body);
 	return data.body;
@@ -17,7 +17,7 @@ export const removeCategory = createAsyncThunk(
 	async (val, { dispatch, getState }) => {
 		const { id } = getState().CategoryeCommerceApp.product;
 		await axios
-			.delete(`${API}/allergy/delete?id=${id}`)
+			.delete(`${API}/product?id=${id}`)
 			.then(res => {
 				toast.success(`deleted successfully   ${id}`);
 			})
@@ -35,7 +35,7 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 		iconUrl: productData.iconUrl
 	};
 	axios
-		.patch(`${API}/allergy/update`, { ...proData })
+		.patch(`${API}/product/add`, { ...proData })
 		.then(response => {
 			toast.success('User Updated');
 			const { data } = response;

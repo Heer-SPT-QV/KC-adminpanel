@@ -24,7 +24,7 @@ function CategoriesHeader(props) {
 					animate={{ scale: 1, transition: { delay: 0.2 } }}
 					className="text-24 md:text-32"
 				>
-					category
+					store
 				</Icon>
 				<Typography
 					component={motion.span}
@@ -33,7 +33,7 @@ function CategoriesHeader(props) {
 					delay={300}
 					className="hidden mx-12 font-semibold sm:flex text-16 md:text-24"
 				>
-					Products
+					Stores
 				</Typography>
 			</div>
 

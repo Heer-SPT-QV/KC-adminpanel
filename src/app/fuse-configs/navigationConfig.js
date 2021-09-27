@@ -16,20 +16,20 @@ const navigationConfig = [
 		type: 'group',
 		icon: 'apps',
 		children: [
-			{
-				id: 'example-component',
-				title: 'Example',
-				translate: 'EXAMPLE',
-				type: 'item',
-				icon: 'whatshot',
-				url: '/example'
-			},
+			// {
+			// 	id: 'example-component',
+			// 	title: 'Example',
+			// 	translate: 'EXAMPLE',
+			// 	type: 'item',
+			// 	icon: 'whatshot',
+			// 	url: '/example'
+			// },
 			{
 				id: 'ingredients',
 				title: 'Ingredients',
 				translate: 'Ingredients',
 				type: 'item',
-				icon: 'whatshot',
+				icon: 'grain',
 				url: '/ingredients'
 			},
 			{
@@ -45,7 +45,7 @@ const navigationConfig = [
 				title: 'Users',
 				translate: 'users',
 				type: 'item',
-				icon: 'whatshot',
+				icon: 'people',
 				url: '/users'
 			},
 
@@ -54,7 +54,7 @@ const navigationConfig = [
 				title: 'ProductTypes',
 				translate: 'ProductTypes',
 				type: 'item',
-				icon: 'whatshot',
+				icon: 'category',
 				url: '/productTypes'
 			},
 
@@ -63,7 +63,7 @@ const navigationConfig = [
 				title: 'Products',
 				translate: 'Products',
 				type: 'item',
-				icon: 'whatshot',
+				icon: 'list_alt',
 				url: '/products'
 			},
 			{
@@ -71,7 +71,7 @@ const navigationConfig = [
 				title: 'Stores',
 				translate: 'Stores',
 				type: 'item',
-				icon: 'whatshot',
+				icon: 'store',
 				url: '/stores'
 			}
 		]

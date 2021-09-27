@@ -19,33 +19,33 @@ import { removeCategoy } from '../store/projectsSlice';
 
 const rows = [
 	{
-		id: 'name',
+		id: 'firstName',
 		align: 'left',
 		disablePadding: false,
-		label: 'Name',
+		label: 'First Name',
 		sort: true
 	},
 	{
-		id: 'nameInHangul',
+		id: 'lastName',
 		align: 'left',
 		disablePadding: false,
-		label: 'Name in Hangul',
+		label: 'Last Name',
+		sort: true
+	},
+	{
+		id: 'email',
+		align: 'left',
+		disablePadding: false,
+		label: 'email',
+		sort: true
+	},
+	{
+		id: 'allergySet',
+		align: 'left',
+		disablePadding: false,
+		label: 'allergySet',
 		sort: true
 	}
-	// {
-	// 	id: 'airline_name',
-	// 	align: 'left',
-	// 	disablePadding: false,
-	// 	label: 'AirLine name',
-	// 	sort: true
-	// },
-	// {
-	// 	id: 'country',
-	// 	align: 'left',
-	// 	disablePadding: false,
-	// 	label: 'Country',
-	// 	sort: true
-	// }
 ];
 
 const useStyles = makeStyles(theme => ({

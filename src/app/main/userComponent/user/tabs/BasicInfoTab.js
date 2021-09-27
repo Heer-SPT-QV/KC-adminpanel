@@ -8,8 +8,8 @@ function BasicInfoTab(props) {
 
 	return (
 		<div>
-			{/* <Controller
-				name="name"
+			<Controller
+				name="firstName"
 				control={control}
 				render={({ field }) => (
 					<TextField
@@ -18,14 +18,14 @@ function BasicInfoTab(props) {
 						error={!!errors.name}
 						required
 						helperText={errors?.name?.message}
-						label="Name"
+						label="firstName"
 						autoFocus
-						id="name"
+						id="firstName"
 						variant="outlined"
 						fullWidth
 					/>
 				)}
-			/> */}
+			/>
 		</div>
 	);
 }

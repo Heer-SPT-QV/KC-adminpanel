@@ -174,17 +174,20 @@ function CategoriesTable(props) {
 									</TableCell>
 
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.name}
+										{n.firstName}
 									</TableCell>
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.nameInHangul}
-									</TableCell>
-									{/* <TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.airlin.name || ''}
+										{n.lastName}
 									</TableCell>
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.airline[0]?.country || ''}
-									</TableCell> */}
+										{n.email}
+									</TableCell>
+									<TableCell className="p-4 md:p-16" component="th" scope="row">
+										{n.allergySet.map(item => {
+											return <span key={item.id}>{item.name},</span>;
+
+										})}
+									</TableCell>
 								</TableRow>
 							);
 						})}

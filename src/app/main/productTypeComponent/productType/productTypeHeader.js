@@ -69,7 +69,7 @@ function CategoryHeader(props) {
 								{name || 'New Ingredients'}
 							</Typography>
 							<Typography variant="caption" className="font-medium">
-								productType Detail
+								Ingredients Detail
 							</Typography>
 						</motion.div>
 					</div>
