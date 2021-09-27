@@ -16,14 +16,14 @@ const navigationConfig = [
 		type: 'group',
 		icon: 'apps',
 		children: [
-			{
-				id: 'example-component',
-				title: 'Example',
-				translate: 'EXAMPLE',
-				type: 'item',
-				icon: 'whatshot',
-				url: '/example'
-			},
+			// {
+			// 	id: 'example-component',
+			// 	title: 'Example',
+			// 	translate: 'EXAMPLE',
+			// 	type: 'item',
+			// 	icon: 'whatshot',
+			// 	url: '/example'
+			// },
 			{
 				id: 'ingredients',
 				title: 'Ingredients',
@@ -56,24 +56,24 @@ const navigationConfig = [
 				type: 'item',
 				icon: 'whatshot',
 				url: '/productTypes'
-			},
-
-			{
-				id: 'products',
-				title: 'Products',
-				translate: 'Products',
-				type: 'item',
-				icon: 'whatshot',
-				url: '/products'
-			},
-			{
-				id: 'stores',
-				title: 'Stores',
-				translate: 'Stores',
-				type: 'item',
-				icon: 'whatshot',
-				url: '/stores'
 			}
+
+			// {
+			// 	id: 'products',
+			// 	title: 'Products',
+			// 	translate: 'Products',
+			// 	type: 'item',
+			// 	icon: 'whatshot',
+			// 	url: '/products'
+			// },
+			// {
+			// 	id: 'stores',
+			// 	title: 'Stores',
+			// 	translate: 'Stores',
+			// 	type: 'item',
+			// 	icon: 'whatshot',
+			// 	url: '/stores'
+			// }
 		]
 	}
 ];

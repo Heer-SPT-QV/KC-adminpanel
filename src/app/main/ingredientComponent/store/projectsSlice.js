@@ -9,7 +9,7 @@ export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat,
 	);
 	const data = await response.data;
 	console.log('data of ingredient', data.content);
-	setTotalCat(data.totalPages);
+	setTotalCat(data.totalElements);
 
 	return data.content;
 	// return data.data.map(item => {

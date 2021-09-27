@@ -33,12 +33,12 @@ function BasicInfoTab(props) {
 					<TextField
 						{...field}
 						className="mt-8 mb-16"
-						error={!!errors.iconURL}
+						error={!!errors.iconUrl}
 						required
-						helperText={errors?.iconURL?.message}
+						helperText={errors?.iconUrl?.message}
 						label="iconURL"
 						autoFocus
-						id="iconURL"
+						id="iconUrl"
 						variant="outlined"
 						fullWidth
 					/>

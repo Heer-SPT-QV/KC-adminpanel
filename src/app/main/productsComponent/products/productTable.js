@@ -204,8 +204,8 @@ function CategoriesTable(props) {
 				nextIconButtonProps={{
 					'aria-label': 'Next Page'
 				}}
-				onChangePage={() => handleChangePage()}
-				onChangeRowsPerPage={e => handleChangeRowsPerPage(e)}
+				onChangePage={handleChangePage}
+				onChangeRowsPerPage={handleChangeRowsPerPage}
 			/>
 		</div>
 	);

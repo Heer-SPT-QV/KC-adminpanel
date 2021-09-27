@@ -27,7 +27,8 @@ const schema = yup.object().shape({
 	name: yup
 		.string()
 		.required('You must enter a category name')
-		.min(3, 'The category name must be at least 3 characters')
+		.min(3, 'The category name must be at least 3 characters'),
+	iconUrl: yup.string().required().min(3)
 });
 
 function Category(props) {

@@ -49,8 +49,9 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveProduct', async productData => {
 	const Prodata = {
 		name: productData.name,
-		iconUrl: productData.iconURL
+		iconUrl: productData.iconUrl
 	};
+	console.log(Prodata);
 	axios
 		.post(`${API}/allergy/add`, Prodata)
 		.then(response => {
@@ -75,9 +76,7 @@ const categorySlice = createSlice({
 				payload: {
 					id: FuseUtils.generateGUID(),
 					name: '',
-					imageUrl: '',
-					imagePublicId: '',
-					images: []
+					iconUrl: ''
 				}
 			})
 		}
