@@ -64,12 +64,22 @@ function CategoriesHeader(props) {
 			<motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0, transition: { delay: 0.2 } }}>
 				<Button
 					component={Link}
-					to="/allergy/new"
+					to="/allergy/newcsv"
 					className="whitespace-nowrap"
 					variant="contained"
 					color="secondary"
 				>
-					<span className="hidden sm:flex">Add New Allergy (csv)</span>
+					<span className="hidden sm:flex">Add New (csv) </span>
+					<span className="flex sm:hidden">New</span>
+				</Button>
+				<Button
+					component={Link}
+					to="/allergy/new"
+					className="mx-8 whitespace-nowrap"
+					variant="contained"
+					color="secondary"
+				>
+					<span className="hidden sm:flex">Add New </span>
 					<span className="flex sm:hidden">New</span>
 				</Button>
 			</motion.div>

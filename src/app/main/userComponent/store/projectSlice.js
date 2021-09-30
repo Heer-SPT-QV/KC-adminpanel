@@ -7,8 +7,8 @@ import { toast } from 'react-toastify';
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
 	const response = await axios.get(`${API}/user?id=${params}`);
 	const data = await response.data;
-
-	return data === undefined ? null : data;
+	console.log('user Data', data);
+	return data === undefined ? null : data.body;
 });
 
 export const removeCategory = createAsyncThunk(
@@ -16,7 +16,7 @@ export const removeCategory = createAsyncThunk(
 	async (val, { dispatch, getState }) => {
 		const { id } = getState().CategoryeCommerceApp.product;
 		await axios.delete(`${API}/categories/${id}`).catch(() => {
-			toast.error(`Error Deleting Category ${id}`);
+			toast.error(`Cannot Delete User`);
 		});
 
 		return id;

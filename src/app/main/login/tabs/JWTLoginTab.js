@@ -130,7 +130,7 @@ function JWTLoginTab(props) {
 				</Button>
 			</form>
 
-			<table className="w-full mt-32 text-center">
+			{/* <table className="w-full mt-32 text-center">
 				<thead className="mb-4">
 					<tr>
 						<th>
@@ -178,7 +178,7 @@ function JWTLoginTab(props) {
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</table> */}
 		</div>
 	);
 }

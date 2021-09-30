@@ -27,7 +27,8 @@ const schema = yup.object().shape({
 	name: yup
 		.string()
 		.required('You must enter a category name')
-		.min(3, 'The category name must be at least 3 characters')
+		.min(3, 'The category name must be at least 3 characters'),
+	iconUrl: yup.string().required().min(3)
 });
 
 function Category(props) {
@@ -39,6 +40,7 @@ function Category(props) {
 	const [tabValue, setTabValue] = useState(0);
 	const [noProduct, setNoProduct] = useState(false);
 	const [isOldProduct, setIsOldProduct] = useState(false);
+	const [newCsv, setNewCsv] = useState(false);
 	const methods = useForm({
 		mode: 'onChange',
 		defaultValues: {},
@@ -58,6 +60,9 @@ function Category(props) {
 				 * Create New Product data
 				 */
 				dispatch(newProduct());
+			} else if (allergyId === 'newcsv') {
+				console.log('qwe');
+				setNewCsv(true);
 			} else {
 				/**
 				 * Get Product data
@@ -124,6 +129,40 @@ function Category(props) {
 			</motion.div>
 		);
 	}
+	if (newCsv) {
+		return (
+			<FormProvider {...methods}>
+				<FusePageCarded
+					classes={{
+						toolbar: 'p-0',
+						header: 'min-h-72 h-72 sm:h-136 sm:min-h-136'
+					}}
+					header={<CategoryHeader isOldProduct={isOldProduct} />}
+					contentToolbar={
+						<Tabs
+							value={tabValue}
+							onChange={() => handleTabChange}
+							indicatorColor="primary"
+							textColor="primary"
+							variant="scrollable"
+							scrollButtons="auto"
+							classes={{ root: 'w-full h-64' }}
+						>
+							<Tab className="h-64" label="Basic Info" />
+						</Tabs>
+					}
+					content={
+						<div className="max-w-2xl p-16 sm:p-24">
+							<div className={tabValue !== 0 ? 'hidden' : ''}>
+								<CategoryImagesTab isOldProduct={isOldProduct} />
+							</div>
+						</div>
+					}
+					innerScroll
+				/>
+			</FormProvider>
+		);
+	}
 
 	/**
 	 * Wait while product data is loading and form is setted
@@ -157,7 +196,6 @@ function Category(props) {
 					<div className="max-w-2xl p-16 sm:p-24">
 						<div className={tabValue !== 0 ? 'hidden' : ''}>
 							<BasicInfoTab isOldProduct={isOldProduct} />
-							<CategoryImagesTab isOldProduct={isOldProduct} />
 						</div>
 					</div>
 				}

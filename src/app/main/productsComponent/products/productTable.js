@@ -15,18 +15,30 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import FuseLoading from '@fuse/core/FuseLoading';
+import { Button } from '@material-ui/core';
+import axios from 'axios';
+import { API } from 'app/shared-components/API';
 import { getCategories, selectProducts } from '../store/projectsSlice';
+import { getSingle } from '../store/projectSlice';
 import CategoriesTableHead from './productTableHead';
+import { getItemFunc } from '../store/getItemSlice';
+// import getItem  from '../store/getItemSlice';
 
 function CategoriesTable(props) {
 	const dispatch = useDispatch();
 	const products = useSelector(selectProducts);
+
+	const getItemObj = useSelector(state => state.CategoryeCommerceApp.getItem);
+
+	console.log('get Item', getItemObj);
 	const searchText = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.products.searchText);
 
 	// console.log('Products...', products);
 	const [loading, setLoading] = useState(true);
+	const [approved, setApproved] = useState(false);
 	const [selected, setSelected] = useState([]);
 	const [data, setData] = useState(products);
+	console.log('in product', products);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(10);
 	const [order, setOrder] = useState({
@@ -62,6 +74,22 @@ function CategoriesTable(props) {
 		});
 	}
 
+	console.log('data for check', data);
+
+	function handleApproveClick(id) {
+		console.log('id', id);
+		console.log('clicked approved');
+		// setApproved(true)
+		axios
+			.patch(`${API}/product/admin/approve_reject_product?productId=${id}`)
+			.then(resp => {
+				console.log('resp', resp);
+				window.location.reload();
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
 	function handleSelectAllClick(event) {
 		if (event.target.checked) {
 			setSelected(data.map(n => n.id));
@@ -75,7 +103,9 @@ function CategoriesTable(props) {
 	}
 
 	function handleClick(item) {
-		props.history.push(`/allergy/${item.id}`);
+		console.log('product item ', item);
+		dispatch(getItemFunc(item));
+		props.history.push(`/product/${item.id}`);
 	}
 
 	function handleCheck(event, id) {
@@ -117,7 +147,7 @@ function CategoriesTable(props) {
 				className="flex items-center justify-center flex-1 h-full"
 			>
 				<Typography color="textSecondary" variant="h5">
-					There are no categories!
+					There are no Products!
 				</Typography>
 			</motion.div>
 		);
@@ -130,10 +160,10 @@ function CategoriesTable(props) {
 					<CategoriesTableHead
 						selectedProductIds={selected}
 						order={order}
-						onSelectAllClick={() => handleSelectAllClick}
-						onRequestSort={() => handleRequestSort}
+						onSelectAllClick={handleSelectAllClick}
+						onRequestSort={handleRequestSort}
 						rowCount={data.length}
-						onMenuItemClick={() => handleDeselect}
+						onMenuItemClick={handleDeselect}
 					/>
 
 					<TableBody>
@@ -172,19 +202,33 @@ function CategoriesTable(props) {
 											onChange={event => handleCheck(event, n.id)}
 										/>
 									</TableCell>
-
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
 										{n.name}
 									</TableCell>
+
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.iconUrl}
+										{/* <div style={{ backgroundColor: "white", width: "100px", height: "100px", zIndex: "100" }}>
+											<input type="checkbox" checked style={{ zIndex: "1" }} />
+										</div> */}
+										<Checkbox
+											onChange={() => handleApproveClick(n.id)}
+											checked={n.approved}
+											onClick={event => event.stopPropagation()}
+											// onChange={event => handleCheck(event, n.id)}
+										/>
+
+										{/* {n.approved ? <Button>Reject</Button> : <Button>Approve</Button>} */}
 									</TableCell>
-									{/* <TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.airlin.name || ''}
+
+									<TableCell className="p-4 md:p-16" component="th" scope="row">
+										{n.reportCount}
 									</TableCell>
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.airline[0]?.country || ''}
-									</TableCell> */}
+										{n.price}
+									</TableCell>
+									<TableCell className="p-4 md:p-16" component="th" scope="row">
+										{n.productType.name}
+									</TableCell>
 								</TableRow>
 							);
 						})}
@@ -204,8 +248,8 @@ function CategoriesTable(props) {
 				nextIconButtonProps={{
 					'aria-label': 'Next Page'
 				}}
-				onChangePage={() => handleChangePage()}
-				onChangeRowsPerPage={e => handleChangeRowsPerPage(e)}
+				onChangePage={handleChangePage}
+				onChangeRowsPerPage={handleChangeRowsPerPage}
 			/>
 		</div>
 	);

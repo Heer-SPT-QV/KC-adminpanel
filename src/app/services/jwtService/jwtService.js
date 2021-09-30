@@ -69,6 +69,7 @@ class JwtService extends FuseUtils.EventEmitter {
 		};
 
 		return new Promise((resolve, reject) => {
+			console.log(API);
 			axios
 				.post(`${API}/login`, data)
 				.then(response => {

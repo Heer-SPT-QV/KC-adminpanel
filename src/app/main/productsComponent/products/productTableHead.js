@@ -26,26 +26,33 @@ const rows = [
 		sort: true
 	},
 	{
-		id: 'iconUrl',
+		id: 'approved',
 		align: 'left',
 		disablePadding: false,
-		label: 'icon URL',
+		label: 'Approved',
+		sort: true
+	},
+	{
+		id: 'reportCount',
+		align: 'left',
+		disablePadding: false,
+		label: 'Report Count',
+		sort: true
+	},
+	{
+		id: 'price',
+		align: 'left',
+		disablePadding: false,
+		label: 'Price',
+		sort: true
+	},
+	{
+		id: 'productType',
+		align: 'left',
+		disablePadding: false,
+		label: 'Product Type',
 		sort: true
 	}
-	// {
-	// 	id: 'airline_name',
-	// 	align: 'left',
-	// 	disablePadding: false,
-	// 	label: 'AirLine name',
-	// 	sort: true
-	// },
-	// {
-	// 	id: 'country',
-	// 	align: 'left',
-	// 	disablePadding: false,
-	// 	label: 'Country',
-	// 	sort: true
-	// }
 ];
 
 const useStyles = makeStyles(theme => ({
@@ -116,6 +123,18 @@ function CategoriesTableHead(props) {
 											<Icon>delete</Icon>
 										</ListItemIcon>
 										<ListItemText primary="Remove" />
+									</MenuItem>
+									<MenuItem
+										onClick={() => {
+											dispatch(removeCategoy(selectedProductIds));
+											props.onMenuItemClick();
+											closeSelectedProductsMenu();
+										}}
+									>
+										<ListItemIcon className="min-w-40">
+											<Icon>delete</Icon>
+										</ListItemIcon>
+										<ListItemText primary="Approve" />
 									</MenuItem>
 								</MenuList>
 							</Menu>

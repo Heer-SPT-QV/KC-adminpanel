@@ -15,9 +15,9 @@ function BasicInfoTab(props) {
 					<TextField
 						{...field}
 						className="mt-8 mb-16"
-						error={!!errors.name}
+						error={!!errors.firstName}
 						required
-						helperText={errors?.name?.message}
+						helperText={errors?.firstName?.message}
 						label="firstName"
 						autoFocus
 						id="firstName"
@@ -26,6 +26,60 @@ function BasicInfoTab(props) {
 					/>
 				)}
 			/>
+			<Controller
+				name="lastName"
+				control={control}
+				render={({ field }) => (
+					<TextField
+						{...field}
+						className="mt-8 mb-16"
+						error={!!errors.name}
+						required
+						helperText={errors?.name?.message}
+						label="lastName"
+						autoFocus
+						id="lastName"
+						variant="outlined"
+						fullWidth
+					/>
+				)}
+			/>
+			<Controller
+				name="email"
+				control={control}
+				render={({ field }) => (
+					<TextField
+						{...field}
+						className="mt-8 mb-16"
+						error={!!errors.name}
+						required
+						helperText={errors?.name?.message}
+						label="email"
+						autoFocus
+						id="email"
+						variant="outlined"
+						fullWidth
+					/>
+				)}
+			/>
+			{/* <Controller
+				name="allergySet"
+				control={control}
+				render={({ field }) => (
+					<TextField
+						{...field}
+						className="mt-8 mb-16"
+						error={!!errors.allergySet}
+						required
+						helperText={errors?.allergySet?.message}
+						label="allergySet"
+						autoFocus
+						id="allergySet"
+						variant="outlined"
+						fullWidth
+					/>
+				)}
+			/> */}
 		</div>
 	);
 }

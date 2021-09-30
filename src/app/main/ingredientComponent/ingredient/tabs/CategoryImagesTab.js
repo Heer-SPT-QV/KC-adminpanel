@@ -8,6 +8,8 @@ import { Button, CircularProgress, Typography } from '@material-ui/core';
 import { useState } from 'react';
 import axios from 'axios';
 import { API } from 'app/shared-components/API';
+import { toast } from 'react-toastify';
+import { Route, useHistory } from 'react-router';
 
 const useStyles = makeStyles(theme => ({
 	productImageFeaturedStar: {
@@ -45,6 +47,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function CategoryImagesTab(props) {
+	const history = useHistory();
 	const classes = useStyles(props);
 	const methods = useFormContext();
 	const { control, watch, setValue, getValues } = methods;
@@ -78,7 +81,11 @@ function CategoryImagesTab(props) {
 			.catch(error => {
 				setErrorMsg(error.isAxiosError ? error.response.data.message : error.message);
 			})
-			.finally(() => setIsUploading(false));
+			.finally(() => {
+				setIsUploading(false);
+				toast.success('Ingredient successfully addedd');
+				history.push('/ingredients');
+			});
 	};
 
 	return (

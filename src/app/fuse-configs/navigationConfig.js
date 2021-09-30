@@ -11,10 +11,10 @@ i18next.addResourceBundle('ar', 'navigation', ar);
 const navigationConfig = [
 	{
 		id: 'applications',
-		title: 'Applications',
-		translate: 'APPLICATIONS',
+		title: '',
+		translate: '',
 		type: 'group',
-		icon: 'apps',
+		icon: '',
 		children: [
 			// {
 			// 	id: 'example-component',
@@ -35,7 +35,7 @@ const navigationConfig = [
 			{
 				id: 'allergy',
 				title: 'Allergy',
-				translate: 'allergy',
+				translate: 'Allergy',
 				type: 'item',
 				icon: 'whatshot',
 				url: '/allergies'
@@ -43,7 +43,7 @@ const navigationConfig = [
 			{
 				id: 'users',
 				title: 'Users',
-				translate: 'users',
+				translate: 'Users',
 				type: 'item',
 				icon: 'people',
 				url: '/users'
@@ -52,7 +52,7 @@ const navigationConfig = [
 			{
 				id: 'productTypes',
 				title: 'ProductTypes',
-				translate: 'ProductTypes',
+				translate: 'Product Types',
 				type: 'item',
 				icon: 'category',
 				url: '/productTypes'
@@ -63,17 +63,17 @@ const navigationConfig = [
 				title: 'Products',
 				translate: 'Products',
 				type: 'item',
-				icon: 'list_alt',
+				icon: 'whatshot',
 				url: '/products'
-			},
-			{
-				id: 'stores',
-				title: 'Stores',
-				translate: 'Stores',
-				type: 'item',
-				icon: 'store',
-				url: '/stores'
 			}
+			// {
+			// 	id: 'stores',
+			// 	title: 'Stores',
+			// 	translate: 'Stores',
+			// 	type: 'item',
+			// 	icon: 'whatshot',
+			// 	url: '/stores'
+			// }
 		]
 	}
 ];

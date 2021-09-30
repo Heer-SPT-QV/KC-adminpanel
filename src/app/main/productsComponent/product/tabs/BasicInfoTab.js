@@ -1,11 +1,13 @@
 import TextField from '@material-ui/core/TextField';
 import { Controller, useFormContext } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 function BasicInfoTab(props) {
 	const methods = useFormContext();
 	const { control, formState } = methods;
 	const { errors } = formState;
 	console.log(control);
+
 	return (
 		<div>
 			<Controller
@@ -23,24 +25,102 @@ function BasicInfoTab(props) {
 						id="name"
 						variant="outlined"
 						fullWidth
+						disabled
 					/>
 				)}
 			/>
 			<Controller
-				name="iconUrl"
+				name="cookingTime"
 				control={control}
 				render={({ field }) => (
 					<TextField
 						{...field}
 						className="mt-8 mb-16"
-						error={!!errors.iconURL}
+						error={!!errors.cookingTime}
 						required
-						helperText={errors?.iconURL?.message}
-						label="iconURL"
+						helperText={errors?.cookingTime?.message}
+						label="Cooking Time"
 						autoFocus
 						id="iconURL"
 						variant="outlined"
 						fullWidth
+						disabled
+					/>
+				)}
+			/>
+			<Controller
+				name="preparationTime"
+				control={control}
+				render={({ field }) => (
+					<TextField
+						{...field}
+						className="mt-8 mb-16"
+						error={!!errors.preparationTime}
+						required
+						helperText={errors?.preparationTime?.message}
+						label="Preparation Time"
+						autoFocus
+						id="iconURL"
+						variant="outlined"
+						fullWidth
+						disabled
+					/>
+				)}
+			/>
+			<Controller
+				name="price"
+				control={control}
+				render={({ field }) => (
+					<TextField
+						{...field}
+						className="mt-8 mb-16"
+						error={!!errors.price}
+						required
+						helperText={errors?.price?.message}
+						label="Price"
+						autoFocus
+						id="iconURL"
+						variant="outlined"
+						fullWidth
+						disabled
+					/>
+				)}
+			/>
+			<Controller
+				name="reportCount"
+				control={control}
+				render={({ field }) => (
+					<TextField
+						{...field}
+						className="mt-8 mb-16"
+						error={!!errors.reportCount}
+						required
+						helperText={errors?.reportCount?.message}
+						label="Report Count"
+						autoFocus
+						id="iconURL"
+						variant="outlined"
+						fullWidth
+						disabled
+					/>
+				)}
+			/>
+			<Controller
+				name="description"
+				control={control}
+				render={({ field }) => (
+					<TextField
+						{...field}
+						className="mt-8 mb-16"
+						error={!!errors.description}
+						required
+						helperText={errors?.description?.message}
+						label="Description"
+						autoFocus
+						id="description"
+						variant="outlined"
+						fullWidth
+						disabled
 					/>
 				)}
 			/>

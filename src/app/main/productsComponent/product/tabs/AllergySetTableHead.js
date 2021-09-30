@@ -15,35 +15,41 @@ import Tooltip from '@material-ui/core/Tooltip';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeCategoy } from '../store/projectsSlice';
 
 const rows = [
-	{
-		id: 'name',
-		align: 'left',
-		disablePadding: false,
-		label: 'Name',
-		sort: true
-	},
-	{
-		id: 'iconUrl',
-		align: 'left',
-		disablePadding: false,
-		label: 'Icon',
-		sort: true
-	}
 	// {
-	// 	id: 'airline_name',
+	// 	id: 'allergySet',
 	// 	align: 'left',
 	// 	disablePadding: false,
-	// 	label: 'AirLine name',
+	// 	label: 'Allergy Set',
 	// 	sort: true
 	// },
 	// {
-	// 	id: 'country',
+	// 	id: 'icon',
 	// 	align: 'left',
 	// 	disablePadding: false,
-	// 	label: 'Country',
+	// 	label: 'Icons',
+	// 	sort: true
+	// }
+	// {
+	// 	id: 'reportCount',
+	// 	align: 'left',
+	// 	disablePadding: false,
+	// 	label: 'Report Count',
+	// 	sort: true
+	// },
+	// {
+	// 	id: 'price',
+	// 	align: 'left',
+	// 	disablePadding: false,
+	// 	label: 'Price',
+	// 	sort: true
+	// },
+	// {
+	// 	id: 'productType',
+	// 	align: 'left',
+	// 	disablePadding: false,
+	// 	label: 'Product Type',
 	// 	sort: true
 	// }
 ];
@@ -54,7 +60,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-function CategoriesTableHead(props) {
+function AllergySetTableHead(props) {
 	const classes = useStyles(props);
 	const { selectedProductIds } = props;
 	const numSelected = selectedProductIds.length;
@@ -77,8 +83,8 @@ function CategoriesTableHead(props) {
 
 	return (
 		<TableHead>
-			<TableRow className="h-48 sm:h-64">
-				<TableCell padding="none" className="w-40 text-center md:w-64 z-99">
+			{/* <TableRow className="h-48 sm:h-64"> */}
+			{/* <TableCell padding="none" className="w-40 text-center md:w-64 z-99">
 					<Checkbox
 						indeterminate={numSelected > 0 && numSelected < props.rowCount}
 						checked={props.rowCount !== 0 && numSelected === props.rowCount}
@@ -102,12 +108,12 @@ function CategoriesTableHead(props) {
 								id="selectedProductsMenu"
 								anchorEl={selectedProductsMenu}
 								open={Boolean(selectedProductsMenu)}
-								onClose={() => closeSelectedProductsMenu()}
+								onClose={closeSelectedProductsMenu}
 							>
 								<MenuList>
 									<MenuItem
 										onClick={() => {
-											dispatch(removeCategoy(selectedProductIds));
+											// dispatch(removeCategoy(selectedProductIds));
 											props.onMenuItemClick();
 											closeSelectedProductsMenu();
 										}}
@@ -121,38 +127,38 @@ function CategoriesTableHead(props) {
 							</Menu>
 						</div>
 					)}
-				</TableCell>
-				{rows.map(row => {
-					return (
-						<TableCell
-							className="p-4 md:p-16"
-							key={row.id}
-							align={row.align}
-							padding={row.disablePadding ? 'none' : 'default'}
-							sortDirection={props.order.id === row.id ? props.order.direction : false}
-						>
-							{row.sort && (
-								<Tooltip
-									title="Sort"
-									placement={row.align === 'right' ? 'bottom-end' : 'bottom-start'}
-									enterDelay={300}
+				</TableCell> */}
+			{rows.map(row => {
+				return (
+					<TableCell
+						className="p-4 md:p-16"
+						key={row.id}
+						align={row.align}
+						padding={row.disablePadding ? 'none' : 'default'}
+						sortDirection={props.order.id === row.id ? props.order.direction : false}
+					>
+						{row.sort && (
+							<Tooltip
+								title="Sort"
+								placement={row.align === 'right' ? 'bottom-end' : 'bottom-start'}
+								enterDelay={300}
+							>
+								<TableSortLabel
+									active={props.order.id === row.id}
+									direction={props.order.direction}
+									onClick={createSortHandler(row.id)}
+									className="font-semibold"
 								>
-									<TableSortLabel
-										active={props.order.id === row.id}
-										direction={props.order.direction}
-										onClick={createSortHandler(row.id)}
-										className="font-semibold"
-									>
-										{row.label}
-									</TableSortLabel>
-								</Tooltip>
-							)}
-						</TableCell>
-					);
-				}, this)}
-			</TableRow>
+									{row.label}
+								</TableSortLabel>
+							</Tooltip>
+						)}
+					</TableCell>
+				);
+			}, this)}
+			{/* </TableRow> */}
 		</TableHead>
 	);
 }
 
-export default CategoriesTableHead;
+export default AllergySetTableHead;

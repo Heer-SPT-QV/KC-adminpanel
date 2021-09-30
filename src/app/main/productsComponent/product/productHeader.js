@@ -44,7 +44,7 @@ function CategoryHeader(props) {
 						className="flex items-center sm:mb-12"
 						component={Link}
 						role="button"
-						to="/allergies"
+						to="/products"
 						color="inherit"
 					>
 						<Icon className="text-20">{theme.direction === 'ltr' ? 'arrow_back' : 'arrow_forward'}</Icon>

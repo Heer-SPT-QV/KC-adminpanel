@@ -69,15 +69,18 @@ const categorySlice = createSlice({
 	initialState: null,
 	reducers: {
 		resetProduct: () => null,
+		// getSingle:(state,action)=>{
+		// 	console.log("in toolkit",action.payload);
+		// 	return action.payload;
+		// },
 		newProduct: {
 			reducer: (state, action) => action.payload,
 			prepare: event => ({
 				payload: {
 					id: FuseUtils.generateGUID(),
 					name: '',
-					imageUrl: '',
-					imagePublicId: '',
-					images: []
+					approved: true,
+					description: ''
 				}
 			})
 		}
@@ -89,6 +92,6 @@ const categorySlice = createSlice({
 	}
 });
 
-export const { newProduct, resetProduct } = categorySlice.actions;
+export const { newProduct, resetProduct, getSingle } = categorySlice.actions;
 
 export default categorySlice.reducer;

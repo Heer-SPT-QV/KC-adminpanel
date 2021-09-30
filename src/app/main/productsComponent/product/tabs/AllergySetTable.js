@@ -15,22 +15,17 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import FuseLoading from '@fuse/core/FuseLoading';
-import axios from 'axios';
-import { API } from 'app/shared-components/API';
-import { getCategories, selectProducts } from '../store/projectsSlice';
-import CategoriesTableHead from './userTableHead';
+import AllergySetTableHead from './AllergySetTableHead';
+// import getItem  from '../store/getItemSlice';
 
-function CategoriesTable(props) {
+function AllerySetTable(props) {
 	const dispatch = useDispatch();
-	const products = useSelector(selectProducts);
-	const searchText = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.products.searchText);
 
-	// console.log('Products...', products);
-	const [loading, setLoading] = useState(true);
+	const product = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.product);
+
 	const [selected, setSelected] = useState([]);
-	const [data, setData] = useState(products);
+	const [data, setData] = useState(product?.allergySet || []);
 	const [page, setPage] = useState(0);
-	const [danger, setDanger] = useState(false);
 	const [rowsPerPage, setRowsPerPage] = useState(10);
 	const [order, setOrder] = useState({
 		direction: 'asc',
@@ -38,18 +33,19 @@ function CategoriesTable(props) {
 	});
 	const [totalCat, setTotalCat] = useState(0);
 
-	useEffect(() => {
-		dispatch(getCategories({ setTotalCat, page, rowsPerPage })).then(() => setLoading(false));
-	}, [dispatch, page, rowsPerPage]);
+	console.log('data in allergyset', product);
+	// useEffect(() => {
+	// 	dispatch(getCategories({ setTotalCat, page, rowsPerPage })).then(() => setLoading(false));
+	// }, [dispatch, page, rowsPerPage]);
 
-	useEffect(() => {
-		if (searchText.length !== 0) {
-			setData(_.filter(products, item => item.firstName.toLowerCase().includes(searchText.toLowerCase())));
-			setPage(0);
-		} else {
-			setData([...products]);
-		}
-	}, [products, searchText]);
+	// useEffect(() => {
+	// 	if (searchText.length !== 0) {
+	// 		setData(_.filter(products, item => item.name.toLowerCase().includes(searchText.toLowerCase())));
+	// 		setPage(0);
+	// 	} else {
+	// 		setData([...products]);
+	// 	}
+	// }, [products, searchText]);
 
 	function handleRequestSort(event, property) {
 		const id = property;
@@ -72,25 +68,14 @@ function CategoriesTable(props) {
 		}
 		setSelected([]);
 	}
-	function handleBlockClick(id) {
-		console.log('id og block', id);
-		console.log('clicked block');
-		axios
-			.patch(`${API}/user/block?userId=${id}`)
-			.then(res => {
-				console.log('block resp', res);
-				window.location.reload();
-			})
-			.catch(err => {
-				console.log('err in block', err);
-			});
-	}
+
 	function handleDeselect() {
 		setSelected([]);
 	}
 
 	function handleClick(item) {
-		props.history.push(`/user/${item.id}`);
+		console.log('product item ', item);
+		props.history.push(`/allergy/${item.id}`);
 	}
 
 	function handleCheck(event, id) {
@@ -120,9 +105,9 @@ function CategoriesTable(props) {
 		setRowsPerPage(event.target.value);
 	}
 
-	if (loading) {
-		return <FuseLoading />;
-	}
+	// if (loading) {
+	// 	return <FuseLoading />;
+	// }
 
 	if (data.length === 0) {
 		return (
@@ -142,7 +127,7 @@ function CategoriesTable(props) {
 		<div className="flex flex-col w-full">
 			<FuseScrollbars className="flex-grow overflow-x-auto">
 				<Table stickyHeader className="min-w-xl" aria-labelledby="tableTitle">
-					<CategoriesTableHead
+					<AllergySetTableHead
 						selectedProductIds={selected}
 						order={order}
 						onSelectAllClick={() => handleSelectAllClick}
@@ -171,9 +156,7 @@ function CategoriesTable(props) {
 							const isSelected = selected.indexOf(n.id) !== -1;
 							return (
 								<TableRow
-									className={`${
-										n.isLocked ? 'cursor-pointer h-72 bg-deep-orange-400 ' : 'cursor-pointer h-72'
-									}`}
+									className="cursor-pointer h-72"
 									hover
 									role="checkbox"
 									aria-checked={isSelected}
@@ -182,20 +165,34 @@ function CategoriesTable(props) {
 									selected={isSelected}
 									// onClick={event => handleClick(n)}
 								>
-									{/* <TableCell className="w-40 text-center md:w-64" padding="none">
+									<TableCell className="w-40 text-center md:w-64" padding="none">
 										<Checkbox
 											checked={isSelected}
 											onClick={event => event.stopPropagation()}
 											onChange={event => handleCheck(event, n.id)}
 										/>
+									</TableCell>
+
+									{/* <TableCell className="p-4 md:p-16" component="th" scope="row">
+										{n.approved ? 'true' : 'false'}
+									</TableCell>
+									<TableCell className="p-4 md:p-16" component="th" scope="row">
+										{n.reportCount}
 									</TableCell> */}
-									{/* <TableCell>
-										{n.imageUrl ? (
+
+									<TableCell className="p-4 md:p-16" component="th" scope="row">
+										{n.name}
+									</TableCell>
+									{/* <TableCell className="p-4 md:p-16" component="th" scope="row">
+										{n.iconUrl}
+									</TableCell> */}
+									<TableCell>
+										{n.iconUrl.length ? (
 											<img
 												// className="block rounded w-50"
 												className="h-32 w-52"
 												// src={_.find(n.images, { id: n.featuredImageId }).url}
-												src={n.imageUrl}
+												src={n.iconUrl}
 												alt={n.name}
 											/>
 										) : (
@@ -205,29 +202,6 @@ function CategoriesTable(props) {
 												alt={n.name}
 											/>
 										)}
-									</TableCell> */}
-									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.firstName}
-									</TableCell>
-									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.lastName}
-									</TableCell>
-									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.email}
-									</TableCell>
-
-									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.allergySet.map(item => {
-											return <span key={item.id}>{item.name},</span>;
-										})}
-									</TableCell>
-									<TableCell>
-										<Checkbox
-											onChange={() => handleBlockClick(n.id)}
-											checked={n.isLocked}
-											onClick={event => event.stopPropagation()}
-											// onChange={event => handleCheck(event, n.id)}
-										/>
 									</TableCell>
 								</TableRow>
 							);
@@ -255,4 +229,4 @@ function CategoriesTable(props) {
 	);
 }
 
-export default withRouter(CategoriesTable);
+export default withRouter(AllerySetTable);

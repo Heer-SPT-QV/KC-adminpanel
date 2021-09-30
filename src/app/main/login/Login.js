@@ -61,12 +61,12 @@ function Login() {
 					<CardContent className="flex flex-col items-center justify-center w-full py-96 max-w-320">
 						<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.2 } }}>
 							<div className="flex items-center mb-48">
-								<img className="w-48 logo-icon" src="assets/images/logos/fuse.svg" alt="logo" />
+								<img src="assets/images/logos/KCLogo.svg" alt="logo" />
 								<div className="w-1 h-40 mr-4 border-l-1" />
 								<div>
-									<Typography className="font-semibold text-24 logo-text" color="inherit">
+									{/* <Typography className="font-semibold text-24 logo-text" color="inherit">
 										Korean Convinience
-									</Typography>
+									</Typography> */}
 									{/* <Typography
 										className="-mt-8 tracking-widest text-16 font-700"
 										color="textSecondary"
@@ -83,7 +83,7 @@ function Login() {
 							variant="fullWidth"
 							className="w-full mb-32"
 						> */}
-						<Tab
+						{/* <Tab
 							icon={
 								<img
 									className="h-40 p-4 bg-black rounded-12"
@@ -94,7 +94,7 @@ function Login() {
 							className="min-w-0"
 							label="JWT"
 							value={selectedTab}
-						/>
+						/> */}
 						{/* <Tab
 								icon={<img className="h-40" src="assets/images/logos/firebase.svg" alt="firebase" />}
 								className="min-w-0"
@@ -113,7 +113,7 @@ function Login() {
 					</CardContent>
 
 					<div className="flex flex-col items-center justify-center pb-32">
-						<div>
+						{/* <div>
 							<span className="mr-8 font-normal">Don't have an account?</span>
 							<Link className="font-normal" to="/register">
 								Register
@@ -121,28 +121,32 @@ function Login() {
 						</div>
 						<Link className="mt-8 font-normal" to="/">
 							Back to Dashboard
-						</Link>
+						</Link> */}
 					</div>
 				</Card>
 
 				<div className={clsx(classes.rightSection, 'hidden md:flex flex-1 items-center justify-center p-64')}>
-					<div className="max-w-320">
+					<div>
 						<motion.div
 							initial={{ opacity: 0, y: 40 }}
 							animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}
 						>
-							<Typography variant="h3" color="inherit" className="font-semibold leading-tight">
-								Welcome <br />
-								to the <br /> FUSE React!
+							<Typography
+								variant="h4"
+								color="inherit"
+								className="font-semibold"
+								style={{ textAlign: 'center' }}
+							>
+								Welcome to the <br /> Korean convenience
 							</Typography>
 						</motion.div>
 
-						<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.3 } }}>
+						{/* <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.3 } }}>
 							<Typography variant="subtitle1" color="inherit" className="mt-32">
 								Powerful and professional admin template for Web Applications, CRM, CMS, Admin Panels
 								and more.
 							</Typography>
-						</motion.div>
+						</motion.div> */}
 					</div>
 				</div>
 			</motion.div>

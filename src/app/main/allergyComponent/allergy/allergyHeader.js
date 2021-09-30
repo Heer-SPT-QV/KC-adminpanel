@@ -24,6 +24,7 @@ function CategoryHeader(props) {
 		console.log('rundenene');
 		dispatch(saveCategory(getValues()));
 		reset(getValues());
+		history.push('/ingredients');
 	}
 
 	function handleRemoveProduct() {
@@ -70,7 +71,7 @@ function CategoryHeader(props) {
 								{name || 'New Allergies'}
 							</Typography>
 							<Typography variant="caption" className="font-medium">
-								allergies Detail
+								Allergies Detail
 							</Typography>
 						</motion.div>
 					</div>
@@ -85,7 +86,7 @@ function CategoryHeader(props) {
 					className="mx-4 whitespace-nowrap"
 					variant="contained"
 					color="secondary"
-					onClick={() => handleRemoveProduct()}
+					onClick={handleRemoveProduct}
 					startIcon={<Icon className="hidden sm:flex">delete</Icon>}
 				>
 					Remove
@@ -96,7 +97,7 @@ function CategoryHeader(props) {
 						variant="contained"
 						color="secondary"
 						disabled={_.isEmpty(dirtyFields) || !isValid}
-						onClick={() => handleSaveProduct()}
+						onClick={handleSaveProduct}
 					>
 						Save
 					</Button>
@@ -106,7 +107,7 @@ function CategoryHeader(props) {
 						variant="contained"
 						color="secondary"
 						disabled={_.isEmpty(dirtyFields) || !isValid}
-						onClick={() => handleUpdateProduct()}
+						onClick={handleUpdateProduct}
 					>
 						Update
 					</Button>

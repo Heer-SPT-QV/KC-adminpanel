@@ -15,35 +15,41 @@ import Tooltip from '@material-ui/core/Tooltip';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeCategoy } from '../store/projectsSlice';
 
 const rows = [
 	{
-		id: 'name',
+		id: 'ingredientSet',
 		align: 'left',
 		disablePadding: false,
-		label: 'Name',
+		label: 'Ingredient Name',
 		sort: true
 	},
 	{
-		id: 'iconUrl',
+		id: 'nameInHangul',
 		align: 'left',
 		disablePadding: false,
-		label: 'Icon',
+		label: 'Name in Hangul',
 		sort: true
 	}
 	// {
-	// 	id: 'airline_name',
+	// 	id: 'reportCount',
 	// 	align: 'left',
 	// 	disablePadding: false,
-	// 	label: 'AirLine name',
+	// 	label: 'Report Count',
 	// 	sort: true
 	// },
 	// {
-	// 	id: 'country',
+	// 	id: 'price',
 	// 	align: 'left',
 	// 	disablePadding: false,
-	// 	label: 'Country',
+	// 	label: 'Price',
+	// 	sort: true
+	// },
+	// {
+	// 	id: 'productType',
+	// 	align: 'left',
+	// 	disablePadding: false,
+	// 	label: 'Product Type',
 	// 	sort: true
 	// }
 ];
@@ -54,7 +60,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-function CategoriesTableHead(props) {
+function IngredientSetTableHead(props) {
 	const classes = useStyles(props);
 	const { selectedProductIds } = props;
 	const numSelected = selectedProductIds.length;
@@ -107,7 +113,7 @@ function CategoriesTableHead(props) {
 								<MenuList>
 									<MenuItem
 										onClick={() => {
-											dispatch(removeCategoy(selectedProductIds));
+											// dispatch(removeCategoy(selectedProductIds));
 											props.onMenuItemClick();
 											closeSelectedProductsMenu();
 										}}
@@ -155,4 +161,4 @@ function CategoriesTableHead(props) {
 	);
 }
 
-export default CategoriesTableHead;
+export default IngredientSetTableHead;

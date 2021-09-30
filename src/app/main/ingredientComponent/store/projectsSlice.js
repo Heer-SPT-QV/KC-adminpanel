@@ -9,7 +9,7 @@ export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat,
 	);
 	const data = await response.data;
 	console.log('data of ingredient', data.content);
-	setTotalCat(data.totalPages);
+	setTotalCat(data.totalElements);
 
 	return data.content;
 	// return data.data.map(item => {
@@ -24,10 +24,10 @@ export const removeCategoy = createAsyncThunk(
 			axios
 				.delete(`${API}/ingredient/delete?id=${id}`)
 				.then(resp => {
-					toast.success(`ingredient deleted successfully ${id}`);
+					toast.success(`Ingredient deleted successfully ${id}`);
 				})
 				.catch(() => {
-					toast.error(`Error Deleting Category ${id}`);
+					toast.error(`Cannot delete this ingredient as it is associated to existing products`);
 				});
 		});
 		return productIds;

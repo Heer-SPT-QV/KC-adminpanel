@@ -4,12 +4,12 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat, page, rowsPerPage }) => {
-	const response = await axios.get(`${API}/allergy/all`);
+	const response = await axios.get(`${API}/product/filter?allergiesIds=&ingredientsIds=&productTypeId=&priceRange=&pageSize=10&pageNumber=1&ascSort=false&latitude=37.5665&longitude=126.9780&newest=true`);
 	const data = await response.data;
-	// console.log('data of allergy', data.body);
-	setTotalCat(data.totalPages);
+	console.log('data of products', data.content);
+	// setTotalCat(data.totalPages);
 
-	return data.body;
+	return data.content;
 	// return data.data.map(item => {
 	// 	return { ...item, id: item._id };
 	// });
@@ -21,7 +21,7 @@ export const removeCategoy = createAsyncThunk(
 		productIds.forEach(id => {
 			axios
 				.delete(`${API}/allergy/delete?id=${id}`)
-				.then(res => toast.success(`deleted successfully ${id}`))
+				.then(_res => toast.success(`deleted successfully ${id}`))
 				.catch(() => {
 					toast.error(`Error Deleting Category ${id}`);
 				});
@@ -48,6 +48,10 @@ const categoriesSlice = createSlice({
 			},
 			prepare: event => ({ payload: event.target.value || '' })
 		}
+		,
+		// getSingle:(_state,action)=>{
+		// 	return action.payload;
+		// },
 	},
 	extraReducers: {
 		[getCategories.fulfilled]: categoriesAdapter.setAll,

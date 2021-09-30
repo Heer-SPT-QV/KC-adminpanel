@@ -17,8 +17,12 @@ import * as yup from 'yup';
 import reducer from '../store';
 import { getCategory, newProduct, resetProduct } from '../store/projectSlice';
 import CategoryHeader from './productHeader';
+import AllergySet from './tabs/AllergySet';
+import AllergySetTable from './tabs/AllergySetTable';
 import BasicInfoTab from './tabs/BasicInfoTab';
 import CategoryImagesTab from './tabs/CategoryImagesTab';
+import IngredientSetTable from './tabs/IngredientSetTable';
+import StoreSetTable from './tabs/StoreSetTable';
 
 /**
  * Form Validation Schema
@@ -35,10 +39,10 @@ function Category(props) {
 	const product = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.product);
 
 	const routeParams = useParams();
-	console.log('routeParam', routeParams);
 	const [tabValue, setTabValue] = useState(0);
 	const [noProduct, setNoProduct] = useState(false);
 	const [isOldProduct, setIsOldProduct] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const methods = useForm({
 		mode: 'onChange',
 		defaultValues: {},
@@ -48,12 +52,13 @@ function Category(props) {
 	const form = watch();
 
 	useDeepCompareEffect(() => {
+		setIsLoading(true);
 		function updateProductState() {
 			const { productId } = routeParams;
 			// console.log(productId);
 
 			if (productId === 'new') {
-				console.log('gone new');
+				setIsLoading(false);
 				/**
 				 * Create New Product data
 				 */
@@ -66,6 +71,7 @@ function Category(props) {
 					/**
 					 * If the requested product is not exist show message
 					 */
+					setIsLoading(false);
 					if (!action.payload) {
 						setNoProduct(true);
 					} else {
@@ -132,6 +138,10 @@ function Category(props) {
 		return <FuseLoading />;
 	}
 
+	if (isLoading) {
+		return <FuseLoading />;
+	}
+
 	return (
 		<FormProvider {...methods}>
 			<FusePageCarded
@@ -143,7 +153,7 @@ function Category(props) {
 				contentToolbar={
 					<Tabs
 						value={tabValue}
-						onChange={() => handleTabChange}
+						onChange={handleTabChange}
 						indicatorColor="primary"
 						textColor="primary"
 						variant="scrollable"
@@ -151,6 +161,9 @@ function Category(props) {
 						classes={{ root: 'w-full h-64' }}
 					>
 						<Tab className="h-64" label="Basic Info" />
+						<Tab className="h-64" label="Allergy Set" />
+						<Tab className="h-64" label="Ingredient Set" />
+						<Tab className="h-64" label="Store Set" />
 					</Tabs>
 				}
 				content={
@@ -158,6 +171,18 @@ function Category(props) {
 						<div className={tabValue !== 0 ? 'hidden' : ''}>
 							<BasicInfoTab isOldProduct={isOldProduct} />
 							<CategoryImagesTab isOldProduct={isOldProduct} />
+						</div>
+						<div className={tabValue !== 1 ? 'hidden' : ''}>
+							<AllergySetTable isOldProduct={isOldProduct} />
+							{/* <CategoryImagesTab isOldProduct={isOldProduct} /> */}
+						</div>
+						<div className={tabValue !== 2 ? 'hidden' : ''}>
+							<IngredientSetTable isOldProduct={isOldProduct} />
+							{/* <CategoryImagesTab isOldProduct={isOldProduct} /> */}
+						</div>
+						<div className={tabValue !== 3 ? 'hidden' : ''}>
+							<StoreSetTable isOldProduct={isOldProduct} />
+							{/* <CategoryImagesTab isOldProduct={isOldProduct} /> */}
 						</div>
 					</div>
 				}

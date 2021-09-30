@@ -18,6 +18,13 @@ import { useDispatch } from 'react-redux';
 import { removeCategoy } from '../store/projectsSlice';
 
 const rows = [
+	// {
+	// 	id: 'imageUrl',
+	// 	align: 'left',
+	// 	disablePadding: false,
+	// 	label: 'Image',
+	// 	sort: true
+	// },
 	{
 		id: 'firstName',
 		align: 'left',
@@ -36,14 +43,22 @@ const rows = [
 		id: 'email',
 		align: 'left',
 		disablePadding: false,
-		label: 'email',
+		label: 'Email',
 		sort: true
 	},
+
 	{
 		id: 'allergySet',
 		align: 'left',
 		disablePadding: false,
-		label: 'allergySet',
+		label: 'Allergy Set',
+		sort: true
+	},
+	{
+		id: 'isLocked',
+		align: 'left',
+		disablePadding: false,
+		label: 'Block User',
 		sort: true
 	}
 ];
@@ -78,7 +93,7 @@ function CategoriesTableHead(props) {
 	return (
 		<TableHead>
 			<TableRow className="h-48 sm:h-64">
-				<TableCell padding="none" className="w-40 text-center md:w-64 z-99">
+				{/* <TableCell padding="none" className="w-40 text-center md:w-64 z-99">
 					<Checkbox
 						indeterminate={numSelected > 0 && numSelected < props.rowCount}
 						checked={props.rowCount !== 0 && numSelected === props.rowCount}
@@ -121,7 +136,7 @@ function CategoriesTableHead(props) {
 							</Menu>
 						</div>
 					)}
-				</TableCell>
+				</TableCell> */}
 				{rows.map(row => {
 					return (
 						<TableCell

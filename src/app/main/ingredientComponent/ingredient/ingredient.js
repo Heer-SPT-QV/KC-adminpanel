@@ -39,6 +39,7 @@ function Category(props) {
 	const [tabValue, setTabValue] = useState(0);
 	const [noProduct, setNoProduct] = useState(false);
 	const [isOldProduct, setIsOldProduct] = useState(false);
+	const [newCsv, setNewCsv] = useState(false);
 	const methods = useForm({
 		mode: 'onChange',
 		defaultValues: {},
@@ -58,6 +59,9 @@ function Category(props) {
 				 * Create New Product data
 				 */
 				dispatch(newProduct());
+			} else if (ingredientId === 'newcsv') {
+				console.log('qwe');
+				setNewCsv(true);
 			} else {
 				/**
 				 * Get Product data
@@ -108,6 +112,8 @@ function Category(props) {
 	/**
 	 * Show Message if the requested products is not exists
 	 */
+	console.log('newcsv', newCsv);
+
 	if (noProduct) {
 		return (
 			<motion.div
@@ -116,12 +122,48 @@ function Category(props) {
 				className="flex flex-col items-center justify-center flex-1 h-full"
 			>
 				<Typography color="textSecondary" variant="h5">
-					There is no such category!
+					There are no such Ingredients!
 				</Typography>
 				<Button className="mt-24" component={Link} variant="outlined" to="/category" color="inherit">
-					Go to Category Page
+					Go to Ingredients Page
 				</Button>
 			</motion.div>
+		);
+	}
+	if (newCsv) {
+		console.log('ezdsf');
+		return (
+			<FormProvider {...methods}>
+				<FusePageCarded
+					classes={{
+						toolbar: 'p-0',
+						header: 'min-h-72 h-72 sm:h-136 sm:min-h-136'
+					}}
+					header={<CategoryHeader isOldProduct={isOldProduct} />}
+					contentToolbar={
+						<Tabs
+							value={tabValue}
+							onChange={() => handleTabChange}
+							indicatorColor="primary"
+							textColor="primary"
+							variant="scrollable"
+							scrollButtons="auto"
+							classes={{ root: 'w-full h-64' }}
+						>
+							<Tab className="h-64" label="Basic Info" />
+						</Tabs>
+					}
+					content={
+						<div className="max-w-2xl p-16 sm:p-24">
+							<div className={tabValue !== 0 ? 'hidden' : ''}>
+								{/* <BasicInfoTab isOldProduct={isOldProduct} /> */}
+								<CategoryImagesTab isOldProduct={isOldProduct} />
+							</div>
+						</div>
+					}
+					innerScroll
+				/>
+			</FormProvider>
 		);
 	}
 
@@ -157,7 +199,7 @@ function Category(props) {
 					<div className="max-w-2xl p-16 sm:p-24">
 						<div className={tabValue !== 0 ? 'hidden' : ''}>
 							<BasicInfoTab isOldProduct={isOldProduct} />
-							<CategoryImagesTab isOldProduct={isOldProduct} />
+							{/* <CategoryImagesTab isOldProduct={isOldProduct} /> */}
 						</div>
 					</div>
 				}

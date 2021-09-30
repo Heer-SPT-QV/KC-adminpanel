@@ -176,8 +176,25 @@ function CategoriesTable(props) {
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
 										{n.name}
 									</TableCell>
-									<TableCell className="p-4 md:p-16" component="th" scope="row">
+									{/* <TableCell className="p-4 md:p-16" component="th" scope="row">
 										{n.iconUrl}
+									</TableCell> */}
+									<TableCell>
+										{n.iconUrl.length ? (
+											<img
+												// className="block rounded w-50"
+												className="h-32 w-52"
+												// src={_.find(n.images, { id: n.featuredImageId }).url}
+												src={n.iconUrl}
+												alt={n.name}
+											/>
+										) : (
+											<img
+												className="block w-full rounded"
+												src="assets/images/ecommerce/product-image-placeholder.png"
+												alt={n.name}
+											/>
+										)}
 									</TableCell>
 									{/* <TableCell className="p-4 md:p-16" component="th" scope="row">
 										{n.airlin.name || ''}
@@ -204,8 +221,8 @@ function CategoriesTable(props) {
 				nextIconButtonProps={{
 					'aria-label': 'Next Page'
 				}}
-				onChangePage={() => handleChangePage()}
-				onChangeRowsPerPage={e => handleChangeRowsPerPage(e)}
+				onChangePage={handleChangePage}
+				onChangeRowsPerPage={handleChangeRowsPerPage}
 			/>
 		</div>
 	);

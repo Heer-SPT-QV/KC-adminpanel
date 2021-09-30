@@ -1,11 +1,15 @@
 import TextField from '@material-ui/core/TextField';
 import { Controller, useFormContext } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
-function BasicInfoTab(props) {
+function AllergySet(props) {
 	const methods = useFormContext();
 	const { control, formState } = methods;
 	const { errors } = formState;
-	// console.log(control);
+	console.log(control);
+	const product = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.product);
+	console.log('allergySet', product.allergySet);
+
 	return (
 		<div>
 			<Controller
@@ -26,26 +30,8 @@ function BasicInfoTab(props) {
 					/>
 				)}
 			/>
-			<Controller
-				name="iconUrl"
-				control={control}
-				render={({ field }) => (
-					<TextField
-						{...field}
-						className="mt-8 mb-16"
-						error={!!errors.iconUrl}
-						required
-						helperText={errors?.iconUrl?.message}
-						label="Icon URL"
-						autoFocus
-						id="iconUrl"
-						variant="outlined"
-						fullWidth
-					/>
-				)}
-			/>
 		</div>
 	);
 }
 
-export default BasicInfoTab;
+export default AllergySet;

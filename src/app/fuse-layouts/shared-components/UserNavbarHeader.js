@@ -39,16 +39,16 @@ function UserNavbarHeader(props) {
 			position="static"
 			color="primary"
 			classes={{ root: classes.root }}
-			className="user relative flex flex-col items-center justify-center pt-24 pb-64 mb-32 z-0 shadow-0"
+			className="relative z-0 flex flex-col items-center justify-center pt-24 pb-64 mb-32 user shadow-0"
 		>
-			<Typography className="username text-18 whitespace-nowrap font-semibold mb-4" color="inherit">
+			<Typography className="mb-4 font-semibold username text-18 whitespace-nowrap" color="inherit">
 				{user.data.displayName}
 			</Typography>
-			<Typography className="email text-13 opacity-50 whitespace-nowrap font-medium" color="inherit">
+			<Typography className="font-medium opacity-50 email text-13 whitespace-nowrap" color="inherit">
 				{user.data.email}
 			</Typography>
-			<div className="flex items-center justify-center absolute bottom-0 -mb-44">
-				<Avatar
+			<div className="absolute bottom-0 flex items-center justify-center -mb-44">
+				{/* <Avatar
 					className={clsx(classes.avatar, 'avatar w-72 h-72 p-8 box-content')}
 					alt="user photo"
 					src={
@@ -56,7 +56,7 @@ function UserNavbarHeader(props) {
 							? user.data.photoURL
 							: 'assets/images/avatars/profile.jpg'
 					}
-				/>
+				/> */}
 			</div>
 		</AppBar>
 	);

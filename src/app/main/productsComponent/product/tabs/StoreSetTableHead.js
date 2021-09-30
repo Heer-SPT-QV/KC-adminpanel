@@ -15,7 +15,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeCategoy } from '../store/projectsSlice';
 
 const rows = [
 	{
@@ -26,24 +25,31 @@ const rows = [
 		sort: true
 	},
 	{
-		id: 'iconUrl',
+		id: 'contactNumber',
 		align: 'left',
 		disablePadding: false,
-		label: 'Icon',
+		label: 'Contact Number',
 		sort: true
 	}
 	// {
-	// 	id: 'airline_name',
+	// 	id: 'reportCount',
 	// 	align: 'left',
 	// 	disablePadding: false,
-	// 	label: 'AirLine name',
+	// 	label: 'Report Count',
 	// 	sort: true
 	// },
 	// {
-	// 	id: 'country',
+	// 	id: 'price',
 	// 	align: 'left',
 	// 	disablePadding: false,
-	// 	label: 'Country',
+	// 	label: 'Price',
+	// 	sort: true
+	// },
+	// {
+	// 	id: 'productType',
+	// 	align: 'left',
+	// 	disablePadding: false,
+	// 	label: 'Product Type',
 	// 	sort: true
 	// }
 ];
@@ -54,7 +60,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-function CategoriesTableHead(props) {
+function StoreSetTableHead(props) {
 	const classes = useStyles(props);
 	const { selectedProductIds } = props;
 	const numSelected = selectedProductIds.length;
@@ -78,7 +84,7 @@ function CategoriesTableHead(props) {
 	return (
 		<TableHead>
 			<TableRow className="h-48 sm:h-64">
-				<TableCell padding="none" className="w-40 text-center md:w-64 z-99">
+				{/* <TableCell padding="none" className="w-40 text-center md:w-64 z-99">
 					<Checkbox
 						indeterminate={numSelected > 0 && numSelected < props.rowCount}
 						checked={props.rowCount !== 0 && numSelected === props.rowCount}
@@ -107,7 +113,7 @@ function CategoriesTableHead(props) {
 								<MenuList>
 									<MenuItem
 										onClick={() => {
-											dispatch(removeCategoy(selectedProductIds));
+											// dispatch(removeCategoy(selectedProductIds));
 											props.onMenuItemClick();
 											closeSelectedProductsMenu();
 										}}
@@ -121,7 +127,7 @@ function CategoriesTableHead(props) {
 							</Menu>
 						</div>
 					)}
-				</TableCell>
+				</TableCell> */}
 				{rows.map(row => {
 					return (
 						<TableCell
@@ -131,22 +137,22 @@ function CategoriesTableHead(props) {
 							padding={row.disablePadding ? 'none' : 'default'}
 							sortDirection={props.order.id === row.id ? props.order.direction : false}
 						>
-							{row.sort && (
-								<Tooltip
-									title="Sort"
-									placement={row.align === 'right' ? 'bottom-end' : 'bottom-start'}
-									enterDelay={300}
-								>
-									<TableSortLabel
-										active={props.order.id === row.id}
-										direction={props.order.direction}
-										onClick={createSortHandler(row.id)}
-										className="font-semibold"
-									>
-										{row.label}
-									</TableSortLabel>
-								</Tooltip>
-							)}
+							{/* {row.sort && ( */}
+							{/* <Tooltip
+								title="Sort"
+								placement={row.align === 'right' ? 'bottom-end' : 'bottom-start'}
+								enterDelay={300}
+							> */}
+							<TableSortLabel
+								active={props.order.id === row.id}
+								direction={props.order.direction}
+								onClick={createSortHandler(row.id)}
+								className="font-semibold"
+							>
+								{row.label}
+							</TableSortLabel>
+							{/* </Tooltip> */}
+							{/* )} */}
 						</TableCell>
 					);
 				}, this)}
@@ -155,4 +161,4 @@ function CategoriesTableHead(props) {
 	);
 }
 
-export default CategoriesTableHead;
+export default StoreSetTableHead;

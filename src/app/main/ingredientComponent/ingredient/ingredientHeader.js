@@ -26,7 +26,9 @@ function CategoryHeader(props) {
 
 	function handleSaveProduct() {
 		dispatch(saveCategory(getValues()));
+
 		reset(getValues());
+		history.push('/ingredients');
 	}
 
 	function handleRemoveProduct() {
@@ -107,7 +109,7 @@ function CategoryHeader(props) {
 						variant="contained"
 						color="secondary"
 						disabled={_.isEmpty(dirtyFields) || !isValid}
-						onClick={() => handleSaveProduct()}
+						onClick={handleSaveProduct}
 					>
 						Save
 					</Button>
@@ -117,7 +119,7 @@ function CategoryHeader(props) {
 						variant="contained"
 						color="secondary"
 						disabled={_.isEmpty(dirtyFields) || !isValid}
-						onClick={() => handleUpdateProduct()}
+						onClick={handleUpdateProduct}
 					>
 						Update
 					</Button>

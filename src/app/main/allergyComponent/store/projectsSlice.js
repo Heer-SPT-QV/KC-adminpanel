@@ -4,12 +4,15 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat, page, rowsPerPage }) => {
-	const response = await axios.get(`${API}/allergy/all`);
+	console.log('page', rowsPerPage);
+	const response = await axios.get(
+		`${API}/allergy/admin/get_all_allergies?pageNumber=${page + 1}&pageSize=${rowsPerPage}`
+	);
 	const data = await response.data;
-	// console.log('data of allergy', data.body);
-	setTotalCat(data.totalPages);
+	console.log('data of allergy', data);
+	setTotalCat(data.totalElements);
 
-	return data.body;
+	return data.content;
 	// return data.data.map(item => {
 	// 	return { ...item, id: item._id };
 	// });
@@ -23,7 +26,7 @@ export const removeCategoy = createAsyncThunk(
 				.delete(`${API}/allergy/delete?id=${id}`)
 				.then(res => toast.success(`deleted successfully ${id}`))
 				.catch(() => {
-					toast.error(`Error Deleting allery ${id}`);
+					toast.error(`Cannot delete this allergy as it is associated to existing products ${id}`);
 				});
 		});
 		return productIds;

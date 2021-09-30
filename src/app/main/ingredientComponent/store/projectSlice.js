@@ -23,7 +23,7 @@ export const removeCategory = createAsyncThunk(
 				toast.success(`Successfully deleted ${id}`);
 			})
 			.catch(() => {
-				toast.error(`Error Deleting Category ${id}`);
+				toast.error(`Cannot delete this ingredient as it is associated to existing products`);
 			});
 
 		return id;
@@ -41,7 +41,7 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 		.patch(`${API}/ingredient/update`, { ...proData })
 		.then(response => {
 			// console.log('upadted ingr', response);
-			toast.success('User Updated');
+			toast.success('Ingredient Updated');
 			const { data } = response;
 			return data.body;
 		})
@@ -61,7 +61,7 @@ export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveP
 		.post(`${API}/ingredient/add`, Prodata)
 		.then(response => {
 			// console.log(response);
-			toast.success('Category Created');
+			toast.success('Ingredient Created');
 			return response.data;
 		})
 		.catch(error => {

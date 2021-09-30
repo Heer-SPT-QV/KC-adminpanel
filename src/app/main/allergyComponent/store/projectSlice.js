@@ -3,6 +3,7 @@ import axios from 'axios';
 import FuseUtils from '@fuse/utils';
 import { API } from 'app/shared-components/API';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router';
 
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
 	const response = await axios.get(`${API}/allergy?id=${params}`);
@@ -19,10 +20,10 @@ export const removeCategory = createAsyncThunk(
 		await axios
 			.delete(`${API}/allergy/delete?id=${id}`)
 			.then(res => {
-				toast.success(`deleted successfully   ${id}`);
+				toast.success(` Allergy deleted successfully   ${id}`);
 			})
 			.catch(() => {
-				toast.error(`Error Deleting Category ${id}`);
+				toast.error(`Cannot delete this allergy as it is associated to existing products `);
 			});
 
 		return id;
@@ -37,8 +38,9 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 	axios
 		.patch(`${API}/allergy/update`, { ...proData })
 		.then(response => {
-			toast.success('User Updated');
 			const { data } = response;
+			// useHistory().push('/allergies');
+			toast.success('Allergy Updated');
 			return { ...data };
 		})
 		.catch(error => {
@@ -49,13 +51,17 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveProduct', async productData => {
 	const Prodata = {
 		name: productData.name,
-		iconUrl: productData.iconURL
+		iconUrl: productData.iconUrl
 	};
+	console.log(Prodata);
+	// const history = useHistory();
 	axios
 		.post(`${API}/allergy/add`, Prodata)
 		.then(response => {
 			// console.log(response);
-			toast.success('Category Created');
+			toast.success('Allery Created');
+			// history.push('/allergies');
+
 			return response.data;
 		})
 		.catch(error => {
@@ -75,9 +81,7 @@ const categorySlice = createSlice({
 				payload: {
 					id: FuseUtils.generateGUID(),
 					name: '',
-					imageUrl: '',
-					imagePublicId: '',
-					images: []
+					iconUrl: ''
 				}
 			})
 		}
