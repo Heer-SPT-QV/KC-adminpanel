@@ -59,11 +59,11 @@ function CategoryHeader(props) {
 						initial={{ scale: 0 }}
 						animate={{ scale: 1, transition: { delay: 0.3 } }}
 					>
-						<img
+						{/* <img
 							className="w-32 rounded sm:w-48"
 							src={getValues().imageUrl || 'assets/images/ecommerce/product-image-placeholder.png'}
 							alt={name}
-						/>
+						/> */}
 					</motion.div>
 					<div className="flex flex-col min-w-0 mx-8 sm:mc-16">
 						<motion.div initial={{ x: -20 }} animate={{ x: 0, transition: { delay: 0.3 } }}>

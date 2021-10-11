@@ -102,7 +102,7 @@ function CategoriesTableHead(props) {
 								id="selectedProductsMenu"
 								anchorEl={selectedProductsMenu}
 								open={Boolean(selectedProductsMenu)}
-								onClose={() => closeSelectedProductsMenu()}
+								onClose={closeSelectedProductsMenu}
 							>
 								<MenuList>
 									<MenuItem
@@ -140,7 +140,7 @@ function CategoriesTableHead(props) {
 									<TableSortLabel
 										active={props.order.id === row.id}
 										direction={props.order.direction}
-										onClick={createSortHandler(row.id)}
+										onClick={()=>createSortHandler(row.id)}
 										className="font-semibold"
 									>
 										{row.label}
