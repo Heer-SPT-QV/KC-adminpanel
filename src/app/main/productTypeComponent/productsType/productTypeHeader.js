@@ -69,7 +69,7 @@ function CategoriesHeader(props) {
 					variant="contained"
 					color="secondary"
 				>
-					<span className="hidden sm:flex">Add New product</span>
+					<span className="hidden sm:flex">Add New Product Type</span>
 					<span className="flex sm:hidden">New</span>
 				</Button>
 			</motion.div>

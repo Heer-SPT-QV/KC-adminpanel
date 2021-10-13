@@ -14,17 +14,17 @@ const languages = [
 		id: 'en',
 		title: 'English',
 		flag: 'us'
-	},
-	{
-		id: 'tr',
-		title: 'Turkish',
-		flag: 'tr'
-	},
-	{
-		id: 'ar',
-		title: 'Arabic',
-		flag: 'sa'
 	}
+	// {
+	// 	id: 'tr',
+	// 	title: 'Turkish',
+	// 	flag: 'tr'
+	// },
+	// {
+	// 	id: 'ar',
+	// 	title: 'Arabic',
+	// 	flag: 'sa'
+	// }
 ];
 
 function LanguageSwitcher(props) {
@@ -51,7 +51,7 @@ function LanguageSwitcher(props) {
 
 	return (
 		<>
-			<Button className="h-40 w-64" onClick={langMenuClick}>
+			<Button className="w-64 h-40" onClick={langMenuClick}>
 				<img
 					className="mx-4 min-w-20"
 					src={`assets/images/flags/${currentLanguage.flag}.png`}

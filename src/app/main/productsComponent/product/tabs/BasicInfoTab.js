@@ -25,7 +25,6 @@ function BasicInfoTab(props) {
 						id="name"
 						variant="outlined"
 						fullWidth
-						disabled
 					/>
 				)}
 			/>
@@ -44,7 +43,6 @@ function BasicInfoTab(props) {
 						id="iconURL"
 						variant="outlined"
 						fullWidth
-						disabled
 					/>
 				)}
 			/>
@@ -63,7 +61,6 @@ function BasicInfoTab(props) {
 						id="iconURL"
 						variant="outlined"
 						fullWidth
-						disabled
 					/>
 				)}
 			/>
@@ -82,7 +79,6 @@ function BasicInfoTab(props) {
 						id="iconURL"
 						variant="outlined"
 						fullWidth
-						disabled
 					/>
 				)}
 			/>
@@ -101,7 +97,6 @@ function BasicInfoTab(props) {
 						id="iconURL"
 						variant="outlined"
 						fullWidth
-						disabled
 					/>
 				)}
 			/>
@@ -120,7 +115,6 @@ function BasicInfoTab(props) {
 						id="description"
 						variant="outlined"
 						fullWidth
-						disabled
 					/>
 				)}
 			/>

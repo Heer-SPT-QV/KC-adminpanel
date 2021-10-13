@@ -105,7 +105,7 @@ function FuseSettings(props) {
 	const ThemeSelect = ({ value, name, handleThemeChange }) => {
 		return (
 			<Select
-				className="w-full rounded-8 h-40 overflow-hidden my-8"
+				className="w-full h-40 my-8 overflow-hidden rounded-8"
 				value={value}
 				onChange={handleThemeChange}
 				name={name}
@@ -135,7 +135,7 @@ function FuseSettings(props) {
 						>
 							{_.startCase(key)}
 							<div
-								className="flex w-full h-8 block absolute bottom-0 left-0 right-0"
+								className="absolute bottom-0 left-0 right-0 flex w-full h-8"
 								style={{
 									borderTop: `1px solid ${
 										val.palette.type === 'light'
@@ -299,7 +299,7 @@ function FuseSettings(props) {
 
 				{useMemo(() => getForm(formConfigs, 'layout.config'), [formConfigs, getForm])}
 
-				<Typography className="my-16 text-12 italic" color="textSecondary">
+				<Typography className="my-16 italic text-12" color="textSecondary">
 					*Not all option combinations are available
 				</Typography>
 			</div>
@@ -350,7 +350,7 @@ function FuseSettings(props) {
 					)}
 				/>
 
-				<Controller
+				{/* <Controller
 					name="theme.footer"
 					control={control}
 					render={({ field: { onChange, value } }) => (
@@ -361,7 +361,7 @@ function FuseSettings(props) {
 							<ThemeSelect value={value} handleThemeChange={onChange} name="theme.footer" />
 						</FormControl>
 					)}
-				/>
+				/> */}
 			</div>
 
 			<Controller

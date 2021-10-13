@@ -32,20 +32,6 @@ const rows = [
 		label: 'Name in Hangul',
 		sort: true
 	}
-	// {
-	// 	id: 'airline_name',
-	// 	align: 'left',
-	// 	disablePadding: false,
-	// 	label: 'AirLine name',
-	// 	sort: true
-	// },
-	// {
-	// 	id: 'country',
-	// 	align: 'left',
-	// 	disablePadding: false,
-	// 	label: 'Country',
-	// 	sort: true
-	// }
 ];
 
 const useStyles = makeStyles(theme => ({

@@ -191,12 +191,12 @@ function CategoriesTable(props) {
 					</TableBody>
 				</Table>
 			</FuseScrollbars>
-
+			{/* 
 			<TablePagination
 				className="flex-shrink-0 border-t-1"
 				component="div"
 				count={totalCat}
-				rowsPerPage={rowsPerPage}
+				// rowsPerPage={rowsPerPage}
 				page={page}
 				backIconButtonProps={{
 					'aria-label': 'Previous Page'
@@ -206,7 +206,7 @@ function CategoriesTable(props) {
 				}}
 				onChangePage={handleChangePage}
 				onChangeRowsPerPage={handleChangeRowsPerPage}
-			/>
+			/> */}
 		</div>
 	);
 }

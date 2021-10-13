@@ -13,7 +13,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 import FuseLoading from '@fuse/core/FuseLoading';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
@@ -25,6 +25,7 @@ import { getItemFunc } from '../store/getItemSlice';
 // import getItem  from '../store/getItemSlice';
 
 function CategoriesTable(props) {
+	const history = useHistory();
 	const dispatch = useDispatch();
 	const products = useSelector(selectProducts);
 
@@ -84,7 +85,9 @@ function CategoriesTable(props) {
 			.patch(`${API}/product/admin/approve_reject_product?productId=${id}`)
 			.then(resp => {
 				console.log('resp', resp);
-				window.location.reload();
+				// window.location.reload();
+				history.push('/');
+				history.push('/products');
 			})
 			.catch(err => {
 				console.log(err);

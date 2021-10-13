@@ -35,7 +35,7 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 		iconUrl: productData.iconUrl
 	};
 	axios
-		.patch(`${API}/product/add`, { ...proData })
+		.patch(`${API}/product/update`, { ...proData })
 		.then(response => {
 			toast.success('User Updated');
 			const { data } = response;
@@ -46,6 +46,7 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 			toast.error(error.isAxiosError ? error.response.data.message : error.message);
 		});
 });
+
 export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveProduct', async productData => {
 	const Prodata = {
 		name: productData.name,

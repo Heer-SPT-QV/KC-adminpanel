@@ -170,13 +170,13 @@ function IngredientSetTable(props) {
 									selected={isSelected}
 									// onClick={event => handleClick(n)}
 								>
-									<TableCell className="w-40 text-center md:w-64" padding="none">
+									{/* <TableCell className="w-40 text-center md:w-64" padding="none">
 										<Checkbox
 											checked={isSelected}
 											onClick={event => event.stopPropagation()}
 											// onChange={event => handleCheck(event, n.id)}
 										/>
-									</TableCell>
+									</TableCell> */}
 
 									{/* <TableCell className="p-4 md:p-16" component="th" scope="row">
 										{n.approved ? 'true' : 'false'}

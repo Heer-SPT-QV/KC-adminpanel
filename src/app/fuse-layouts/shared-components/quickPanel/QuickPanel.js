@@ -21,7 +21,8 @@ function QuickPanel(props) {
 	const classes = useStyles();
 
 	return (
-		<SwipeableDrawer
+		<>
+			{/* <SwipeableDrawer
 			classes={{ paper: classes.root }}
 			open={state}
 			anchor="right"
@@ -32,7 +33,8 @@ function QuickPanel(props) {
 			<FuseScrollbars>
 				<Typography>Quick Panel</Typography>
 			</FuseScrollbars>
-		</SwipeableDrawer>
+		</SwipeableDrawer> */}
+		</>
 	);
 }
 
