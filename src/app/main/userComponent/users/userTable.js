@@ -13,7 +13,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 import FuseLoading from '@fuse/core/FuseLoading';
 import axios from 'axios';
 import { API } from 'app/shared-components/API';
@@ -21,6 +21,7 @@ import { getCategories, selectProducts } from '../store/projectsSlice';
 import CategoriesTableHead from './userTableHead';
 
 function CategoriesTable(props) {
+	const history = useHistory();
 	const dispatch = useDispatch();
 	const products = useSelector(selectProducts);
 	const searchText = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.products.searchText);
@@ -79,7 +80,9 @@ function CategoriesTable(props) {
 			.patch(`${API}/user/block?userId=${id}`)
 			.then(res => {
 				console.log('block resp', res);
-				window.location.reload();
+				// window.location.reload();
+				history.push('/');
+				history.push('/users');
 			})
 			.catch(err => {
 				console.log('err in block', err);
