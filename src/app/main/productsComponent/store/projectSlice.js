@@ -5,7 +5,7 @@ import { API } from 'app/shared-components/API';
 import { toast } from 'react-toastify';
 
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
-	const response = await axios.get(`${API}/product?id=${params}`);
+	const response = await axios.get(`${API}/admin/product?id=${params}`);
 	const data = await response.data;
 	// console.log(data.body);
 	return data.body;
