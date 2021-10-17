@@ -8,8 +8,6 @@ import { Button, CircularProgress, Typography } from '@material-ui/core';
 import { useState } from 'react';
 import axios from 'axios';
 import { API } from 'app/shared-components/API';
-import { toast } from 'react-toastify';
-import { useHistory } from 'react-router';
 
 const useStyles = makeStyles(theme => ({
 	productImageFeaturedStar: {
@@ -46,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-function CategoryImagesTab(props) {
+function ProductImageTab(props) {
 	const classes = useStyles(props);
 	const methods = useFormContext();
 	const { control, watch, setValue, getValues } = methods;
@@ -196,4 +194,4 @@ function CategoryImagesTab(props) {
 	);
 }
 
-export default CategoryImagesTab;
+export default ProductImageTab;

@@ -5,7 +5,7 @@ import { API } from 'app/shared-components/API';
 import { toast } from 'react-toastify';
 
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
-	const response = await axios.get(`${API}/product?id=${params}`);
+	const response = await axios.get(`${API}/admin/product?id=${params}`);
 	const data = await response.data;
 	// console.log(data.body);
 	return data.body;
@@ -34,8 +34,9 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 		name: productData.name,
 		iconUrl: productData.iconUrl
 	};
+	// console.log(productData,'update');
 	axios
-		.patch(`${API}/product/update`, { ...proData })
+		.patch(`${API}/product/update`, { productData })
 		.then(response => {
 			toast.success('User Updated');
 			const { data } = response;
@@ -52,8 +53,9 @@ export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveP
 		name: productData.name,
 		iconUrl: productData.iconURL
 	};
+	console.log(productData, 'product save');
 	axios
-		.post(`${API}/allergy/add`, Prodata)
+		.post(`${API}/allergy/add`, productData)
 		.then(response => {
 			console.log(response);
 			toast.success('Category Created');

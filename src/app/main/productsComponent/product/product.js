@@ -21,6 +21,7 @@ import AllergySet from './tabs/AllergySet';
 import AllergySetTable from './tabs/AllergySetTable';
 import BasicInfoTab from './tabs/BasicInfoTab';
 import CategoryImagesTab from './tabs/CategoryImagesTab';
+import ProductImageTab from './tabs/ProductImageTab';
 import IngredientSetTable from './tabs/IngredientSetTable';
 import StoreSetTable from './tabs/StoreSetTable';
 
@@ -170,7 +171,8 @@ function Category(props) {
 					<div className="max-w-2xl p-16 sm:p-24">
 						<div className={tabValue !== 0 ? 'hidden' : ''}>
 							<BasicInfoTab isOldProduct={isOldProduct} />
-							<CategoryImagesTab isOldProduct={isOldProduct} />
+							{/* <CategoryImagesTab isOldProduct={isOldProduct} /> */}
+							<ProductImageTab isOldProduct={isOldProduct} />
 						</div>
 						<div className={tabValue !== 1 ? 'hidden' : ''}>
 							<AllergySetTable isOldProduct={isOldProduct} />

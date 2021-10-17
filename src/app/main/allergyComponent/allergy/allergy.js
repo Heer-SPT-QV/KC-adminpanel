@@ -196,6 +196,7 @@ function Category(props) {
 					<div className="max-w-2xl p-16 sm:p-24">
 						<div className={tabValue !== 0 ? 'hidden' : ''}>
 							<BasicInfoTab isOldProduct={isOldProduct} />
+							<CategoryImagesTab isOldProduct={isOldProduct} />
 						</div>
 					</div>
 				}
