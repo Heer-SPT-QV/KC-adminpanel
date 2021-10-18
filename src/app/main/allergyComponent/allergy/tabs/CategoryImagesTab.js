@@ -173,6 +173,7 @@ function CategoryImagesTab(props) {
 						'flex items-center justify-center relative w-128 h-128 rounded-16 mx-12 mb-24 overflow-hidden  outline-none shadow hover:shadow-lg'
 					)}
 					onClick={() => setChangeImage(true)}
+					onKeyDown={() => setChangeImage(true)}
 				>
 					<img className="max-w-none w-auto h-full" src={getValues('iconUrl')} alt="product" />
 				</div>
