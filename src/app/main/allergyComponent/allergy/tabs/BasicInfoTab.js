@@ -5,7 +5,7 @@ function BasicInfoTab(props) {
 	const methods = useFormContext();
 	const { control, formState } = methods;
 	const { errors } = formState;
-	// console.log(control);
+	// console.log(,"basic img");
 	return (
 		<div>
 			<Controller
@@ -26,7 +26,7 @@ function BasicInfoTab(props) {
 					/>
 				)}
 			/>
-			<Controller
+			{/* <Controller
 				name="iconUrl"
 				control={control}
 				render={({ field }) => (
@@ -41,9 +41,10 @@ function BasicInfoTab(props) {
 						id="iconUrl"
 						variant="outlined"
 						fullWidth
+						value={getValues('imageUrl')}
 					/>
 				)}
-			/>
+			/> */}
 		</div>
 	);
 }

@@ -52,7 +52,6 @@ function CategoryImagesTab(props) {
 	const { control, watch, setValue, getValues } = methods;
 	const categoryIdWatch = watch('categoryId');
 
-	const images = watch('images', []);
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [imageCred, setImageCred] = useState(null);
 	const [errorMsg, setErrorMsg] = useState(null);
@@ -70,12 +69,14 @@ function CategoryImagesTab(props) {
 				}
 			})
 			.then(response => {
+				// console.log(response.data.body,'image');
 				setImageCred({
-					imageUrl: response.data.secure_url,
-					imagePublicId: response.data.public_id
+					imageUrl: response.data.body.secureUrl,
+					imagePublicId: response.data.body.public_id
 				});
-				setValue('imageUrl', response.data.secure_url);
+				setValue('iconUrl', response.data.body.secureUrl);
 				setValue('imagePublicId', response.data.public_id);
+				setValue('featuredImageId', response.data.body.secureUrl);
 			})
 			.catch(error => {
 				setErrorMsg(error.isAxiosError ? error.response.data.message : error.message);
@@ -88,11 +89,11 @@ function CategoryImagesTab(props) {
 			<div className="flex justify-center sm:justify-start flex-wrap -mx-16">
 				{!props.isOldProduct && (
 					<Controller
-						name="images"
+						name="image"
 						control={control}
 						render={({ field: { onChange, value } }) => (
 							<label
-								htmlFor="button-file"
+								htmlFor="image"
 								className={clsx(
 									classes.productImageUpload,
 									'flex items-center justify-center relative w-128 h-128 rounded-16 mx-12 mb-24 overflow-hidden cursor-pointer shadow hover:shadow-lg'
@@ -101,7 +102,7 @@ function CategoryImagesTab(props) {
 								<input
 									accept="image/*"
 									className="hidden"
-									id="button-file"
+									id="image"
 									type="file"
 									onChange={async e => {
 										setSelectedFile(e.target.files[0]);
@@ -140,6 +141,7 @@ function CategoryImagesTab(props) {
 						)}
 					/>
 				)}
+				{console.log(getValues('iconUrl'), 'image..')}
 
 				<Controller
 					name="featuredImageId"
@@ -162,7 +164,7 @@ function CategoryImagesTab(props) {
 					}
 				/>
 			</div>
-			{!myImages.length && getValues('imageUrl') && (
+			{!myImages.length && getValues('iconUrl') && (
 				<div
 					role="button"
 					tabIndex={0}
@@ -171,7 +173,7 @@ function CategoryImagesTab(props) {
 						'flex items-center justify-center relative w-128 h-128 rounded-16 mx-12 mb-24 overflow-hidden  outline-none shadow hover:shadow-lg'
 					)}
 				>
-					<img className="max-w-none w-auto h-full" src={getValues('imageUrl')} alt="product" />
+					<img className="max-w-none w-auto h-full" src={getValues('iconUrl')} alt="product" />
 				</div>
 			)}
 			<div style={{ margin: '10px 0' }}>

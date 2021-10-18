@@ -27,8 +27,8 @@ const schema = yup.object().shape({
 	name: yup
 		.string()
 		.required('You must enter a category name')
-		.min(3, 'The category name must be at least 3 characters'),
-	iconUrl: yup.string().required().min(3)
+		.min(3, 'The category name must be at least 3 characters')
+	// imageUrl: yup.string().required().min(3)
 });
 
 function Category(props) {
@@ -121,7 +121,7 @@ function Category(props) {
 				className="flex flex-col items-center justify-center flex-1 h-full"
 			>
 				<Typography color="textSecondary" variant="h5">
-					There is no such category!
+					There is no such allergy!
 				</Typography>
 				<Button className="mt-24" component={Link} variant="outlined" to="/category" color="inherit">
 					Go to Category Page

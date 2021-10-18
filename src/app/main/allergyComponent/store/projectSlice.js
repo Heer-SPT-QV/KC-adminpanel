@@ -49,19 +49,14 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 		});
 });
 export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveProduct', async productData => {
-	const Prodata = {
+	const proData = {
 		name: productData.name,
 		iconUrl: productData.iconUrl
 	};
-	console.log(Prodata);
-	// const history = useHistory();
 	axios
-		.post(`${API}/allergy/add`, Prodata)
+		.post(`${API}/allergy/add`, proData)
 		.then(response => {
-			// console.log(response);
 			toast.success('Allery Created');
-			// history.push('/allergies');
-
 			return response.data;
 		})
 		.catch(error => {
@@ -81,7 +76,9 @@ const categorySlice = createSlice({
 				payload: {
 					id: FuseUtils.generateGUID(),
 					name: '',
-					iconUrl: ''
+					iconUrl: '',
+					imagePublicId: '',
+					featuredImageId: ''
 				}
 			})
 		}

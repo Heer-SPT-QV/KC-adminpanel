@@ -21,10 +21,8 @@ function CategoryHeader(props) {
 	const history = useHistory();
 
 	function handleSaveProduct() {
-		console.log('rundenene');
 		dispatch(saveCategory(getValues()));
 		reset(getValues());
-		history.push('/ingredients');
 	}
 
 	function handleRemoveProduct() {
