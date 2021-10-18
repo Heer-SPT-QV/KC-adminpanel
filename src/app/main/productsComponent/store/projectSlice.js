@@ -7,9 +7,8 @@ import { toast } from 'react-toastify';
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
 	const response = await axios.get(`${API}/admin/product?id=${params}`);
 	const data = await response.data;
-	// console.log(data.body);
-	return data.body;
-	// return data === undefined ? null : data;
+	console.log(data.body.storeSet[0]);
+	return { ...data.body, store: data.body.storeSet[0] };
 });
 
 export const removeCategory = createAsyncThunk(
@@ -29,18 +28,12 @@ export const removeCategory = createAsyncThunk(
 	}
 );
 export const productUser = createAsyncThunk('UsersCommerceApp/product/update', async productData => {
-	const proData = {
-		id: productData.id,
-		name: productData.name,
-		iconUrl: productData.iconUrl
-	};
-	// console.log(productData,'update');
 	axios
-		.patch(`${API}/product/update`, { productData })
+		.patch(`${API}/product/update`, { ...productData })
 		.then(response => {
-			toast.success('User Updated');
+			toast.success('Product Updated ');
 			const { data } = response;
-			return { ...data };
+			return { ...data.body };
 		})
 		.catch(error => {
 			console.log('err', error);
@@ -49,16 +42,18 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 });
 
 export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveProduct', async productData => {
-	const Prodata = {
-		name: productData.name,
-		iconUrl: productData.iconURL
-	};
-	console.log(productData, 'product save');
+	const { id, featuredImageId, approved, ...allData } = productData;
 	axios
-		.post(`${API}/allergy/add`, productData)
+
+		.post(`${API}/product/add`, {
+			...allData,
+			cookingTime: Number(allData.cookingTime),
+			preparationTime: Number(allData.preparationTime),
+			price: Number(allData.price),
+			reportCount: Number(allData.reportCount)
+		})
 		.then(response => {
-			console.log(response);
-			toast.success('Category Created');
+			toast.success('Product Created');
 			return response.data;
 		})
 		.catch(error => {
@@ -82,8 +77,30 @@ const categorySlice = createSlice({
 				payload: {
 					id: FuseUtils.generateGUID(),
 					name: '',
+					cookingProcedure: '',
+					cookingTime: '',
+					preparationTime: '',
+					price: '',
+					reportCount: '',
+					description: '',
 					approved: true,
-					description: ''
+					store: {
+						place_id: '',
+						name: '',
+						latitude: '',
+						longitude: '',
+						address: '',
+						contactNumber: '9090909090',
+						imageUrl:
+							'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+					},
+					productType: {
+						id: null,
+						name: ''
+					},
+					imageUrlList: [],
+					allergySet: [],
+					ingredientSet: []
 				}
 			})
 		}
