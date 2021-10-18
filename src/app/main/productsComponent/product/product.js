@@ -29,10 +29,13 @@ import StoreSetTable from './tabs/StoreSetTable';
  * Form Validation Schema
  */
 const schema = yup.object().shape({
-	name: yup
-		.string()
-		.required('You must enter a category name')
-		.min(3, 'The category name must be at least 3 characters')
+	name: yup.string().required().min(3),
+	cookingProcedure: yup.string().required(),
+	cookingTime: yup.number().required(),
+	preparationTime: yup.number().required(),
+	price: yup.number().required(),
+	reportCount: yup.number().required(),
+	description: yup.string().required()
 });
 
 function Category(props) {

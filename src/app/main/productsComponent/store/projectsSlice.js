@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat, page, rowsPerPage }) => {
 	const response = await axios.get(
-		`${API}/product/filter?allergiesIds=&ingredientsIds=&productTypeId=&priceRange=&pageSize=10&pageNumber=1&ascSort=false&latitude=37.5665&longitude=126.9780&newest=true`
+		`${API}/product/filter?allergiesIds=&ingredientsIds=&productTypeId=&priceRange=&pageSize=10&pageNumber=1&ascSort=false&latitude=32.5&longitude=52.05&newest=true`
 	);
 	const data = await response.data;
 	console.log('data of products', data.content);
@@ -50,6 +50,7 @@ const categoriesSlice = createSlice({
 			},
 			prepare: event => ({ payload: event.target.value || '' })
 		}
+
 		// getSingle:(_state,action)=>{
 		// 	return action.payload;
 		// },

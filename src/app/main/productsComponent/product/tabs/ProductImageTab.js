@@ -68,11 +68,12 @@ function ProductImageTab(props) {
 				}
 			})
 			.then(response => {
+				setValue('imageUrlList', [response.data.body.secureUrl]);
 				setImageCred({
-					imageUrl: response.data.secure_url,
+					imageUrl: response.data.secureUrl,
 					imagePublicId: response.data.public_id
 				});
-				setValue('imageUrl', response.data.secure_url);
+				setValue('imageUrl', response.data.secureUrl);
 				setValue('imagePublicId', response.data.public_id);
 			})
 			.catch(error => {

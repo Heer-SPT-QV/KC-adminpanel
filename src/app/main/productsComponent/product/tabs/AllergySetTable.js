@@ -33,7 +33,6 @@ function AllerySetTable(props) {
 	});
 	const [totalCat, setTotalCat] = useState(0);
 
-	console.log('data in allergyset', product);
 	// useEffect(() => {
 	// 	dispatch(getCategories({ setTotalCat, page, rowsPerPage })).then(() => setLoading(false));
 	// }, [dispatch, page, rowsPerPage]);
