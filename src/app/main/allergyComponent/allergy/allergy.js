@@ -18,6 +18,7 @@ import reducer from '../store';
 import { getCategory, newProduct, resetProduct } from '../store/projectSlice';
 import CategoryHeader from './allergyHeader';
 import BasicInfoTab from './tabs/BasicInfoTab';
+import AllergyCsvTab from './tabs/AllergyCsvTab';
 import CategoryImagesTab from './tabs/CategoryImagesTab';
 
 /**
@@ -154,7 +155,7 @@ function Category(props) {
 					content={
 						<div className="max-w-2xl p-16 sm:p-24">
 							<div className={tabValue !== 0 ? 'hidden' : ''}>
-								<CategoryImagesTab isOldProduct={isOldProduct} />
+								<AllergyCsvTab isOldProduct={isOldProduct} />
 							</div>
 						</div>
 					}

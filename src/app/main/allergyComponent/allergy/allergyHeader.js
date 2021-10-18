@@ -21,8 +21,11 @@ function CategoryHeader(props) {
 	const history = useHistory();
 
 	function handleSaveProduct() {
-		dispatch(saveCategory(getValues()));
-		reset(getValues());
+		dispatch(saveCategory(getValues())).then(res => {
+			reset(getValues());
+			console.log(res.meta.arg, 'save');
+			history.push('/allergies');
+		});
 	}
 
 	function handleRemoveProduct() {
@@ -33,6 +36,7 @@ function CategoryHeader(props) {
 
 	function handleUpdateProduct() {
 		dispatch(productUser(getValues()));
+		history.push('/allergies');
 	}
 
 	return (

@@ -46,11 +46,11 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-function CategoryImagesTab(props) {
+function AllergyCsvTab(props) {
 	const history = useHistory();
 	const classes = useStyles(props);
 	const methods = useFormContext();
-	const { control, watch, setValue, getValues } = methods;
+	const { control, setValue, getValues } = methods;
 
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [imageCred, setImageCred] = useState(null);
@@ -63,21 +63,15 @@ function CategoryImagesTab(props) {
 		const formData = new FormData();
 		formData.append('file', selectedFile);
 		axios
-			.post(`${API}/ingredient/upload`, formData, {
+			.post(`${API}/allergy/csv`, formData, {
 				headers: {
 					'content-type': 'multipart/form-data'
 				}
 			})
 			.then(response => {
 				console.log(response);
-				// setImageCred({
-				// 	imageUrl: response.data.secure_url,
-				// 	imagePublicId: response.data.public_id
-				// });
-				// setValue('imageUrl', response.data.secure_url);
-				// setValue('imagePublicId', response.data.public_id);
 				toast.success('Ingredient successfully addedd');
-				history.push('/ingredients');
+				history.push('/allergies');
 			})
 			.catch(error => {
 				setErrorMsg(error.isAxiosError ? error.response.data.message : error.message);
@@ -98,7 +92,7 @@ function CategoryImagesTab(props) {
 							htmlFor="button-file"
 							className={clsx(
 								classes.productImageUpload,
-								'flex items-center justify-center relative w-128 h-128 rounded-16 mx-12 mb-24 overflow-hidden cursor-pointer shadow hover:shadow-lg'
+								'flex items-center justify-center relative w-128 h-128 rounded-16 mx-12 mb-16 overflow-hidden cursor-pointer shadow hover:shadow-lg'
 							)}
 						>
 							<input
@@ -153,4 +147,4 @@ function CategoryImagesTab(props) {
 	);
 }
 
-export default CategoryImagesTab;
+export default AllergyCsvTab;

@@ -57,6 +57,7 @@ function CategoryImagesTab(props) {
 	const [errorMsg, setErrorMsg] = useState(null);
 	const [isUploading, setIsUploading] = useState(false);
 	const [myImages, setMyImages] = useState([]);
+	const [changeImage, setChangeImage] = useState(false);
 
 	const handleImageUpload = () => {
 		setIsUploading(true);
@@ -87,7 +88,7 @@ function CategoryImagesTab(props) {
 	return (
 		<div>
 			<div className="flex justify-center sm:justify-start flex-wrap -mx-16">
-				{!props.isOldProduct && (
+				{(!props.isOldProduct || changeImage) && (
 					<Controller
 						name="image"
 						control={control}
@@ -141,7 +142,6 @@ function CategoryImagesTab(props) {
 						)}
 					/>
 				)}
-				{console.log(getValues('iconUrl'), 'image..')}
 
 				<Controller
 					name="featuredImageId"
@@ -172,6 +172,7 @@ function CategoryImagesTab(props) {
 						classes.productImageItem,
 						'flex items-center justify-center relative w-128 h-128 rounded-16 mx-12 mb-24 overflow-hidden  outline-none shadow hover:shadow-lg'
 					)}
+					onClick={() => setChangeImage(true)}
 				>
 					<img className="max-w-none w-auto h-full" src={getValues('iconUrl')} alt="product" />
 				</div>
@@ -182,7 +183,7 @@ function CategoryImagesTab(props) {
 				</Typography>
 			</div>
 
-			{!props.isOldProduct && (
+			{(!props.isOldProduct || changeImage) && (
 				<Button
 					className="whitespace-nowrap mx-4"
 					variant="contained"

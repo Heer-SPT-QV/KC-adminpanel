@@ -66,10 +66,10 @@ function CategoryHeader(props) {
 					<div className="flex flex-col min-w-0 mx-8 sm:mc-16">
 						<motion.div initial={{ x: -20 }} animate={{ x: 0, transition: { delay: 0.3 } }}>
 							<Typography className="font-semibold truncate text-16 sm:text-20">
-								{name || 'New Ingredients'}
+								{name || 'New Product Type'}
 							</Typography>
 							<Typography variant="caption" className="font-medium">
-								Ingredients Detail
+								Product Type Detail
 							</Typography>
 						</motion.div>
 					</div>
