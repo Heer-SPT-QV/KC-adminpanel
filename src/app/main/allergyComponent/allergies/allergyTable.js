@@ -117,7 +117,7 @@ function CategoriesTable(props) {
 				className="flex items-center justify-center flex-1 h-full"
 			>
 				<Typography color="textSecondary" variant="h5">
-					There are no categories!
+					There are no allergies!
 				</Typography>
 			</motion.div>
 		);
@@ -180,7 +180,7 @@ function CategoriesTable(props) {
 										{n.iconUrl}
 									</TableCell> */}
 									<TableCell>
-										{n.iconUrl.length ? (
+										{n.iconUrl?.length ? (
 											<img
 												// className="block rounded w-50"
 												className="h-32 w-52"
