@@ -93,7 +93,6 @@ class JwtService extends FuseUtils.EventEmitter {
 					}
 				})
 				.then(response => {
-					console.log('for token', response);
 					if (response.data.body.user) {
 						this.setSession(response.data.body.token);
 						resolve(response.data.body.user);

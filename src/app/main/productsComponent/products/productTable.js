@@ -18,7 +18,7 @@ import FuseLoading from '@fuse/core/FuseLoading';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
 import { API } from 'app/shared-components/API';
-import { getCategories, selectProducts } from '../store/projectsSlice';
+import { getCategories, selectProducts, toggleApprove } from '../store/projectsSlice';
 import { getSingle } from '../store/projectSlice';
 import CategoriesTableHead from './productTableHead';
 import { getItemFunc } from '../store/getItemSlice';
@@ -28,18 +28,10 @@ function CategoriesTable(props) {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const products = useSelector(selectProducts);
-
-	const getItemObj = useSelector(state => state.CategoryeCommerceApp.getItem);
-
-	console.log('get Item', getItemObj);
 	const searchText = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.products.searchText);
-
-	// console.log('Products...', products);
 	const [loading, setLoading] = useState(true);
-	const [approved, setApproved] = useState(false);
 	const [selected, setSelected] = useState([]);
 	const [data, setData] = useState(products);
-	console.log('in product', products);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(10);
 	const [order, setOrder] = useState({
@@ -75,19 +67,11 @@ function CategoriesTable(props) {
 		});
 	}
 
-	console.log('data for check', data);
-
 	function handleApproveClick(id) {
-		console.log('id', id);
-		console.log('clicked approved');
-		// setApproved(true)
 		axios
 			.patch(`${API}/product/admin/approve_reject_product?productId=${id}`)
 			.then(resp => {
-				console.log('resp', resp);
-				// window.location.reload();
-				history.push('/');
-				history.push('/products');
+				dispatch(toggleApprove());
 			})
 			.catch(err => {
 				console.log(err);

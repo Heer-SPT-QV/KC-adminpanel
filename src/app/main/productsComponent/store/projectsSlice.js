@@ -3,18 +3,15 @@ import { API } from 'app/shared-components/API';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat, page, rowsPerPage }) => {
+export const getCategories = createAsyncThunk('product', async ({ setTotalCat, page, rowsPerPage }) => {
 	const response = await axios.get(
-		`${API}/product/filter?allergiesIds=&ingredientsIds=&productTypeId=&priceRange=&pageSize=10&pageNumber=1&ascSort=false&latitude=32.5&longitude=52.05&newest=true`
+		`${API}/product/filter?allergiesIds=&ingredientsIds=&productTypeId=&priceRange=&pageSize=${rowsPerPage}&pageNumber=${
+			page + 1
+		}&ascSort=false&latitude=32.5&longitude=52.05&newest=true`
 	);
 	const data = await response.data;
-	console.log('data of products', data.content);
-	// setTotalCat(data.totalPages);
-
+	setTotalCat(response.data.totalElements);
 	return data.content;
-	// return data.data.map(item => {
-	// 	return { ...item, id: item._id };
-	// });
 });
 
 export const removeCategoy = createAsyncThunk(
@@ -49,11 +46,11 @@ const categoriesSlice = createSlice({
 				state.searchText = action.payload;
 			},
 			prepare: event => ({ payload: event.target.value || '' })
+		},
+		toggleApprove: (state, action) => {
+			console.log(selectProducts(), 'Hey, Ferin');
+			return state;
 		}
-
-		// getSingle:(_state,action)=>{
-		// 	return action.payload;
-		// },
 	},
 	extraReducers: {
 		[getCategories.fulfilled]: categoriesAdapter.setAll,
@@ -61,6 +58,6 @@ const categoriesSlice = createSlice({
 	}
 });
 
-export const { setProductsSearchText } = categoriesSlice.actions;
+export const { setProductsSearchText, toggleApprove } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;
