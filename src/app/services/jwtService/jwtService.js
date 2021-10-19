@@ -1,6 +1,7 @@
 import FuseUtils from '@fuse/utils/FuseUtils';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import { toast } from 'react-toastify';
 import { API } from '../../shared-components/API';
 // import React from 'react';
 // import { useHistory } from 'react-router';
@@ -73,14 +74,19 @@ class JwtService extends FuseUtils.EventEmitter {
 			axios
 				.post(`${API}/login`, data)
 				.then(response => {
-					if (response.data.success) {
+					console.log(response.data, 'login');
+					if (response.data.success && response.data?.body?.user.role === 'ADMIN') {
 						this.setSession(response.data?.body?.token || '');
 						resolve(response.data?.body?.user || {});
 					} else {
-						reject(response.data.error);
+						reject(response.data.error || []);
+						toast.error(response.data.error || "can't login because you'r not admin");
 					}
 				})
-				.catch(err => console.log('err', err));
+				.catch(error => {
+					console.log('err', error);
+					toast.error(error.isAxiosError ? error.response.data.message : error.message);
+				});
 		});
 	};
 
