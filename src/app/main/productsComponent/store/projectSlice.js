@@ -16,12 +16,13 @@ export const removeCategory = createAsyncThunk(
 	async (val, { dispatch, getState }) => {
 		const { id } = getState().CategoryeCommerceApp.product;
 		await axios
-			.delete(`${API}/product?id=${id}`)
+			.patch(`${API}/product/admin/approve_reject_product?productId=${id}`)
 			.then(res => {
-				toast.success(`deleted successfully   ${id}`);
+				console.log(res, 'approv');
+				toast.success(`${res.data.message}`);
 			})
 			.catch(() => {
-				toast.error(`Error Deleting Category ${id}`);
+				toast.error(`Error in approve/reject product ${id}`);
 			});
 
 		return id;

@@ -75,9 +75,7 @@ function CategoryImagesTab(props) {
 					imageUrl: response.data.body.secureUrl,
 					imagePublicId: response.data.body.public_id
 				});
-				setValue('iconUrl', response.data.body.secureUrl);
-				setValue('imagePublicId', response.data.public_id);
-				setValue('featuredImageId', response.data.body.secureUrl);
+				setValue('iconUrl', response.data.body.secureUrl, { shouldDirty: true });
 			})
 			.catch(error => {
 				setErrorMsg(error.isAxiosError ? error.response.data.message : error.message);
