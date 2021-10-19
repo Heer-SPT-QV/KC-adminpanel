@@ -19,20 +19,23 @@ function CategoryHeader(props) {
 	const name = watch('name');
 	const theme = useTheme();
 	const history = useHistory();
+	const approve = watch('approved');
 
 	function handleSaveProduct() {
 		dispatch(saveCategory(getValues()));
 		reset(getValues());
+		history.push('/products');
 	}
 
-	function handleRemoveProduct() {
+	function handleUnapproveProduct() {
 		dispatch(removeCategory()).then(() => {
-			history.push('/allergies');
+			history.push('/products');
 		});
 	}
 
 	function handleUpdateProduct() {
 		dispatch(productUser(getValues()));
+		history.push('/products');
 	}
 
 	return (
@@ -50,7 +53,6 @@ function CategoryHeader(props) {
 						<span className="hidden mx-4 font-medium sm:flex">Products</span>
 					</Typography>
 				</motion.div>
-
 				<div className="flex items-center max-w-full">
 					<motion.div
 						className="hidden sm:flex"
@@ -84,10 +86,9 @@ function CategoryHeader(props) {
 					className="mx-4 whitespace-nowrap"
 					variant="contained"
 					color="secondary"
-					onClick={() => handleRemoveProduct()}
-					startIcon={<Icon className="hidden sm:flex">delete</Icon>}
+					onClick={() => handleUnapproveProduct()}
 				>
-					Remove
+					{approve ? 'Hide' : 'Show'} In APP
 				</Button>
 				{!props.isOldProduct ? (
 					<Button

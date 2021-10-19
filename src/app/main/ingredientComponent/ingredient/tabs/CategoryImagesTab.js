@@ -81,6 +81,7 @@ function CategoryImagesTab(props) {
 			})
 			.catch(error => {
 				setErrorMsg(error.isAxiosError ? error.response.data.message : error.message);
+				toast.error(error.isAxiosError ? error.response.data.message : error.message);
 			})
 			.finally(() => {
 				setIsUploading(false);

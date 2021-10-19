@@ -21,12 +21,16 @@ function CategoryHeader(props) {
 	const history = useHistory();
 
 	function handleUpdateProduct() {
-		dispatch(productUser(getValues()));
+		dispatch(productUser(getValues())).then(() => {
+			history.push('/productTypes');
+		});
 	}
 
 	function handleSaveProduct() {
-		dispatch(saveCategory(getValues()));
-		reset(getValues());
+		dispatch(saveCategory(getValues())).then(() => {
+			reset(getValues());
+			history.push('/productTypes');
+		});
 	}
 
 	function handleRemoveProduct() {
