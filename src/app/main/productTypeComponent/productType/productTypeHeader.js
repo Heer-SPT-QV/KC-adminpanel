@@ -51,7 +51,7 @@ function CategoryHeader(props) {
 						color="inherit"
 					>
 						<Icon className="text-20">{theme.direction === 'ltr' ? 'arrow_back' : 'arrow_forward'}</Icon>
-						<span className="hidden mx-4 font-medium sm:flex">Ingredients</span>
+						<span className="hidden mx-4 font-medium sm:flex">Product Types</span>
 					</Typography>
 				</motion.div>
 

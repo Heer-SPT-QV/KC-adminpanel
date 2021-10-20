@@ -190,7 +190,7 @@ function CategoriesTable(props) {
 										/>
 									</TableCell>
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.name ? n.name : ''}
+										{n?.name}
 									</TableCell>
 
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
@@ -214,7 +214,7 @@ function CategoriesTable(props) {
 										{n?.price}
 									</TableCell>
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n?.productType.name}
+										{n?.productType?.name}
 									</TableCell>
 								</TableRow>
 							);
