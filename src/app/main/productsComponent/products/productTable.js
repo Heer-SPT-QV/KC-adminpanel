@@ -75,6 +75,9 @@ function CategoriesTable(props) {
 			.patch(`${API}/product/admin/approve_reject_product?productId=${id}`)
 			.then(resp => {
 				dispatch(toggleApprove());
+				dispatch(getCategories({ setTotalCat, page, rowsPerPage })).then(res => {
+					setData(res.payload);
+				});
 			})
 			.catch(err => {
 				console.log(err);

@@ -120,7 +120,7 @@ function CategoriesTable(props) {
 				className="flex items-center justify-center flex-1 h-full"
 			>
 				<Typography color="textSecondary" variant="h5">
-					There are no categories!
+					There are no Product Type!
 				</Typography>
 			</motion.div>
 		);

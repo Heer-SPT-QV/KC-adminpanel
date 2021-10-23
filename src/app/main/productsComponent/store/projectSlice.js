@@ -50,7 +50,11 @@ export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveP
 			cookingTime: Number(allData.cookingTime),
 			preparationTime: Number(allData.preparationTime),
 			price: Number(allData.price),
-			reportCount: Number(allData.reportCount)
+			reportCount: Number(allData.reportCount),
+			store: {
+				latitude: 17.4565312,
+				longitude: 78.4447536
+			}
 		})
 		.then(response => {
 			toast.success('Product Created');

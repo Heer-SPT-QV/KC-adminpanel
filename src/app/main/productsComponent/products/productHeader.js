@@ -68,6 +68,7 @@ function CategoriesHeader(props) {
 					className="whitespace-nowrap"
 					variant="contained"
 					color="secondary"
+					disabled
 				>
 					<span className="hidden sm:flex">Add New Products </span>
 					<span className="flex sm:hidden">New</span>
