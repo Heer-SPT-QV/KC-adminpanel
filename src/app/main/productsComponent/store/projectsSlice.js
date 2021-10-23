@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 export const getCategories = createAsyncThunk('product', async ({ setTotalCat }) => {
 	const response = await axios.get(`${API}/admin/product/all`);
 	const data = await response.data;
-	console.log(data, 'product api');
 	setTotalCat(response.data.body.length);
 	return data.body;
 });

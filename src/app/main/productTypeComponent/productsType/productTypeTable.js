@@ -36,7 +36,10 @@ function CategoriesTable(props) {
 	const [totalCat, setTotalCat] = useState(0);
 
 	useEffect(() => {
-		dispatch(getCategories({ setTotalCat, page, rowsPerPage })).then(() => setLoading(false));
+		dispatch(getCategories({ setTotalCat, page, rowsPerPage })).then(res => {
+			setLoading(false);
+			setData(res.payload);
+		});
 	}, [dispatch, page, rowsPerPage]);
 
 	useEffect(() => {
