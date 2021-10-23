@@ -213,9 +213,9 @@ function CategoriesTable(props) {
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
 										{n?.price}
 									</TableCell>
-									<TableCell className="p-4 md:p-16" component="th" scope="row">
+									{/* <TableCell className="p-4 md:p-16" component="th" scope="row">
 										{n?.productType?.name}
-									</TableCell>
+									</TableCell> */}
 								</TableRow>
 							);
 						})}

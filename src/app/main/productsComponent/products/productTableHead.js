@@ -45,14 +45,14 @@ const rows = [
 		disablePadding: false,
 		label: 'Price',
 		sort: true
-	},
-	{
-		id: 'productType',
-		align: 'left',
-		disablePadding: false,
-		label: 'Product Type',
-		sort: true
 	}
+	// {
+	// 	id: 'productType',
+	// 	align: 'left',
+	// 	disablePadding: false,
+	// 	label: 'Product Type',
+	// 	sort: true
+	// }
 ];
 
 const useStyles = makeStyles(theme => ({
