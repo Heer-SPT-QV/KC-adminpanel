@@ -1,17 +1,14 @@
 import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
-import { API } from 'app/shared-components/API';
+import { API, API1 } from 'app/shared-components/API';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-export const getCategories = createAsyncThunk('product', async ({ setTotalCat, page, rowsPerPage }) => {
-	const response = await axios.get(
-		`${API}/product/filter?allergiesIds=&ingredientsIds=&productTypeId=&priceRange=&pageSize=${rowsPerPage}&pageNumber=${
-			page + 1
-		}&ascSort=false&latitude=32.5&longitude=52.05&newest=true`
-	);
+export const getCategories = createAsyncThunk('product', async ({ setTotalCat }) => {
+	const response = await axios.get(`${API1}/admin/product/all`);
 	const data = await response.data;
-	setTotalCat(response.data.totalElements);
-	return data.content;
+	// console.log(data, 'product api');
+	setTotalCat(response.data.body.length);
+	return data.body;
 });
 
 export const removeCategoy = createAsyncThunk(
@@ -48,7 +45,6 @@ const categoriesSlice = createSlice({
 			prepare: event => ({ payload: event.target.value || '' })
 		},
 		toggleApprove: (state, action) => {
-			console.log(selectProducts(), 'Hey, Ferin');
 			return state;
 		}
 	},

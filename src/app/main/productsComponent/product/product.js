@@ -23,7 +23,7 @@ import BasicInfoTab from './tabs/BasicInfoTab';
 import CategoryImagesTab from './tabs/CategoryImagesTab';
 import ProductImageTab from './tabs/ProductImageTab';
 import IngredientSetTable from './tabs/IngredientSetTable';
-import StoreSetTable from './tabs/StoreSetTable';
+// import StoreSetTable from './tabs/StoreSetTable';
 
 /**
  * Form Validation Schema
@@ -126,10 +126,10 @@ function Category(props) {
 				className="flex flex-col items-center justify-center flex-1 h-full"
 			>
 				<Typography color="textSecondary" variant="h5">
-					There is no such category!
+					There is no such Product!
 				</Typography>
-				<Button className="mt-24" component={Link} variant="outlined" to="/category" color="inherit">
-					Go to Category Page
+				<Button className="mt-24" component={Link} variant="outlined" to="/products" color="inherit">
+					Go to Product Page
 				</Button>
 			</motion.div>
 		);
@@ -167,7 +167,7 @@ function Category(props) {
 						<Tab className="h-64" label="Basic Info" />
 						<Tab className="h-64" label="Allergy Set" />
 						<Tab className="h-64" label="Ingredient Set" />
-						<Tab className="h-64" label="Store Set" />
+						{/* <Tab className="h-64" label="Store Set" /> */}
 					</Tabs>
 				}
 				content={
@@ -185,10 +185,9 @@ function Category(props) {
 							<IngredientSetTable isOldProduct={isOldProduct} />
 							{/* <CategoryImagesTab isOldProduct={isOldProduct} /> */}
 						</div>
-						<div className={tabValue !== 3 ? 'hidden' : ''}>
+						{/* <div className={tabValue !== 3 ? 'hidden' : ''}>
 							<StoreSetTable isOldProduct={isOldProduct} />
-							{/* <CategoryImagesTab isOldProduct={isOldProduct} /> */}
-						</div>
+						</div> */}
 					</div>
 				}
 				innerScroll

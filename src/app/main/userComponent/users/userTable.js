@@ -220,7 +220,7 @@ function CategoriesTable(props) {
 									</TableCell>
 
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.allergySet.map(item => {
+										{n.allergySet?.map(item => {
 											return <span key={item.id}>{item.name},</span>;
 										})}
 									</TableCell>

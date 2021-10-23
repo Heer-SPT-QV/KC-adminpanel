@@ -22,21 +22,21 @@ function BasicInfoTab(props) {
 	const storeInfo = watch('store');
 	const [address, setAddress] = useState(storeInfo.name);
 
-	const handlePlaceSelect = (data, placeId) => {
-		geocodeByAddress(data)
-			.then(results => getLatLng(results[0]))
-			.then(latLng => {
-				setValue('store', {
-					place_id: placeId,
-					name: data,
-					address: data,
-					latitude: latLng.lat,
-					longitude: latLng.lng
-				});
-				setAddress(data);
-			})
-			.catch(error => console.error('Error', error));
-	};
+	// const handlePlaceSelect = (data, placeId) => {
+	// 	geocodeByAddress(data)
+	// 		.then(results => getLatLng(results[0]))
+	// 		.then(latLng => {
+	// 			setValue('store', {
+	// 				place_id: placeId,
+	// 				name: data,
+	// 				address: data,
+	// 				latitude: latLng.lat,
+	// 				longitude: latLng.lng
+	// 			});
+	// 			setAddress(data);
+	// 		})
+	// 		.catch(error => console.error('Error', error));
+	// };
 
 	useEffect(() => {
 		axios
@@ -240,7 +240,7 @@ function BasicInfoTab(props) {
 					/>
 				)}
 			/>
-			<PlacesAutocomplete
+			{/* <PlacesAutocomplete
 				value={address}
 				onChange={e => setAddress(e)}
 				onSelect={handlePlaceSelect}
@@ -285,7 +285,7 @@ function BasicInfoTab(props) {
 						</div>
 					</div>
 				)}
-			</PlacesAutocomplete>
+			</PlacesAutocomplete> */}
 		</div>
 	);
 }
