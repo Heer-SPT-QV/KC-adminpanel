@@ -19,8 +19,8 @@ function BasicInfoTab(props) {
 	const productTypeWatch = watch('productType');
 	const allergySetWatch = watch('allergySet');
 	const ingredientSetWatch = watch('ingredientSet');
-	const storeInfo = watch('store');
-	const [address, setAddress] = useState(storeInfo.name);
+	// const storeInfo = watch('store');
+	// const [address, setAddress] = useState(storeInfo.name);
 
 	// const handlePlaceSelect = (data, placeId) => {
 	// 	geocodeByAddress(data)

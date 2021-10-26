@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
 	const response = await axios.get(`${API}/admin/product?id=${params}`);
 	const data = await response.data;
-	return { ...data.body, store: data.body.storeSet[0] };
+	return { ...data.body };
 });
 
 export const removeCategory = createAsyncThunk(
