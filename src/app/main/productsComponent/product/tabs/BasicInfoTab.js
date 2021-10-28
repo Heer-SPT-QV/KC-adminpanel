@@ -19,6 +19,7 @@ function BasicInfoTab(props) {
 	const productTypeWatch = watch('productType');
 	const allergySetWatch = watch('allergySet');
 	const ingredientSetWatch = watch('ingredientSet');
+
 	// const storeInfo = watch('store');
 	// const [address, setAddress] = useState(storeInfo.name);
 
@@ -181,46 +182,70 @@ function BasicInfoTab(props) {
 					/>
 				)}
 			/>
-			<Autocomplete
-				id="productType"
-				options={productType}
-				getOptionLabel={option => option?.name}
-				style={{ width: 300, marginTop: 20 }}
-				renderInput={params => <TextField {...params} label="Product Type" variant="outlined" />}
-				value={productTypeWatch}
-				loadingText="Start Typing..."
-				noOptionsText="No Options"
-				onChange={(event, newValue) => {
-					setValue('productType', newValue);
-				}}
+
+			<Controller
+				name="productType"
+				control={control}
+				render={({ field }) => (
+					<Autocomplete
+						{...field}
+						id="productType"
+						options={productType}
+						getOptionLabel={option => option?.name}
+						style={{ width: 300, marginTop: 20 }}
+						renderInput={params => <TextField {...params} label="Product Type" variant="outlined" />}
+						value={productTypeWatch}
+						loadingText="Start Typing..."
+						noOptionsText="No Options"
+						onChange={(event, newValue) => {
+							setValue('productType', newValue);
+						}}
+					/>
+				)}
 			/>
-			<Autocomplete
-				id="allergySet"
-				options={allergySet}
-				multiple
-				getOptionLabel={option => option?.name}
-				style={{ width: 300, marginTop: 20 }}
-				renderInput={params => <TextField {...params} label="Allergy" variant="outlined" />}
-				value={allergySetWatch}
-				loadingText="Start Typing..."
-				noOptionsText="No Options"
-				onChange={(event, newValue) => {
-					setValue('allergySet', newValue);
-				}}
+
+			<Controller
+				name="allergySet"
+				control={control}
+				render={({ field }) => (
+					<Autocomplete
+						{...field}
+						id="allergySet"
+						options={allergySet}
+						multiple
+						getOptionLabel={option => option?.name}
+						style={{ width: 300, marginTop: 20 }}
+						renderInput={params => <TextField {...params} label="Allergy" variant="outlined" />}
+						value={allergySetWatch}
+						loadingText="Start Typing..."
+						noOptionsText="No Options"
+						onChange={(event, newValue) => {
+							setValue('allergySet', newValue);
+						}}
+					/>
+				)}
 			/>
-			<Autocomplete
-				id="ingredientSet"
-				options={ingridientSet}
-				multiple
-				getOptionLabel={option => option?.name}
-				style={{ width: 300, marginTop: 20 }}
-				renderInput={params => <TextField {...params} label="Ingredient" variant="outlined" />}
-				value={ingredientSetWatch}
-				loadingText="Start Typing..."
-				noOptionsText="No Options"
-				onChange={(event, newValue) => {
-					setValue('ingredientSet', newValue);
-				}}
+
+			<Controller
+				name="ingredientSet"
+				control={control}
+				render={({ field }) => (
+					<Autocomplete
+						{...field}
+						id="ingredientSet"
+						options={ingridientSet}
+						multiple
+						getOptionLabel={option => option?.name}
+						style={{ width: 300, marginTop: 20 }}
+						renderInput={params => <TextField {...params} label="Ingredient" variant="outlined" />}
+						value={ingredientSetWatch}
+						loadingText="Start Typing..."
+						noOptionsText="No Options"
+						onChange={(event, newValue) => {
+							setValue('ingredientSet', newValue);
+						}}
+					/>
+				)}
 			/>
 			<Controller
 				name="description"

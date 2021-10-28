@@ -105,7 +105,7 @@ function CategoryHeader(props) {
 						className="mx-4 whitespace-nowrap"
 						variant="contained"
 						color="secondary"
-						disabled={_.isEmpty(dirtyFields) || !isValid}
+						disabled={!dirtyFields || !isValid}
 						onClick={() => handleUpdateProduct()}
 					>
 						Update
