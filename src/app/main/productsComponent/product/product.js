@@ -174,8 +174,8 @@ function Category(props) {
 					<div className="max-w-2xl p-16 sm:p-24">
 						<div className={tabValue !== 0 ? 'hidden' : ''}>
 							<BasicInfoTab isOldProduct={isOldProduct} />
-							{/* <CategoryImagesTab isOldProduct={isOldProduct} /> */}
-							<ProductImageTab isOldProduct={isOldProduct} />
+							<CategoryImagesTab isOldProduct={isOldProduct} />
+							{/* <ProductImageTab isOldProduct={isOldProduct} /> */}
 						</div>
 						<div className={tabValue !== 1 ? 'hidden' : ''}>
 							<AllergySetTable isOldProduct={isOldProduct} />
