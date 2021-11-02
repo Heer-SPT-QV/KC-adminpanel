@@ -15,8 +15,8 @@ import CloseIcon from '@material-ui/icons/Close';
 const useStyles = makeStyles(theme => ({
 	productImageFeaturedStar: {
 		position: 'absolute',
-		top: 0,
-		right: 0
+		top: 3,
+		right: 3
 	},
 	productImageUpload: {
 		transitionProperty: 'box-shadow',
@@ -57,7 +57,10 @@ function CategoryImagesTab(props) {
 	const handleImageUpload = () => {
 		setIsUploading(true);
 		const url = [];
+		getValues('imageUrlList').forEach(item => url.push(item));
+		selectedFile.forEach(file => console.log(file, '1file'));
 		selectedFile.forEach(file => {
+			console.log(file, 'file');
 			const formData = new FormData();
 
 			formData.append('file', file);
@@ -129,9 +132,15 @@ function CategoryImagesTab(props) {
 								<img className="max-w-none w-auto h-full" src={media.url} alt="product" />
 								<IconButton
 									aria-label="delete"
-									className={clsx(classes.productImageFeaturedStar)}
+									className={clsx(classes.productImageFeaturedStar, 'bg-white')}
+									size="small"
 									onClick={() => {
+										console.log(
+											selectedFile.filter(file => file.name !== media.name),
+											'of'
+										);
 										setMyImages(old => old.filter(img => img.id !== media.id));
+										setSelectedFile(old => old.filter(file => file.name !== media.name));
 									}}
 								>
 									<CloseIcon />
@@ -160,7 +169,7 @@ function CategoryImagesTab(props) {
 								type="file"
 								onChange={async e => {
 									const filesArr = Array.prototype.slice.call(e.target.files);
-									setSelectedFile(old => [...old, filesArr]);
+									setSelectedFile(filesArr);
 									setChangeImage(true);
 									function readFileAsync(file) {
 										return new Promise((resolve, reject) => {
@@ -175,7 +184,8 @@ function CategoryImagesTab(props) {
 												resolve({
 													id: FuseUtils.generateGUID(),
 													url: `data:${file.type};base64,${btoa(reader.result)}`,
-													type: 'image'
+													type: 'image',
+													name: file.name
 												});
 											};
 
