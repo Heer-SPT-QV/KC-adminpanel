@@ -4,20 +4,19 @@ import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import FuseUtils from '@fuse/utils';
 import { Controller, useFormContext } from 'react-hook-form';
-import { Button, CircularProgress, Typography } from '@material-ui/core';
+import { Button, CircularProgress, IconButton, Typography } from '@material-ui/core';
 import { useState } from 'react';
 import axios from 'axios';
 import { API } from 'app/shared-components/API';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles(theme => ({
 	productImageFeaturedStar: {
 		position: 'absolute',
 		top: 0,
-		right: 0,
-		color: orange[400],
-		opacity: 0
+		right: 0
 	},
 	productImageUpload: {
 		transitionProperty: 'box-shadow',
@@ -28,11 +27,6 @@ const useStyles = makeStyles(theme => ({
 		transitionProperty: 'box-shadow',
 		transitionDuration: theme.transitions.duration.short,
 		transitionTimingFunction: theme.transitions.easing.easeInOut,
-		'&:hover': {
-			'& $productImageFeaturedStar': {
-				opacity: 0.8
-			}
-		},
 		'&.featured': {
 			pointerEvents: 'none',
 			boxShadow: theme.shadows[3],
@@ -62,7 +56,6 @@ function CategoryImagesTab(props) {
 
 	const handleImageUpload = () => {
 		setIsUploading(true);
-		console.log(typeof selectedFile, 'type', selectedFile, selectedFile.length);
 		const url = [];
 		selectedFile.forEach(file => {
 			const formData = new FormData();
@@ -100,75 +93,11 @@ function CategoryImagesTab(props) {
 	return (
 		<div>
 			<div className="flex justify-center sm:justify-start flex-wrap -mx-16">
-				{(!props.isOldProduct || changeImage) && (
-					<Controller
-						name="image"
-						control={control}
-						render={({ field: { onChange, value } }) => (
-							<label
-								htmlFor="image"
-								className={clsx(
-									classes.productImageUpload,
-									'flex items-center justify-center relative w-128 h-128 rounded-16 mx-12 mb-24 overflow-hidden cursor-pointer shadow hover:shadow-lg'
-								)}
-							>
-								<input
-									accept="image/*"
-									className="hidden"
-									multiple
-									id="image"
-									type="file"
-									onChange={async e => {
-										const filesArr = Array.prototype.slice.call(e.target.files);
-										setSelectedFile(filesArr);
-										function readFileAsync(file) {
-											return new Promise((resolve, reject) => {
-												// const file = e.target.files;
-												if (!file) {
-													return;
-												}
+				{getValues('imageUrlList') && (
+					<div style={{ display: 'flex' }}>
+						{console.log(getValues('imageUrlList'), 'img')}
 
-												const reader = new FileReader();
-
-												reader.onload = () => {
-													resolve({
-														id: FuseUtils.generateGUID(),
-														url: `data:${file.type};base64,${btoa(reader.result)}`,
-														type: 'image'
-													});
-												};
-
-												reader.onerror = reject;
-
-												reader.readAsBinaryString(file);
-											});
-										}
-
-										for (let i = 0; i < e.target.files.length; i += 1) {
-											readFileAsync(e.target.files[i])
-												.then(res => setMyImages(old => [...old, res]))
-												.catch(err => console.error(err));
-
-											// setMyImages(old => [...old, newImage]);
-										}
-
-										// onChange([newImage]);
-									}}
-								/>
-								<Icon fontSize="large" color="action">
-									cloud_upload
-								</Icon>
-							</label>
-						)}
-					/>
-				)}
-
-				<Controller
-					name="featuredImageId"
-					control={control}
-					defaultValue=""
-					render={({ field: { onChange, value } }) =>
-						myImages.map(media => (
+						{getValues('imageUrlList').map((item, index) => (
 							<div
 								role="button"
 								tabIndex={0}
@@ -176,36 +105,100 @@ function CategoryImagesTab(props) {
 									classes.productImageItem,
 									'flex items-center justify-center relative w-128 h-128 rounded-16 mx-12 mb-24 overflow-hidden  outline-none shadow hover:shadow-lg'
 								)}
+								key={index}
+							>
+								<img className="max-w-none w-auto h-full" src={item} alt="product" />
+							</div>
+						))}
+					</div>
+				)}
+
+				<Controller
+					name="featuredImageId"
+					control={control}
+					defaultValue=""
+					render={({ field: { onChange, value } }) =>
+						myImages.map((media, index) => (
+							<div
+								className={clsx(
+									classes.productImageItem,
+									'flex items-center justify-center relative w-128 h-128 rounded-16 mx-12 mb-24 overflow-hidden  outline-none shadow hover:shadow-lg'
+								)}
 								key={media.id}
 							>
 								<img className="max-w-none w-auto h-full" src={media.url} alt="product" />
+								<IconButton
+									aria-label="delete"
+									className={clsx(classes.productImageFeaturedStar)}
+									onClick={() => {
+										setMyImages(old => old.filter(img => img.id !== media.id));
+									}}
+								>
+									<CloseIcon />
+								</IconButton>
 							</div>
 						))
 					}
 				/>
-			</div>
 
-			{!myImages.length && getValues('imageUrlList') && (
-				<div style={{ display: 'flex' }}>
-					{console.log(getValues('imageUrlList'), 'img')}
-
-					{getValues('imageUrlList').map((item, index) => (
-						<div
-							role="button"
-							tabIndex={0}
+				<Controller
+					name="image"
+					control={control}
+					render={({ field: { onChange, value } }) => (
+						<label
+							htmlFor="image"
 							className={clsx(
-								classes.productImageItem,
-								'flex items-center justify-center relative w-128 h-128 rounded-16 mx-12 mb-24 overflow-hidden  outline-none shadow hover:shadow-lg'
+								classes.productImageUpload,
+								'flex items-center justify-center relative w-128 h-128 rounded-16 mx-12 mb-24 overflow-hidden cursor-pointer shadow hover:shadow-lg'
 							)}
-							onClick={() => setChangeImage(true)}
-							onKeyDown={() => setChangeImage(true)}
-							key={index}
 						>
-							<img className="max-w-none w-auto h-full" src={item} alt="product" />
-						</div>
-					))}
-				</div>
-			)}
+							<input
+								accept="image/*"
+								className="hidden"
+								multiple
+								id="image"
+								type="file"
+								onChange={async e => {
+									const filesArr = Array.prototype.slice.call(e.target.files);
+									setSelectedFile(old => [...old, filesArr]);
+									setChangeImage(true);
+									function readFileAsync(file) {
+										return new Promise((resolve, reject) => {
+											// const file = e.target.files;
+											if (!file) {
+												return;
+											}
+
+											const reader = new FileReader();
+
+											reader.onload = () => {
+												resolve({
+													id: FuseUtils.generateGUID(),
+													url: `data:${file.type};base64,${btoa(reader.result)}`,
+													type: 'image'
+												});
+											};
+
+											reader.onerror = reject;
+
+											reader.readAsBinaryString(file);
+										});
+									}
+
+									for (let i = 0; i < e.target.files.length; i += 1) {
+										readFileAsync(e.target.files[i])
+											.then(res => setMyImages(old => [...old, res]))
+											.catch(err => console.error(err));
+									}
+								}}
+							/>
+							<Icon fontSize="large" color="action">
+								{props.isOldProduct ? 'control_point' : 'cloud_upload'}
+							</Icon>
+						</label>
+					)}
+				/>
+			</div>
 			<div style={{ margin: '10px 0' }}>
 				<Typography variant="h6" color="error">
 					{errorMsg || ''}
