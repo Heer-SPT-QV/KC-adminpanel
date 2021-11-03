@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import FuseUtils from '@fuse/utils';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Button, CircularProgress, IconButton, Typography } from '@material-ui/core';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API } from 'app/shared-components/API';
 import { toast } from 'react-toastify';
@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 function CategoryImagesTab(props) {
 	const classes = useStyles(props);
 	const methods = useFormContext();
-	const { control, watch, setValue, getValues } = methods;
+	const { control, watch, setValue, getValues, reset } = methods;
 	const categoryIdWatch = watch('categoryId');
 
 	const [selectedFile, setSelectedFile] = useState([]);
@@ -52,15 +52,19 @@ function CategoryImagesTab(props) {
 	const [isUploading, setIsUploading] = useState(false);
 	const [myImages, setMyImages] = useState([]);
 	const [changeImage, setChangeImage] = useState(false);
+	const [image, setImage] = useState(getValues('imageUrlList'));
+	const [product, setProduct] = useState(getValues());
 	// const [url, setUrl] = useState([]);
+
+	useEffect(() => {
+		setImage(getValues('imageUrlList'));
+	}, [getValues]);
 
 	const handleImageUpload = () => {
 		setIsUploading(true);
 		const url = [];
-		getValues('imageUrlList').forEach(item => url.push(item));
-		selectedFile.forEach(file => console.log(file, '1file'));
+		image.forEach(item => url.push(item));
 		selectedFile.forEach(file => {
-			console.log(file, 'file');
 			const formData = new FormData();
 
 			formData.append('file', file);
@@ -83,24 +87,24 @@ function CategoryImagesTab(props) {
 					// setValue('imageUrlList', response.data.body.secureUrl, { shouldDirty: true });
 				})
 				.catch(error => {
-					setErrorMsg(error.isAxiosError ? error.response.data.message : error.message);
+					console.log(error.response, 'err');
+					setErrorMsg(error.isAxiosError ? error : error.message);
 				})
 				.finally(() => {
 					setValue('imageUrlList', url);
 					setIsUploading(false);
 				});
 		});
-		console.log(url, 'cred');
 	};
 
 	return (
 		<div>
 			<div className="flex justify-center sm:justify-start flex-wrap -mx-16">
-				{getValues('imageUrlList') && (
+				{image && (
 					<div style={{ display: 'flex' }}>
-						{console.log(getValues('imageUrlList'), 'img')}
+						{console.log(image, 'img')}
 
-						{getValues('imageUrlList').map((item, index) => (
+						{image.map((item, index) => (
 							<div
 								role="button"
 								tabIndex={0}
@@ -111,45 +115,58 @@ function CategoryImagesTab(props) {
 								key={index}
 							>
 								<img className="max-w-none w-auto h-full" src={item} alt="product" />
-							</div>
-						))}
-					</div>
-				)}
-
-				<Controller
-					name="featuredImageId"
-					control={control}
-					defaultValue=""
-					render={({ field: { onChange, value } }) =>
-						myImages.map((media, index) => (
-							<div
-								className={clsx(
-									classes.productImageItem,
-									'flex items-center justify-center relative w-128 h-128 rounded-16 mx-12 mb-24 overflow-hidden  outline-none shadow hover:shadow-lg'
-								)}
-								key={media.id}
-							>
-								<img className="max-w-none w-auto h-full" src={media.url} alt="product" />
 								<IconButton
 									aria-label="delete"
 									className={clsx(classes.productImageFeaturedStar, 'bg-white')}
 									size="small"
 									onClick={() => {
-										console.log(
-											selectedFile.filter(file => file.name !== media.name),
-											'of'
-										);
-										setMyImages(old => old.filter(img => img.id !== media.id));
-										setSelectedFile(old => old.filter(file => file.name !== media.name));
+										console.log(product, 'product');
+										const img = image.filter(i => i !== item);
+										setImage(old => old.filter(o => o !== item));
+										// setProduct((old) => {...old, imageUrlList: image})
+										// setValue('imageUrlList', []);
+										reset({ ...product, imageUrlList: img });
+										console.log(image, 'imge url', getValues('imageUrlList'));
 									}}
 								>
 									<CloseIcon />
 								</IconButton>
 							</div>
-						))
-					}
-				/>
+						))}
+					</div>
+				)}
 
+				{imageCred.length <= 0 && (
+					<Controller
+						name="featuredImageId"
+						control={control}
+						defaultValue=""
+						render={({ field: { onChange, value } }) =>
+							myImages.map((media, index) => (
+								<div
+									className={clsx(
+										classes.productImageItem,
+										'flex items-center justify-center relative w-128 h-128 rounded-16 mx-12 mb-24 overflow-hidden  outline-none shadow hover:shadow-lg'
+									)}
+									key={media.id}
+								>
+									<img className="max-w-none w-auto h-full" src={media.url} alt="product" />
+									<IconButton
+										aria-label="delete"
+										className={clsx(classes.productImageFeaturedStar, 'bg-white')}
+										size="small"
+										onClick={() => {
+											setMyImages(old => old.filter(img => img.id !== media.id));
+											setSelectedFile(old => old.filter(file => file.name !== media.name));
+										}}
+									>
+										<CloseIcon />
+									</IconButton>
+								</div>
+							))
+						}
+					/>
+				)}
 				<Controller
 					name="image"
 					control={control}
