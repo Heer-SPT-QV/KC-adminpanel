@@ -19,10 +19,17 @@ import { removeCategoy } from '../store/projectsSlice';
 
 const rows = [
 	{
-		id: 'name',
+		id: 'englishName',
 		align: 'left',
 		disablePadding: false,
-		label: 'Name',
+		label: 'English Name',
+		sort: true
+	},
+	{
+		id: 'koreanName',
+		align: 'left',
+		disablePadding: false,
+		label: 'Korean Name',
 		sort: true
 	},
 	{

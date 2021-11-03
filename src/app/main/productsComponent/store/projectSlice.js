@@ -82,6 +82,7 @@ const categorySlice = createSlice({
 				payload: {
 					id: FuseUtils.generateGUID(),
 					name: '',
+					KoreanName: '',
 					cookingProcedure: '',
 					cookingTime: '',
 					preparationTime: '',

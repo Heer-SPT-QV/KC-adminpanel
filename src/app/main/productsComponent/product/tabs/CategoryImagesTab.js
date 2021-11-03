@@ -56,10 +56,6 @@ function CategoryImagesTab(props) {
 	const [product, setProduct] = useState(getValues());
 	// const [url, setUrl] = useState([]);
 
-	useEffect(() => {
-		setImage(getValues('imageUrlList'));
-	}, [getValues]);
-
 	const handleImageUpload = () => {
 		setIsUploading(true);
 		const url = [];
@@ -84,11 +80,12 @@ function CategoryImagesTab(props) {
 						}
 					]);
 					url.push(response.data.body.secureUrl);
+					setImage(old => [...old, response.data.body.secureUrl]);
 					// setValue('imageUrlList', response.data.body.secureUrl, { shouldDirty: true });
 				})
 				.catch(error => {
 					console.log(error.response, 'err');
-					setErrorMsg(error.isAxiosError ? error : error.message);
+					setErrorMsg(error.isAxiosError ? error.response.data.message : error.message);
 				})
 				.finally(() => {
 					setValue('imageUrlList', url);

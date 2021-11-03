@@ -198,6 +198,9 @@ function CategoriesTable(props) {
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
 										{n?.name}
 									</TableCell>
+									<TableCell className="p-4 md:p-16" component="th" scope="row">
+										{n?.KoreanName}
+									</TableCell>
 
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
 										{/* <div style={{ backgroundColor: "white", width: "100px", height: "100px", zIndex: "100" }}>
