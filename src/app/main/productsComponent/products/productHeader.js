@@ -37,7 +37,7 @@ function CategoriesHeader(props) {
 				</Typography>
 			</div>
 
-			<div className="flex items-center justify-center flex-1 px-12">
+			{/* <div className="flex items-center justify-center flex-1 px-12">
 				<ThemeProvider theme={mainTheme}>
 					<Paper
 						component={motion.div}
@@ -60,7 +60,7 @@ function CategoriesHeader(props) {
 						/>
 					</Paper>
 				</ThemeProvider>
-			</div>
+			</div> */}
 			<motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0, transition: { delay: 0.2 } }}>
 				<Button
 					component={Link}

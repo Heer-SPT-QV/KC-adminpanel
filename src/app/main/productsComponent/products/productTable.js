@@ -199,7 +199,7 @@ function CategoriesTable(props) {
 										{n?.name}
 									</TableCell>
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n?.KoreanName}
+										{n?.koreanName}
 									</TableCell>
 
 									<TableCell className="p-4 md:p-16" component="th" scope="row">

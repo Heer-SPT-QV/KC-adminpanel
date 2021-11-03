@@ -74,7 +74,7 @@ function BasicInfoTab(props) {
 	return (
 		<div>
 			<Controller
-				name="englishName"
+				name="name"
 				control={control}
 				render={({ field }) => (
 					<TextField

@@ -33,7 +33,6 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 		.then(response => {
 			toast.success('Product Updated ');
 			const { data } = response;
-			console.log(data.body, 'product update');
 			return { ...data.body };
 		})
 		.catch(error => {
