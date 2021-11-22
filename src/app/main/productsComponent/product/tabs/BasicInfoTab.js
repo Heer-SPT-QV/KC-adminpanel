@@ -1,10 +1,10 @@
 import TextField from '@material-ui/core/TextField';
 import { Controller, useFormContext } from 'react-hook-form';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+// import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { useEffect, useState } from 'react';
 import { Autocomplete } from '@material-ui/lab';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+// import ListItem from '@material-ui/core/ListItem';
+// import ListItemText from '@material-ui/core/ListItemText';
 import axios from 'axios';
 import { API } from 'app/shared-components/API';
 
@@ -81,7 +81,7 @@ function BasicInfoTab(props) {
 						{...field}
 						className="mt-8 mb-16"
 						error={!!errors.name}
-						required
+						// required
 						helperText={errors?.name?.message}
 						label="English Name"
 						autoFocus
@@ -99,11 +99,47 @@ function BasicInfoTab(props) {
 						{...field}
 						className="mt-8 mb-16"
 						error={!!errors.name}
-						required
+						// required
 						helperText={errors?.name?.message}
 						label="Korean Name"
 						autoFocus
 						id="name"
+						variant="outlined"
+						fullWidth
+					/>
+				)}
+			/>
+			<Controller
+				name="price"
+				control={control}
+				render={({ field }) => (
+					<TextField
+						{...field}
+						className="mt-8 mb-16"
+						error={!!errors.price}
+						// required
+						helperText={errors?.price?.message}
+						label="Price"
+						type="number"
+						id="price"
+						variant="outlined"
+						fullWidth
+					/>
+				)}
+			/>
+			<Controller
+				name="brand"
+				control={control}
+				render={({ field }) => (
+					<TextField
+						{...field}
+						className="mt-8 mb-16"
+						error={!!errors.name}
+						// required
+						helperText={errors?.name?.message}
+						label="Brand"
+						autoFocus
+						id="brand"
 						variant="outlined"
 						fullWidth
 					/>
@@ -117,7 +153,7 @@ function BasicInfoTab(props) {
 						{...field}
 						className="mt-8 mb-16"
 						error={!!errors.cookingTime}
-						required
+						// required
 						type="number"
 						helperText={errors?.cookingTime?.message}
 						label="Cooking Time"
@@ -137,7 +173,7 @@ function BasicInfoTab(props) {
 						{...field}
 						className="mt-8 mb-16"
 						error={!!errors.cookingProcedure}
-						required
+						// required
 						helperText={errors?.cookingProcedure?.message}
 						label="Cooking Procedure"
 						id="cookingProcedure"
@@ -154,7 +190,7 @@ function BasicInfoTab(props) {
 						{...field}
 						className="mt-8 mb-16"
 						error={!!errors.preparationTime}
-						required
+						// required
 						type="number"
 						helperText={errors?.preparationTime?.message}
 						label="Preparation Time"
@@ -164,24 +200,7 @@ function BasicInfoTab(props) {
 					/>
 				)}
 			/>
-			<Controller
-				name="price"
-				control={control}
-				render={({ field }) => (
-					<TextField
-						{...field}
-						className="mt-8 mb-16"
-						error={!!errors.price}
-						required
-						helperText={errors?.price?.message}
-						label="Price"
-						type="number"
-						id="price"
-						variant="outlined"
-						fullWidth
-					/>
-				)}
-			/>
+
 			<Controller
 				name="reportCount"
 				control={control}
@@ -191,12 +210,13 @@ function BasicInfoTab(props) {
 						className="mt-8 mb-16"
 						type="number"
 						error={!!errors.reportCount}
-						required
+						// required
 						helperText={errors?.reportCount?.message}
 						label="Report Count"
 						id="reportCount"
 						variant="outlined"
 						fullWidth
+						disabled
 					/>
 				)}
 			/>
