@@ -1,10 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import FuseUtils from '@fuse/utils';
-import { API } from 'app/shared-components/API';
 import { toast } from 'react-toastify';
-import { useHistory } from 'react-router';
-
+import { API } from 'app/shared-components/API';
+// import FuseUtils from '@fuse/utils';
 
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
 	const response = await axios.get(`${API}/ingredient?id=${params}`);
@@ -38,7 +36,7 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 		name: productData.name,
 		nameInHangul: productData.nameInHangul
 	};
-	console.log('proData', proData);
+	// console.log('proData', proData);
 	axios
 		.patch(`${API}/ingredient/update`, { ...proData })
 		.then(response => {
@@ -54,17 +52,16 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 });
 
 export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveProduct', async productData => {
-
 	const Prodata = {
 		name: productData.name,
-		url:productData.imageUrl,
-		active:false
+		url: productData.imageUrl,
+		active: false
 	};
-	console.log('banner post data', productData);
+	// console.log('banner post data', productData);
 	axios
 		.post(`${API}/banner/add`, Prodata)
 		.then(response => {
-			console.log("banner data in axios",response);
+			// console.log("banner data in axios",response);
 			toast.success('New banner added successfully ');
 			// history.push("/banners")
 			return response.data;
@@ -86,7 +83,7 @@ const categorySlice = createSlice({
 				payload: {
 					// id: FuseUtils.generateGUID(),
 					name: '',
-					imageUrl: '',
+					imageUrl: ''
 					// imagePublicId: '',
 					// images: []
 				}

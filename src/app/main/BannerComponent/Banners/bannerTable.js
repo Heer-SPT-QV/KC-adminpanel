@@ -11,16 +11,14 @@ import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import axios from "axios"
+import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-
-import { withRouter } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
+// import {  } from 'react-router-dom';
 import FuseLoading from '@fuse/core/FuseLoading';
+import { API } from 'app/shared-components/API';
 import { getCategories, selectProducts } from '../store/projectsSlice';
 import CategoriesTableHead from './bannerTableHead';
-// import {API} from ""
-import { API } from 'app/shared-components/API';
 
 function CategoriesTable(props) {
 	const history = useHistory();
@@ -84,13 +82,13 @@ function CategoriesTable(props) {
 		props.history.push(`/ingredient/${item.id}`);
 	}
 	function handleBlockClick(id) {
-		console.log('id og block', id.active);
-		const updatedStatus=! id.active
-		console.log('updatedStatus',updatedStatus);
-		const newObj={...id,active:updatedStatus}
-		console.log(newObj);
+		// console.log('id og block', id.active);
+		const updatedStatus = !id.active;
+		// console.log('updatedStatus', updatedStatus);
+		const newObj = { ...id, active: updatedStatus };
+		// console.log(newObj);
 		axios
-			.patch(`${API}/banner/update`,newObj)
+			.patch(`${API}/banner/update`, newObj)
 			.then(res => {
 				console.log('block resp', res);
 				// window.location.reload();
@@ -222,7 +220,6 @@ function CategoriesTable(props) {
 											// onChange={event => handleCheck(event, n.id)}
 										/>
 									</TableCell>
-								
 								</TableRow>
 							);
 						})}

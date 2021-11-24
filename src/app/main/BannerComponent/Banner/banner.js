@@ -185,7 +185,7 @@ function Category(props) {
 				contentToolbar={
 					<Tabs
 						value={tabValue}
-						onChange={ handleTabChange}
+						onChange={handleTabChange}
 						indicatorColor="primary"
 						textColor="primary"
 						variant="scrollable"

@@ -7,7 +7,7 @@ import allergyComponentConfig from 'app/main/allergyComponent/allergyComponentCo
 import userComponentConfig from 'app/main/userComponent/userComponentConfig';
 import productTypeConfig from 'app/main/productTypeComponent/productTypeComponentConfig';
 import productConfig from 'app/main/productsComponent/productComponentConfig';
-import bannerComponentConfig from "app/main/BannerComponent/bannerComponentConfig"
+import bannerComponentConfig from 'app/main/BannerComponent/bannerComponentConfig';
 // import storeConfig from 'app/main';
 // import storeConfig from 'app/main/storeComponent/shopComponentConfig';
 

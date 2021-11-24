@@ -62,7 +62,7 @@ function CategoryImagesTab(props) {
 		setIsUploading(true);
 		const formData = new FormData();
 		formData.append('file', selectedFile);
-		console.log("selected ",selectedFile);
+		// console.log("selected ",selectedFile);
 		axios
 			.post(`https://api.koreanconvenienceapp.com/file/image/upload?folderName=PRODUCT_IMAGES`, formData, {
 				headers: {
@@ -70,7 +70,7 @@ function CategoryImagesTab(props) {
 				}
 			})
 			.then(response => {
-				console.log("resp in banner img",response.data.body.secureUrl);
+				// console.log('resp in banner img', response.data.body.secureUrl);
 				setImageCred({
 					imageUrl: response.data.body.secureUrl,
 					imagePublicId: response.data.body.publicId

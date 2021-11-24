@@ -4,14 +4,12 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat, page, rowsPerPage }) => {
-	const response = await axios.get(
-		`${API}/banner/all`
-	);
+	const response = await axios.get(`${API}/banner/all`);
+
 	const data = await response;
-	console.log("banner",data.data.body);
+	// console.log("banner",data.data.body);
 	// console.log('data of banner', data.body);
 	// setTotalCat(data.totalElements);
-
 	return data.data.body;
 	// return data.data.map(item => {
 	// 	return { ...item, id: item._id };
