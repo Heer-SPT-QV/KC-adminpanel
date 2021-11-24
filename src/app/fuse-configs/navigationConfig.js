@@ -65,15 +65,15 @@ const navigationConfig = [
 				type: 'item',
 				icon: 'whatshot',
 				url: '/products'
+			},
+			{
+				id: 'banners',
+				title: 'Banners',
+				translate: 'Banners',
+				type: 'item',
+				icon: 'collections',
+				url: '/banners'
 			}
-			// {
-			// 	id: 'stores',
-			// 	title: 'Stores',
-			// 	translate: 'Stores',
-			// 	type: 'item',
-			// 	icon: 'whatshot',
-			// 	url: '/stores'
-			// }
 		]
 	}
 ];
