@@ -80,11 +80,11 @@ function BasicInfoTab(props) {
 					<TextField
 						{...field}
 						className="mt-8 mb-16"
-						error={!!errors.name}
+						// error={!!errors.name}
 						// required
-						helperText={errors?.name?.message}
+						// helperText={errors?.name?.message}
 						label="English Name"
-						autoFocus
+						// autoFocus
 						id="name"
 						variant="outlined"
 						fullWidth
@@ -98,11 +98,11 @@ function BasicInfoTab(props) {
 					<TextField
 						{...field}
 						className="mt-8 mb-16"
-						error={!!errors.name}
+						// error={!!errors.name}
 						// required
-						helperText={errors?.name?.message}
+						// helperText={errors?.name?.message}
 						label="Korean Name"
-						autoFocus
+						// autoFocus
 						id="name"
 						variant="outlined"
 						fullWidth
@@ -116,9 +116,9 @@ function BasicInfoTab(props) {
 					<TextField
 						{...field}
 						className="mt-8 mb-16"
-						error={!!errors.price}
+						// error={!!errors.price}
 						// required
-						helperText={errors?.price?.message}
+						// helperText={errors?.price?.message}
 						label="Price"
 						type="number"
 						id="price"
@@ -134,11 +134,11 @@ function BasicInfoTab(props) {
 					<TextField
 						{...field}
 						className="mt-8 mb-16"
-						error={!!errors.name}
+						// error={!!errors.name}
 						// required
-						helperText={errors?.name?.message}
+						// helperText={errors?.name?.message}
 						label="Brand"
-						autoFocus
+						// autoFocus
 						id="brand"
 						variant="outlined"
 						fullWidth
@@ -152,10 +152,10 @@ function BasicInfoTab(props) {
 					<TextField
 						{...field}
 						className="mt-8 mb-16"
-						error={!!errors.cookingTime}
+						// error={!!errors.cookingTime}
 						// required
 						type="number"
-						helperText={errors?.cookingTime?.message}
+						// helperText={errors?.cookingTime?.message}
 						label="Cooking Time"
 						id="cookingTime"
 						variant="outlined"
@@ -172,9 +172,9 @@ function BasicInfoTab(props) {
 						multiline
 						{...field}
 						className="mt-8 mb-16"
-						error={!!errors.cookingProcedure}
+						// error={!!errors.cookingProcedure}
 						// required
-						helperText={errors?.cookingProcedure?.message}
+						// helperText={errors?.cookingProcedure?.message}
 						label="Cooking Procedure"
 						id="cookingProcedure"
 						variant="outlined"
@@ -189,10 +189,10 @@ function BasicInfoTab(props) {
 					<TextField
 						{...field}
 						className="mt-8 mb-16"
-						error={!!errors.preparationTime}
+						// error={!!errors.preparationTime}
 						// required
 						type="number"
-						helperText={errors?.preparationTime?.message}
+						// helperText={errors?.preparationTime?.message}
 						label="Preparation Time"
 						id="preparationTime"
 						variant="outlined"
@@ -209,9 +209,9 @@ function BasicInfoTab(props) {
 						{...field}
 						className="mt-8 mb-16"
 						type="number"
-						error={!!errors.reportCount}
+						// error={!!errors.reportCount}
 						// required
-						helperText={errors?.reportCount?.message}
+						// helperText={errors?.reportCount?.message}
 						label="Report Count"
 						id="reportCount"
 						variant="outlined"

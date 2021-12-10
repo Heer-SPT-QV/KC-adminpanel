@@ -86,7 +86,7 @@ function CategoryHeader(props) {
 					className="mx-4 whitespace-nowrap"
 					variant="contained"
 					color="secondary"
-					onClick={() => handleUnapproveProduct()}
+					onClick={handleUnapproveProduct}
 				>
 					{approve ? 'Hide' : 'Show'} In APP
 				</Button>
@@ -105,8 +105,8 @@ function CategoryHeader(props) {
 						className="mx-4 whitespace-nowrap"
 						variant="contained"
 						color="secondary"
-						disabled={!dirtyFields || !isValid}
-						onClick={() => handleUpdateProduct()}
+						// disabled={!dirtyFields || !isValid}
+						onClick={handleUpdateProduct}
 					>
 						Update
 					</Button>

@@ -29,6 +29,7 @@ export const removeCategory = createAsyncThunk(
 	}
 );
 export const productUser = createAsyncThunk('UsersCommerceApp/product/update', async productData => {
+	console.log(`product`, productData);
 	axios
 		.patch(`${API}/product/update/new`, { ...productData })
 		.then(response => {
