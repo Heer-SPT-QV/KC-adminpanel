@@ -96,6 +96,9 @@ function CategoryImagesTab(props) {
 
 	return (
 		<div>
+			<Typography variant="h6" gutterBottom>
+				Images
+			</Typography>
 			<div className="flex justify-center sm:justify-start flex-wrap -mx-16">
 				{image && (
 					<div style={{ display: 'flex' }}>

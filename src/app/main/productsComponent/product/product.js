@@ -30,12 +30,8 @@ import IngredientSetTable from './tabs/IngredientSetTable';
  */
 const schema = yup.object().shape({
 	name: yup.string().required().min(3),
-	cookingProcedure: yup.string().required(),
-	cookingTime: yup.number().required(),
-	preparationTime: yup.number().required(),
-	price: yup.number().required(),
-	reportCount: yup.number().required(),
-	description: yup.string().required()
+	koreanName: yup.string().required(),
+	price: yup.number().required()
 });
 
 function Category(props) {

@@ -88,6 +88,7 @@ function BasicInfoTab(props) {
 						id="name"
 						variant="outlined"
 						fullWidth
+						required
 					/>
 				)}
 			/>
@@ -106,16 +107,42 @@ function BasicInfoTab(props) {
 						id="name"
 						variant="outlined"
 						fullWidth
+						required
 					/>
 				)}
 			/>
+
+			<Controller
+				name="productType"
+				control={control}
+				render={({ field }) => (
+					<Autocomplete
+						{...field}
+						id="productType"
+						className="mt-8 mb-16"
+						options={productType}
+						getOptionLabel={option => option?.name}
+						style={{ width: 300 }}
+						renderInput={params => (
+							<TextField {...params} label="Product Type" variant="outlined" required />
+						)}
+						value={productTypeWatch}
+						loadingText="Start Typing..."
+						noOptionsText="No Options"
+						onChange={(event, newValue) => {
+							setValue('productType', newValue);
+						}}
+					/>
+				)}
+			/>
+
 			<Controller
 				name="price"
 				control={control}
 				render={({ field }) => (
 					<TextField
 						{...field}
-						className="mt-8 mb-16"
+						className="mt-16 mb-16"
 						// error={!!errors.price}
 						// required
 						// helperText={errors?.price?.message}
@@ -124,6 +151,7 @@ function BasicInfoTab(props) {
 						id="price"
 						variant="outlined"
 						fullWidth
+						required
 					/>
 				)}
 			/>
@@ -222,27 +250,6 @@ function BasicInfoTab(props) {
 			/>
 
 			<Controller
-				name="productType"
-				control={control}
-				render={({ field }) => (
-					<Autocomplete
-						{...field}
-						id="productType"
-						options={productType}
-						getOptionLabel={option => option?.name}
-						style={{ width: 300, marginTop: 20 }}
-						renderInput={params => <TextField {...params} label="Product Type" variant="outlined" />}
-						value={productTypeWatch}
-						loadingText="Start Typing..."
-						noOptionsText="No Options"
-						onChange={(event, newValue) => {
-							setValue('productType', newValue);
-						}}
-					/>
-				)}
-			/>
-
-			<Controller
 				name="allergySet"
 				control={control}
 				render={({ field }) => (
@@ -252,7 +259,7 @@ function BasicInfoTab(props) {
 						options={allergySet}
 						multiple
 						getOptionLabel={option => option?.name}
-						style={{ width: 300, marginTop: 20 }}
+						style={{ width: 300 }}
 						renderInput={params => <TextField {...params} label="Allergy" variant="outlined" />}
 						value={allergySetWatch}
 						loadingText="Start Typing..."
