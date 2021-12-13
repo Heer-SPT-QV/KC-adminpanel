@@ -96,8 +96,8 @@ function CategoryImagesTab(props) {
 
 	return (
 		<div>
-			<Typography variant="h6" gutterBottom>
-				Images
+			<Typography variant="h6" gutterBottom className="font-normal">
+				Images<span className="font-light text-sm">*</span>
 			</Typography>
 			<div className="flex justify-center sm:justify-start flex-wrap -mx-16">
 				{image && (
@@ -120,13 +120,15 @@ function CategoryImagesTab(props) {
 									className={clsx(classes.productImageFeaturedStar, 'bg-white')}
 									size="small"
 									onClick={() => {
-										console.log(product, 'product');
-										const img = image.filter(i => i !== item);
-										setImage(old => old.filter(o => o !== item));
-										// setProduct((old) => {...old, imageUrlList: image})
-										// setValue('imageUrlList', []);
-										reset({ ...product, imageUrlList: img });
-										console.log(image, 'imge url', getValues('imageUrlList'));
+										if (myImages.length <= 0 && image.length <= 1) {
+											console.log(myImages.length, image.length);
+											toast.error('Atleast one image is require');
+										} else {
+											const img = image.filter(i => i !== item);
+											setImage(old => old.filter(o => o !== item));
+											reset({ ...product, imageUrlList: img });
+											console.log(image, 'imge url', getValues('imageUrlList'));
+										}
 									}}
 								>
 									<CloseIcon />
@@ -156,8 +158,12 @@ function CategoryImagesTab(props) {
 										className={clsx(classes.productImageFeaturedStar, 'bg-white')}
 										size="small"
 										onClick={() => {
-											setMyImages(old => old.filter(img => img.id !== media.id));
-											setSelectedFile(old => old.filter(file => file.name !== media.name));
+											if (myImages.length <= 0 && image.length <= 1) {
+												toast.error('Atleast one image is require');
+											} else {
+												setMyImages(old => old.filter(img => img.id !== media.id));
+												setSelectedFile(old => old.filter(file => file.name !== media.name));
+											}
 										}}
 									>
 										<CloseIcon />

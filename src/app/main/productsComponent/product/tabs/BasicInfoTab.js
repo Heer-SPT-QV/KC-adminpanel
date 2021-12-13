@@ -7,10 +7,11 @@ import { Autocomplete } from '@material-ui/lab';
 // import ListItemText from '@material-ui/core/ListItemText';
 import axios from 'axios';
 import { API } from 'app/shared-components/API';
+import { Typography } from '@material-ui/core';
 
 function BasicInfoTab(props) {
 	const methods = useFormContext();
-	const { control, formState, setValue, watch } = methods;
+	const { control, formState, setValue, watch, getValues } = methods;
 	const { errors } = formState;
 	const [productType, setProductType] = useState([]);
 	const [allergySet, setAllergySet] = useState([]);
@@ -80,11 +81,10 @@ function BasicInfoTab(props) {
 					<TextField
 						{...field}
 						className="mt-8 mb-16"
-						// error={!!errors.name}
-						// required
-						// helperText={errors?.name?.message}
+						error={!!errors.name}
+						helperText={errors?.name?.message}
 						label="English Name"
-						// autoFocus
+						autoFocus
 						id="name"
 						variant="outlined"
 						fullWidth
@@ -99,11 +99,10 @@ function BasicInfoTab(props) {
 					<TextField
 						{...field}
 						className="mt-8 mb-16"
-						// error={!!errors.name}
-						// required
-						// helperText={errors?.name?.message}
+						error={!!errors.koreanName}
+						helperText={errors?.koreanName?.message}
 						label="Korean Name"
-						// autoFocus
+						autoFocus
 						id="name"
 						variant="outlined"
 						fullWidth
@@ -119,12 +118,18 @@ function BasicInfoTab(props) {
 					<Autocomplete
 						{...field}
 						id="productType"
-						className="mt-8 mb-16"
+						className="mt-8"
 						options={productType}
 						getOptionLabel={option => option?.name}
 						style={{ width: 300 }}
 						renderInput={params => (
-							<TextField {...params} label="Product Type" variant="outlined" required />
+							<>
+								{getValues('productType') === null ? (
+									<TextField {...params} label="Product Type" variant="outlined" required error />
+								) : (
+									<TextField {...params} label="Product Type" variant="outlined" required />
+								)}
+							</>
 						)}
 						value={productTypeWatch}
 						loadingText="Start Typing..."
@@ -135,6 +140,9 @@ function BasicInfoTab(props) {
 					/>
 				)}
 			/>
+			{getValues('productType') === null && (
+				<p className="text-red-500 text-11 ml-14 mt-5">product type is a required field</p>
+			)}
 
 			<Controller
 				name="price"
@@ -142,10 +150,9 @@ function BasicInfoTab(props) {
 				render={({ field }) => (
 					<TextField
 						{...field}
-						className="mt-16 mb-16"
-						// error={!!errors.price}
-						// required
-						// helperText={errors?.price?.message}
+						className="mt-24 mb-16"
+						error={!!errors.price}
+						helperText={errors?.price?.message}
 						label="Price"
 						type="number"
 						id="price"
@@ -162,11 +169,8 @@ function BasicInfoTab(props) {
 					<TextField
 						{...field}
 						className="mt-8 mb-16"
-						// error={!!errors.name}
-						// required
-						// helperText={errors?.name?.message}
 						label="Brand"
-						// autoFocus
+						autoFocus
 						id="brand"
 						variant="outlined"
 						fullWidth
@@ -180,10 +184,7 @@ function BasicInfoTab(props) {
 					<TextField
 						{...field}
 						className="mt-8 mb-16"
-						// error={!!errors.cookingTime}
-						// required
 						type="number"
-						// helperText={errors?.cookingTime?.message}
 						label="Cooking Time"
 						id="cookingTime"
 						variant="outlined"
@@ -200,9 +201,6 @@ function BasicInfoTab(props) {
 						multiline
 						{...field}
 						className="mt-8 mb-16"
-						// error={!!errors.cookingProcedure}
-						// required
-						// helperText={errors?.cookingProcedure?.message}
 						label="Cooking Procedure"
 						id="cookingProcedure"
 						variant="outlined"
@@ -217,10 +215,7 @@ function BasicInfoTab(props) {
 					<TextField
 						{...field}
 						className="mt-8 mb-16"
-						// error={!!errors.preparationTime}
-						// required
 						type="number"
-						// helperText={errors?.preparationTime?.message}
 						label="Preparation Time"
 						id="preparationTime"
 						variant="outlined"
@@ -237,9 +232,6 @@ function BasicInfoTab(props) {
 						{...field}
 						className="mt-8 mb-16"
 						type="number"
-						// error={!!errors.reportCount}
-						// required
-						// helperText={errors?.reportCount?.message}
 						label="Report Count"
 						id="reportCount"
 						variant="outlined"
@@ -301,8 +293,6 @@ function BasicInfoTab(props) {
 						multiline
 						rows={3}
 						className="mt-8 mb-16"
-						error={!!errors.description}
-						helperText={errors?.description?.message}
 						label="Description"
 						id="description"
 						variant="outlined"
