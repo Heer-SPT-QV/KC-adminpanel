@@ -133,10 +133,10 @@ function CategoriesTable(props) {
 					<CategoriesTableHead
 						selectedProductIds={selected}
 						order={order}
-						onSelectAllClick={() => handleSelectAllClick}
-						onRequestSort={() => handleRequestSort}
+						onSelectAllClick={handleSelectAllClick}
+						onRequestSort={handleRequestSort}
 						rowCount={data.length}
-						onMenuItemClick={() => handleDeselect}
+						onMenuItemClick={handleDeselect}
 					/>
 
 					<TableBody>
@@ -149,7 +149,7 @@ function CategoriesTable(props) {
 											return o.categories[0];
 										}
 										default: {
-											return o[order.id];
+											return o.name;
 										}
 									}
 								}
