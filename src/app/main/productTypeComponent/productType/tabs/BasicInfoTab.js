@@ -26,6 +26,22 @@ function BasicInfoTab(props) {
 					/>
 				)}
 			/>
+			<Controller
+				name="displaySequence"
+				control={control}
+				render={({ field }) => (
+					<TextField
+						{...field}
+						className="mt-8 mb-16"
+						label="Display Sequence"
+						autoFocus
+						id="displaySequence"
+						variant="outlined"
+						type="number"
+						fullWidth
+					/>
+				)}
+			/>
 			{/* <Controller
 				name="nameInHangul"
 				control={control}

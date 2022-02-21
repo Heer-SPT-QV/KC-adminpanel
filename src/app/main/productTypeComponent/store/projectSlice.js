@@ -52,7 +52,8 @@ export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveP
 export const productUser = createAsyncThunk('UsersCommerceApp/product/update', async productData => {
 	const proData = {
 		id: productData.id,
-		name: productData.name
+		name: productData.name,
+		displaySequence: productData.displaySequence
 	};
 	axios
 		.patch(`${API}/productType/update`, { ...proData })
@@ -80,7 +81,8 @@ const categorySlice = createSlice({
 					name: '',
 					imageUrl: '',
 					imagePublicId: '',
-					images: []
+					images: [],
+					displaySequence: null
 				}
 			})
 		}

@@ -24,6 +24,13 @@ const rows = [
 		disablePadding: false,
 		label: 'Name',
 		sort: true
+	},
+	{
+		id: 'name',
+		align: 'left',
+		disablePadding: false,
+		label: 'Display Sequence',
+		sort: true
 	}
 	// {
 	// 	id: 'nameInHangul',

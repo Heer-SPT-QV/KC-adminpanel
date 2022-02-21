@@ -300,6 +300,22 @@ function BasicInfoTab(props) {
 					/>
 				)}
 			/>
+			<Controller
+				name="disclaimer"
+				control={control}
+				render={({ field }) => (
+					<TextField
+						{...field}
+						multiline
+						rows={3}
+						className="mt-8 mb-16"
+						label="Disclaimer"
+						id="disclaimer"
+						variant="outlined"
+						fullWidth
+					/>
+				)}
+			/>
 			{/* <PlacesAutocomplete
 				value={address}
 				onChange={e => setAddress(e)}

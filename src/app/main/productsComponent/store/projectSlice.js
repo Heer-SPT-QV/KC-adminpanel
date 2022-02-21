@@ -90,6 +90,7 @@ const categorySlice = createSlice({
 					price: '',
 					reportCount: '',
 					description: '',
+					disclaimer: '',
 					approved: true,
 					store: {
 						place_id: '',

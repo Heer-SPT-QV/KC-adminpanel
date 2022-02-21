@@ -35,7 +35,6 @@ function Category(props) {
 	const product = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.product);
 
 	const routeParams = useParams();
-	console.log('routeParam', routeParams);
 	const [tabValue, setTabValue] = useState(0);
 	const [noProduct, setNoProduct] = useState(false);
 	const [isOldProduct, setIsOldProduct] = useState(false);

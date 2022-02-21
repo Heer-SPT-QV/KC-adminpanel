@@ -54,6 +54,13 @@ const rows = [
 		sort: true
 	}
 	// {
+	// 	id: 'disclaimer',
+	// 	align: 'left',
+	// 	disablePadding: false,
+	// 	label: 'Disclaimer',
+	// 	sort: true
+	// }
+	// {
 	// 	id: 'productType',
 	// 	align: 'left',
 	// 	disablePadding: false,
