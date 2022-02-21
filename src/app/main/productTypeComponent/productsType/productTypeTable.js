@@ -148,6 +148,9 @@ function CategoriesTable(props) {
 										case 'categories': {
 											return o.categories[0];
 										}
+										case 'displaySequence': {
+											return o.displaySequence;
+										}
 										default: {
 											return o.name;
 										}
