@@ -98,15 +98,13 @@ function CategoriesTable(props) {
 	}
 
 	const handleChange = (event, id) => {
-		console.log(event.target.checked, 'check');
 		axios
 			.patch(`${API}/productType/update`, { id, display: event.target.checked })
 			.then(response => {
 				toast.success('product type updated');
-				console.log(response.data);
 				const index = data.findIndex(d => d.id === response.data.body.id);
-				console.log(index, 'index');
 				data[index] = response.data.body;
+				props.history.push('/productTypes');
 			})
 			.catch(error => {
 				console.log('err', error);
