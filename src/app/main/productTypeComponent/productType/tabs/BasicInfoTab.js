@@ -1,10 +1,12 @@
+import { Checkbox, FormControlLabel } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { Controller, useFormContext } from 'react-hook-form';
 
 function BasicInfoTab(props) {
 	const methods = useFormContext();
-	const { control, formState } = methods;
+	const { control, formState, watch } = methods;
 	const { errors } = formState;
+	const display = watch('display');
 
 	return (
 		<div>
@@ -26,8 +28,8 @@ function BasicInfoTab(props) {
 					/>
 				)}
 			/>
-			<Controller
-				name="displaySequence"
+			{/* <Controller
+				name="display"
 				control={control}
 				render={({ field }) => (
 					<TextField
@@ -41,24 +43,18 @@ function BasicInfoTab(props) {
 						fullWidth
 					/>
 				)}
-			/>
-			{/* <Controller
-				name="nameInHangul"
-				control={control}
-				render={({ field }) => (
-					<TextField
-						{...field}
-						className="mt-8 mb-16"
-						error={!!errors.nameInHangul}
-						required
-						helperText={errors?.nameInHangul?.message}
-						label="Name in Hangul"
-						autoFocus
-						id="nameInHangul"
-						variant="outlined"
-						fullWidth
+			/> */}
+			{/* <FormControlLabel
+				control={
+					<Checkbox
+						checked={display}
+						onChange={e => {
+							
+						}}
+						name="Display"
 					/>
-				)}
+				}
+				label="display"
 			/> */}
 		</div>
 	);

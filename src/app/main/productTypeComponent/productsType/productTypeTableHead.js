@@ -26,33 +26,12 @@ const rows = [
 		sort: true
 	},
 	{
-		id: 'displaySequence',
+		id: 'display',
 		align: 'left',
 		disablePadding: false,
-		label: 'Display Sequence',
+		label: 'Display',
 		sort: true
 	}
-	// {
-	// 	id: 'nameInHangul',
-	// 	align: 'left',
-	// 	disablePadding: false,
-	// 	label: 'Name in Hangul',
-	// 	sort: true
-	// }
-	// {
-	// 	id: 'airline_name',
-	// 	align: 'left',
-	// 	disablePadding: false,
-	// 	label: 'AirLine name',
-	// 	sort: true
-	// },
-	// {
-	// 	id: 'country',
-	// 	align: 'left',
-	// 	disablePadding: false,
-	// 	label: 'Country',
-	// 	sort: true
-	// }
 ];
 
 const useStyles = makeStyles(theme => ({

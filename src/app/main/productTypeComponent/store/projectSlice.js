@@ -58,7 +58,7 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 	axios
 		.patch(`${API}/productType/update`, { ...proData })
 		.then(response => {
-			toast.success('User Updated');
+			toast.success('Product Type Updated');
 			const { data } = response;
 			return { ...data };
 		})

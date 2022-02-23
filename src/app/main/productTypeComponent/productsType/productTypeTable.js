@@ -1,20 +1,19 @@
+import FuseLoading from '@fuse/core/FuseLoading';
 import FuseScrollbars from '@fuse/core/FuseScrollbars';
 import _ from '@lodash';
 import Checkbox from '@material-ui/core/Checkbox';
-import Icon from '@material-ui/core/Icon';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
-import clsx from 'clsx';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import FuseLoading from '@fuse/core/FuseLoading';
+import { toast } from 'react-toastify';
+import { API } from '../../../shared-components/API';
 import { getCategories, selectProducts } from '../store/projectsSlice';
 import CategoriesTableHead from './productTypeTableHead';
 
@@ -97,6 +96,23 @@ function CategoriesTable(props) {
 
 		setSelected(newSelected);
 	}
+
+	const handleChange = (event, id) => {
+		console.log(event.target.checked, 'check');
+		axios
+			.patch(`${API}/productType/update`, { id, display: event.target.checked })
+			.then(response => {
+				toast.success('product type updated');
+				console.log(response.data);
+				const index = data.findIndex(d => d.id === response.data.body.id);
+				console.log(index, 'index');
+				data[index] = response.data.body;
+			})
+			.catch(error => {
+				console.log('err', error);
+				toast.error(error.isAxiosError ? error.response.data.message : error.message);
+			});
+	};
 
 	function handleChangePage(event, value) {
 		console.log('running', value);
@@ -183,7 +199,11 @@ function CategoriesTable(props) {
 										{n.name}
 									</TableCell>
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.displaySequence || '-'}
+										<Checkbox
+											checked={n.display}
+											onClick={event => event.stopPropagation()}
+											onChange={event => handleChange(event, n.id)}
+										/>
 									</TableCell>
 									{/* <TableCell className="p-4 md:p-16" component="th" scope="row">
 										{n.nameInHangul}
