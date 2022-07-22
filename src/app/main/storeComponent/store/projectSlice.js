@@ -7,7 +7,6 @@ import { toast } from 'react-toastify';
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
 	const response = await axios.get(`${API}/store?id=${params}`);
 	const data = await response.data;
-	console.log(data.body);
 	return data.body;
 	// return data === undefined ? null : data;
 });
@@ -54,7 +53,6 @@ export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveP
 	axios
 		.post(`${API}/allergy/add`, Prodata)
 		.then(response => {
-			console.log(response);
 			toast.success('Category Created');
 			return response.data;
 		})

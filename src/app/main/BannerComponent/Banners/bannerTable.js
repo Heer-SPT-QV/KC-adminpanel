@@ -25,9 +25,8 @@ function CategoriesTable(props) {
 
 	const dispatch = useDispatch();
 	const products = useSelector(selectProducts);
-	const searchText = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.products.searchText);
+	const searchText = useSelector(({ BannerCommerceApp }) => BannerCommerceApp.products.searchText);
 
-	// console.log('Products...', products);
 	const [loading, setLoading] = useState(true);
 	const [selected, setSelected] = useState([]);
 	const [data, setData] = useState(products);
@@ -82,21 +81,16 @@ function CategoriesTable(props) {
 		props.history.push(`/ingredient/${item.id}`);
 	}
 	function handleBlockClick(id) {
-		// console.log('id og block', id.active);
 		const updatedStatus = !id.active;
-		// console.log('updatedStatus', updatedStatus);
 		const newObj = { ...id, active: updatedStatus };
-		// console.log(newObj);
 		axios
 			.patch(`${API}/banner/update`, newObj)
 			.then(res => {
-				console.log('block resp', res);
-				// window.location.reload();
 				history.push('/');
 				history.push('/banners');
 			})
 			.catch(err => {
-				console.log('err in block', err);
+				console.log('err', err);
 			});
 	}
 	function handleCheck(event, id) {
@@ -136,7 +130,7 @@ function CategoriesTable(props) {
 				className="flex items-center justify-center flex-1 h-full"
 			>
 				<Typography color="textSecondary" variant="h5">
-					There are no categories!
+					There are no banners!
 				</Typography>
 			</motion.div>
 		);

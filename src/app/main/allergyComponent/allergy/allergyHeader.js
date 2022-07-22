@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { useFormContext } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { productUser, removeCategory, saveCategory } from '../store/projectSlice';
 
 function CategoryHeader(props) {
@@ -21,10 +22,12 @@ function CategoryHeader(props) {
 	const history = useHistory();
 
 	function handleSaveProduct() {
-		dispatch(saveCategory(getValues())).then(res => {
-			reset(getValues());
-			console.log(res.meta.arg, 'save');
-			history.push('/allergies');
+		dispatch(saveCategory(getValues())).then(action => {
+			if (action.payload !== undefined) {
+				toast.success('Allery Created');
+				reset(getValues());
+				history.push('/allergies');
+			}
 		});
 	}
 
@@ -35,8 +38,12 @@ function CategoryHeader(props) {
 	}
 
 	function handleUpdateProduct() {
-		dispatch(productUser(getValues()));
-		history.push('/allergies');
+		dispatch(productUser(getValues())).then(action => {
+			if (action.payload !== undefined) {
+				toast.success('Allergy Updated');
+				history.push('/allergies');
+			}
+		});
 	}
 
 	return (
@@ -84,15 +91,17 @@ function CategoryHeader(props) {
 				initial={{ opacity: 0, x: 20 }}
 				animate={{ opacity: 1, x: 0, transition: { delay: 0.3 } }}
 			>
-				<Button
-					className="mx-4 whitespace-nowrap"
-					variant="contained"
-					color="secondary"
-					onClick={handleRemoveProduct}
-					startIcon={<Icon className="hidden sm:flex">delete</Icon>}
-				>
-					Remove
-				</Button>
+				{props.isOldProduct && (
+					<Button
+						className="mx-4 whitespace-nowrap"
+						variant="contained"
+						color="secondary"
+						onClick={handleRemoveProduct}
+						startIcon={<Icon className="hidden sm:flex">delete</Icon>}
+					>
+						Remove
+					</Button>
+				)}
 				{!props.isOldProduct ? (
 					<Button
 						className="mx-4 whitespace-nowrap"

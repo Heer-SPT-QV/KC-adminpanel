@@ -93,50 +93,6 @@ function CategoriesTableHead(props) {
 	return (
 		<TableHead>
 			<TableRow className="h-48 sm:h-64">
-				{/* <TableCell padding="none" className="w-40 text-center md:w-64 z-99">
-					<Checkbox
-						indeterminate={numSelected > 0 && numSelected < props.rowCount}
-						checked={props.rowCount !== 0 && numSelected === props.rowCount}
-						onChange={props.onSelectAllClick}
-					/>
-					{numSelected > 0 && (
-						<div
-							className={clsx(
-								'flex items-center justify-center absolute w-64 top-0 ltr:left-0 rtl:right-0 mx-56 h-64 z-10 border-b-1',
-								classes.actionsButtonWrapper
-							)}
-						>
-							<IconButton
-								aria-owns={selectedProductsMenu ? 'selectedProductsMenu' : null}
-								aria-haspopup="true"
-								onClick={e => openSelectedProductsMenu(e)}
-							>
-								<Icon>more_horiz</Icon>
-							</IconButton>
-							<Menu
-								id="selectedProductsMenu"
-								anchorEl={selectedProductsMenu}
-								open={Boolean(selectedProductsMenu)}
-								onClose={() => closeSelectedProductsMenu()}
-							>
-								<MenuList>
-									<MenuItem
-										onClick={() => {
-											dispatch(removeCategoy(selectedProductIds));
-											props.onMenuItemClick();
-											closeSelectedProductsMenu();
-										}}
-									>
-										<ListItemIcon className="min-w-40">
-											<Icon>delete</Icon>
-										</ListItemIcon>
-										<ListItemText primary="Remove" />
-									</MenuItem>
-								</MenuList>
-							</Menu>
-						</div>
-					)}
-				</TableCell> */}
 				{rows.map(row => {
 					return (
 						<TableCell

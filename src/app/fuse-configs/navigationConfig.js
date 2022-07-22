@@ -16,14 +16,6 @@ const navigationConfig = [
 		type: 'group',
 		icon: '',
 		children: [
-			// {
-			// 	id: 'example-component',
-			// 	title: 'Example',
-			// 	translate: 'EXAMPLE',
-			// 	type: 'item',
-			// 	icon: 'whatshot',
-			// 	url: '/example'
-			// },
 			{
 				id: 'ingredients',
 				title: 'Ingredients',

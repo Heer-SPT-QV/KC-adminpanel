@@ -73,7 +73,6 @@ function AllerySetTable(props) {
 	}
 
 	function handleClick(item) {
-		console.log('product item ', item);
 		props.history.push(`/allergy/${item.id}`);
 	}
 
@@ -95,12 +94,10 @@ function AllerySetTable(props) {
 	}
 
 	function handleChangePage(event, value) {
-		console.log('running', value);
 		setPage(value);
 	}
 
 	function handleChangeRowsPerPage(event) {
-		console.log('event', event.target.value);
 		setRowsPerPage(event.target.value);
 	}
 

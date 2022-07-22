@@ -52,7 +52,6 @@ class JwtService extends FuseUtils.EventEmitter {
 	createUser = data => {
 		return new Promise((resolve, reject) => {
 			axios.post(`${API}/register`, data).then(response => {
-				console.log('response', response);
 				if (response.data.user) {
 					this.setSession(response.data.access_token);
 					resolve(response.data.user);
@@ -70,11 +69,9 @@ class JwtService extends FuseUtils.EventEmitter {
 		};
 
 		return new Promise((resolve, reject) => {
-			console.log(API);
 			axios
 				.post(`${API}/login`, data)
 				.then(response => {
-					console.log(response.data, 'login');
 					if (response.data.success && response.data?.body?.user.role === 'ADMIN') {
 						this.setSession(response.data?.body?.token || '');
 						resolve(response.data?.body?.user || {});

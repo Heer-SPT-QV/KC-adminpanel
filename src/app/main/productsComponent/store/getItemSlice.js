@@ -5,7 +5,6 @@ export const getItemSlice = createSlice({
 	initialState: {},
 	reducers: {
 		getItemFunc: (state, action) => {
-			console.log('in toolkit', action.payload);
 			return action.payload;
 		}
 	}

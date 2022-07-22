@@ -70,7 +70,6 @@ function CategoryImagesTab(props) {
 				}
 			})
 			.then(response => {
-				// console.log(response.data.body,'image');
 				setImageCred({
 					imageUrl: response.data.body.secureUrl,
 					imagePublicId: response.data.body.public_id

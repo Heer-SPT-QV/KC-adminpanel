@@ -32,10 +32,9 @@ const schema = yup.object().shape({
 
 function Category(props) {
 	const dispatch = useDispatch();
-	const product = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.product);
+	const product = useSelector(({ BannerCommerceApp }) => BannerCommerceApp.product);
 
 	const routeParams = useParams();
-	console.log('routeParam', routeParams);
 	const [tabValue, setTabValue] = useState(0);
 	const [noProduct, setNoProduct] = useState(false);
 	const [isOldProduct, setIsOldProduct] = useState(false);
@@ -51,16 +50,13 @@ function Category(props) {
 	useDeepCompareEffect(() => {
 		function updateProductState() {
 			const { bannerId } = routeParams;
-			// console.log(productId);
 
 			if (bannerId === 'new') {
-				console.log('gone new');
 				/**
 				 * Create New Product data
 				 */
 				dispatch(newProduct());
 			} else if (bannerId === 'newbanner') {
-				console.log('qwe');
 				setNewCsv(true);
 			} else {
 				/**
@@ -112,7 +108,6 @@ function Category(props) {
 	/**
 	 * Show Message if the requested products is not exists
 	 */
-	console.log('newcsv', newCsv);
 
 	if (noProduct) {
 		return (
@@ -131,7 +126,6 @@ function Category(props) {
 		);
 	}
 	if (newCsv) {
-		// console.log('ezdsf');
 		return (
 			<FormProvider {...methods}>
 				<FusePageCarded
@@ -209,4 +203,4 @@ function Category(props) {
 	);
 }
 
-export default withReducer('CategoryeCommerceApp', reducer)(Category);
+export default withReducer('BannerCommerceApp', reducer)(Category);

@@ -133,7 +133,7 @@ function CategoriesTableHead(props) {
 									<TableSortLabel
 										active={props.order.id === row.id}
 										direction={props.order.direction}
-										onClick={() => createSortHandler(row.id)}
+										onClick={createSortHandler(row.id)}
 										className="font-semibold"
 									>
 										{row.label}

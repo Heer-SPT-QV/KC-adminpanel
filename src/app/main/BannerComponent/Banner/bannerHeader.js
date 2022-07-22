@@ -54,17 +54,6 @@ function CategoryHeader(props) {
 				</motion.div>
 
 				<div className="flex items-center max-w-full">
-					{/* <motion.div
-						className="hidden sm:flex"
-						initial={{ scale: 0 }}
-						animate={{ scale: 1, transition: { delay: 0.3 } }}
-					>
-						<img
-							className="w-32 rounded sm:w-48"
-							src={getValues().imageUrl || 'assets/images/ecommerce/product-image-placeholder.png'}
-							alt={name}
-						/>
-					</motion.div> */}
 					<div className="flex flex-col min-w-0 mx-8 sm:mc-16">
 						<motion.div initial={{ x: -20 }} animate={{ x: 0, transition: { delay: 0.3 } }}>
 							<Typography className="font-semibold truncate text-16 sm:text-20">
@@ -82,7 +71,7 @@ function CategoryHeader(props) {
 				initial={{ opacity: 0, x: 20 }}
 				animate={{ opacity: 1, x: 0, transition: { delay: 0.3 } }}
 			>
-				<Button
+				{/* <Button
 					className="mx-4 whitespace-nowrap"
 					variant="contained"
 					color="secondary"
@@ -90,18 +79,7 @@ function CategoryHeader(props) {
 					startIcon={<Icon className="hidden sm:flex">delete</Icon>}
 				>
 					Remove
-				</Button>
-				{/* {!props.isOldProduct && (
-					<Button
-						className="mx-4 whitespace-nowrap"
-						variant="contained"
-						color="secondary"
-						disabled={_.isEmpty(dirtyFields) || !isValid || !getValues('name').length}
-						onClick={() => handleSaveProduct()}
-					>
-						Save
-					</Button>
-				)} */}
+				</Button> */}
 
 				{!props.isOldProduct ? (
 					<Button

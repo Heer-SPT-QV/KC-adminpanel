@@ -26,7 +26,6 @@ function CategoriesTable(props) {
 	const products = useSelector(selectProducts);
 	const searchText = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.products.searchText);
 
-	// console.log('Products...', products);
 	const [loading, setLoading] = useState(true);
 	const [selected, setSelected] = useState([]);
 	const [data, setData] = useState(products);
@@ -74,18 +73,15 @@ function CategoriesTable(props) {
 		setSelected([]);
 	}
 	function handleBlockClick(id) {
-		console.log('id og block', id);
-		console.log('clicked block');
 		axios
 			.patch(`${API}/user/block?userId=${id}`)
 			.then(res => {
-				console.log('block resp', res);
 				// window.location.reload();
 				history.push('/');
 				history.push('/users');
 			})
 			.catch(err => {
-				console.log('err in block', err);
+				console.log('err', err);
 			});
 	}
 	function handleDeselect() {
@@ -114,12 +110,10 @@ function CategoriesTable(props) {
 	}
 
 	function handleChangePage(event, value) {
-		console.log('running', value);
 		setPage(value);
 	}
 
 	function handleChangeRowsPerPage(event) {
-		console.log('event', event.target.value);
 		setRowsPerPage(event.target.value);
 	}
 
@@ -148,10 +142,10 @@ function CategoriesTable(props) {
 					<CategoriesTableHead
 						selectedProductIds={selected}
 						order={order}
-						onSelectAllClick={() => handleSelectAllClick}
-						onRequestSort={() => handleRequestSort}
+						onSelectAllClick={handleSelectAllClick}
+						onRequestSort={handleRequestSort}
 						rowCount={data.length}
-						onMenuItemClick={() => handleDeselect}
+						onMenuItemClick={handleDeselect}
 					/>
 
 					<TableBody>
@@ -174,41 +168,13 @@ function CategoriesTable(props) {
 							const isSelected = selected.indexOf(n.id) !== -1;
 							return (
 								<TableRow
-									className={`${
-										n.isLocked ? 'cursor-pointer h-72 bg-deep-orange-400 ' : 'cursor-pointer h-72'
-									}`}
-									hover
-									role="checkbox"
+									className={`${n.isLocked ? 'h-72 bg-deep-orange-400 ' : ' h-72'}`}
 									aria-checked={isSelected}
 									tabIndex={-1}
 									key={n.id}
 									selected={isSelected}
 									// onClick={event => handleClick(n)}
 								>
-									{/* <TableCell className="w-40 text-center md:w-64" padding="none">
-										<Checkbox
-											checked={isSelected}
-											onClick={event => event.stopPropagation()}
-											onChange={event => handleCheck(event, n.id)}
-										/>
-									</TableCell> */}
-									{/* <TableCell>
-										{n.imageUrl ? (
-											<img
-												// className="block rounded w-50"
-												className="h-32 w-52"
-												// src={_.find(n.images, { id: n.featuredImageId }).url}
-												src={n.imageUrl}
-												alt={n.name}
-											/>
-										) : (
-											<img
-												className="block w-full rounded"
-												src="assets/images/ecommerce/product-image-placeholder.png"
-												alt={n.name}
-											/>
-										)}
-									</TableCell> */}
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
 										{n.firstName}
 									</TableCell>

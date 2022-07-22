@@ -67,7 +67,6 @@ function CategoryImagesTab(props) {
 				}
 			})
 			.then(response => {
-				console.log('post allergy', response);
 				// setImageCred({
 				// 	imageUrl: response.data.secure_url,
 				// 	imagePublicId: response.data.public_id

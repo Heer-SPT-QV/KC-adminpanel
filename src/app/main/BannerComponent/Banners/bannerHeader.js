@@ -12,7 +12,7 @@ import { setProductsSearchText } from '../store/projectsSlice';
 
 function CategoriesHeader(props) {
 	const dispatch = useDispatch();
-	const searchText = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.products.searchText);
+	const searchText = useSelector(({ BannerCommerceApp }) => BannerCommerceApp.products.searchText);
 	const mainTheme = useSelector(selectMainTheme);
 
 	return (

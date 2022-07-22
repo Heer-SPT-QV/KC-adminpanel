@@ -4,21 +4,19 @@ import { toast } from 'react-toastify';
 import { API } from 'app/shared-components/API';
 // import FuseUtils from '@fuse/utils';
 
-export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
+export const getCategory = createAsyncThunk('BannerCommerceApp/product/getProduct', async params => {
 	const response = await axios.get(`${API}/ingredient?id=${params}`);
 	const data = await response.data;
-	// console.log(data);
 
-	// return data === undefined ? null : data;
 	return data.body;
 });
 
 export const removeCategory = createAsyncThunk(
-	'CategoryeCommerceApp/product/removeProduct',
+	'BannerCommerceApp/product/removeProduct',
 	async (val, { dispatch, getState }) => {
 		const { id } = getState().CategoryeCommerceApp.product;
 		await axios
-			.delete(`${API}/ingredient/delete?id=${id}`)
+			.delete(`${API}/banner/${id}`)
 			.then(res => {
 				toast.success(`Successfully deleted ${id}`);
 			})
@@ -30,17 +28,16 @@ export const removeCategory = createAsyncThunk(
 	}
 );
 
-export const productUser = createAsyncThunk('UsersCommerceApp/product/update', async productData => {
+export const productUser = createAsyncThunk('BannerCommerceApp/product/update', async productData => {
 	const proData = {
 		id: productData.id,
 		name: productData.name,
 		nameInHangul: productData.nameInHangul
 	};
-	// console.log('proData', proData);
+
 	axios
 		.patch(`${API}/ingredient/update`, { ...proData })
 		.then(response => {
-			// console.log('upadted ingr', response);
 			toast.success('Ingredient Updated');
 			const { data } = response;
 			return data.body;
@@ -51,17 +48,15 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 		});
 });
 
-export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveProduct', async productData => {
+export const saveCategory = createAsyncThunk('BannerCommerceApp/product/saveProduct', async productData => {
 	const Prodata = {
 		name: productData.name,
 		url: productData.imageUrl,
 		active: false
 	};
-	// console.log('banner post data', productData);
 	axios
 		.post(`${API}/banner/add`, Prodata)
 		.then(response => {
-			// console.log("banner data in axios",response);
 			toast.success('New banner added successfully ');
 			// history.push("/banners")
 			return response.data;
@@ -73,7 +68,7 @@ export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveP
 });
 
 const categorySlice = createSlice({
-	name: 'CategoryeCommerceApp/product',
+	name: 'BannerCommerceApp/product',
 	initialState: null,
 	reducers: {
 		resetProduct: () => null,

@@ -7,7 +7,6 @@ function StoreSet(props) {
 	const { control, formState } = methods;
 	const { errors } = formState;
 	const product = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.product);
-	console.log('IngredientSet', product.StoreSet);
 
 	return (
 		<div>

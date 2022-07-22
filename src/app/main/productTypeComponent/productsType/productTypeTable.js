@@ -22,7 +22,6 @@ function CategoriesTable(props) {
 	const products = useSelector(selectProducts);
 	const searchText = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.products.searchText);
 
-	// console.log('Products...', products);
 	const [loading, setLoading] = useState(true);
 	const [selected, setSelected] = useState([]);
 	const [data, setData] = useState(products);
@@ -113,12 +112,10 @@ function CategoriesTable(props) {
 	};
 
 	function handleChangePage(event, value) {
-		console.log('running', value);
 		setPage(value);
 	}
 
 	function handleChangeRowsPerPage(event) {
-		console.log('event', event.target.value);
 		setRowsPerPage(event.target.value);
 	}
 

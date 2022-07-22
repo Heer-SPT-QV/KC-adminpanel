@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { useFormContext } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { productUser, removeCategory, saveCategory } from '../store/projectSlice';
 
 function CategoryHeader(props) {
@@ -21,15 +22,21 @@ function CategoryHeader(props) {
 	const history = useHistory();
 
 	function handleUpdateProduct() {
-		dispatch(productUser(getValues())).then(() => {
-			history.push('/productTypes');
+		dispatch(productUser(getValues())).then(action => {
+			if (action.payload !== undefined) {
+				toast.success('Product Type Updated');
+				history.push('/productTypes');
+			}
 		});
 	}
 
 	function handleSaveProduct() {
-		dispatch(saveCategory(getValues())).then(() => {
-			reset(getValues());
-			history.push('/productTypes');
+		dispatch(saveCategory(getValues())).then(action => {
+			if (action.payload !== undefined) {
+				toast.success('Category Created');
+				reset(getValues());
+				history.push('/productTypes');
+			}
 		});
 	}
 
@@ -84,15 +91,17 @@ function CategoryHeader(props) {
 				initial={{ opacity: 0, x: 20 }}
 				animate={{ opacity: 1, x: 0, transition: { delay: 0.3 } }}
 			>
-				<Button
-					className="mx-4 whitespace-nowrap"
-					variant="contained"
-					color="secondary"
-					onClick={() => handleRemoveProduct()}
-					startIcon={<Icon className="hidden sm:flex">delete</Icon>}
-				>
-					Remove
-				</Button>
+				{props.isOldProduct && (
+					<Button
+						className="mx-4 whitespace-nowrap"
+						variant="contained"
+						color="secondary"
+						onClick={() => handleRemoveProduct()}
+						startIcon={<Icon className="hidden sm:flex">delete</Icon>}
+					>
+						Remove
+					</Button>
+				)}
 				{!props.isOldProduct ? (
 					<Button
 						className="mx-4 whitespace-nowrap"

@@ -158,10 +158,27 @@ function BasicInfoTab(props) {
 						id="price"
 						variant="outlined"
 						fullWidth
+						inputProps={{ min: 0 }}
 						required
 					/>
 				)}
 			/>
+			{/* <Controller
+				name="priceUSD"
+				control={control}
+				render={({ field }) => (
+					<TextField
+						{...field}
+						className="mt-24 mb-16"
+						label="Price In USD"
+						type="number"
+						id="priceUSD"
+						variant="outlined"
+						fullWidth
+						inputProps={{ min: 0 }}
+					/>
+				)}
+			/> */}
 			<Controller
 				name="brand"
 				control={control}

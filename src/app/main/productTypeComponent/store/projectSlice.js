@@ -7,10 +7,8 @@ import { toast } from 'react-toastify';
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
 	const response = await axios.get(`${API}/productType?id=${params}`);
 	const data = await response.data;
-	// console.log('gebyid', data);
 
 	return data.body;
-	// return data === undefined ? null : data;
 });
 
 export const removeCategory = createAsyncThunk(
@@ -20,7 +18,6 @@ export const removeCategory = createAsyncThunk(
 		await axios
 			.delete(`${API}/productType/delete?id=${id}`)
 			.then(resp => {
-				// console.log('del pt', resp);
 				toast.success(`deleted successfully ${id}`);
 			})
 			.catch(() => {
@@ -35,37 +32,39 @@ export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveP
 	const Prodata = {
 		name: productData.name
 	};
-	// console.log(Prodata);
-	axios
+	const res = await axios
 		.post(`${API}/productType/add`, Prodata)
-		.then(response => {
-			console.log('res', response);
-			toast.success('Category Created');
-			return response.data;
-		})
+		// .then(response => {
+		// 	toast.success('Category Created');
+		// 	return response.data;
+		// })
 		.catch(error => {
 			console.log(error.message);
 			toast.error(error.isAxiosError ? error.response.data.message : error.message);
 		});
+
+	return res.data;
 });
 
-export const productUser = createAsyncThunk('UsersCommerceApp/product/update', async productData => {
+export const productUser = createAsyncThunk('CategoryeCommerceApp/product/update', async productData => {
 	const proData = {
 		id: productData.id,
 		name: productData.name,
 		displaySequence: productData.displaySequence
 	};
-	axios
+	const res = await axios
 		.patch(`${API}/productType/update`, { ...proData })
-		.then(response => {
-			toast.success('Product Type Updated');
-			const { data } = response;
-			return { ...data };
-		})
+		// .then(response => {
+		// 	toast.success('Product Type Updated');
+		// 	const { data } = response;
+		// 	return { ...data };
+		// })
 		.catch(error => {
 			console.log('err', error);
 			toast.error(error.isAxiosError ? error.response.data.message : error.message);
 		});
+
+	return res.data;
 });
 
 const categorySlice = createSlice({

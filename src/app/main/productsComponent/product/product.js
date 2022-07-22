@@ -31,7 +31,7 @@ import IngredientSetTable from './tabs/IngredientSetTable';
 const schema = yup.object().shape({
 	name: yup.string().required().min(3),
 	koreanName: yup.string().required(),
-	price: yup.number().required(),
+	price: yup.number().required().min(0),
 	productType: yup.string().required()
 });
 
@@ -56,7 +56,6 @@ function Category(props) {
 		setIsLoading(true);
 		function updateProductState() {
 			const { productId } = routeParams;
-			// console.log(productId);
 
 			if (productId === 'new') {
 				setIsLoading(false);

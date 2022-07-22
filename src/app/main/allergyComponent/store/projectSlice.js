@@ -8,13 +8,12 @@ import { useHistory } from 'react-router';
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
 	const response = await axios.get(`${API}/allergy?id=${params}`);
 	const data = await response.data;
-	console.log(data.body);
 	return data.body;
 	// return data === undefined ? null : data;
 });
 
 export const removeCategory = createAsyncThunk(
-	'CategoryeCommerceApp/product/removeProduct',
+	'AllergyCommerceApp/product/removeProduct',
 	async (val, { dispatch, getState }) => {
 		const { id } = getState().CategoryeCommerceApp.product;
 		await axios
@@ -29,44 +28,40 @@ export const removeCategory = createAsyncThunk(
 		return id;
 	}
 );
-export const productUser = createAsyncThunk('UsersCommerceApp/product/update', async productData => {
+export const productUser = createAsyncThunk('AllergyCommerceApp/product/update', async productData => {
 	const proData = {
 		id: productData.id,
 		name: productData.name,
 		iconUrl: productData.iconUrl
 	};
-	axios
+	const res = await axios
 		.patch(`${API}/allergy/update`, { ...proData })
-		.then(response => {
-			const { data } = response;
-			// useHistory().push('/allergies');
-			toast.success('Allergy Updated');
-			return { ...data };
-		})
+		// .then(response => {
+		// 	const { data } = response;
+		// 	toast.success('Allergy Updated');
+		// 	return { ...data };
+		// })
 		.catch(error => {
 			console.log('err', error);
 			toast.error(error.isAxiosError ? error.response.data.message : error.message);
 		});
+
+	return res.data;
 });
-export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveProduct', async productData => {
+export const saveCategory = createAsyncThunk('AllergyCommerceApp/product/saveProduct', async productData => {
 	const proData = {
 		name: productData.name,
 		iconUrl: productData.iconUrl
 	};
-	axios
-		.post(`${API}/allergy/add`, proData)
-		.then(response => {
-			toast.success('Allery Created');
-			return response.data;
-		})
-		.catch(error => {
-			console.log(error.message);
-			toast.error(error.isAxiosError ? error.response.data.message : error.message);
-		});
+	const res = await axios.post(`${API}/allergy/add`, proData).catch(error => {
+		console.log(error.message);
+		toast.error(error.isAxiosError ? error.response.data.message : error.message);
+	});
+	return res.data;
 });
 
 const categorySlice = createSlice({
-	name: 'CategoryeCommerceApp/product',
+	name: 'AllergyCommerceApp/product',
 	initialState: null,
 	reducers: {
 		resetProduct: () => null,

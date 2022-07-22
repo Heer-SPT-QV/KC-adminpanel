@@ -23,11 +23,9 @@ function IngredientSetTable(props) {
 	const dispatch = useDispatch();
 
 	const product = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.product);
-	// console.log('insetTable', product.ingredientSet);
 
 	const searchText = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.products.searchText);
 
-	// console.log('Products...', products);
 	// const [loading, setLoading] = useState(true);
 	const [selected, setSelected] = useState([]);
 	const [data, setData] = useState(product?.ingredientSet || []);
@@ -79,7 +77,6 @@ function IngredientSetTable(props) {
 	}
 
 	function handleClick(item) {
-		console.log('product item ', item);
 		props.history.push(`/ingredient/${item.id}`);
 	}
 
@@ -101,12 +98,10 @@ function IngredientSetTable(props) {
 	}
 
 	function handleChangePage(event, value) {
-		console.log('running', value);
 		setPage(value);
 	}
 
 	function handleChangeRowsPerPage(event) {
-		console.log('event', event.target.value);
 		setRowsPerPage(event.target.value);
 	}
 

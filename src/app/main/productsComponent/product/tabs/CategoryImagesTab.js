@@ -71,7 +71,6 @@ function CategoryImagesTab(props) {
 					}
 				})
 				.then(response => {
-					// console.log(response.data.body,'image');
 					setImageCred(old => [
 						...old,
 						{
@@ -84,7 +83,6 @@ function CategoryImagesTab(props) {
 					// setValue('imageUrlList', response.data.body.secureUrl, { shouldDirty: true });
 				})
 				.catch(error => {
-					console.log(error.response, 'err');
 					setErrorMsg(error.isAxiosError ? error.response.data.message : error.message);
 				})
 				.finally(() => {
@@ -102,8 +100,6 @@ function CategoryImagesTab(props) {
 			<div className="flex justify-center sm:justify-start flex-wrap -mx-16">
 				{image && (
 					<div style={{ display: 'flex' }}>
-						{console.log(image, 'img')}
-
 						{image.map((item, index) => (
 							<div
 								role="button"
@@ -121,13 +117,11 @@ function CategoryImagesTab(props) {
 									size="small"
 									onClick={() => {
 										if (myImages.length <= 0 && image.length <= 1) {
-											console.log(myImages.length, image.length);
 											toast.error('Atleast one image is require');
 										} else {
 											const img = image.filter(i => i !== item);
 											setImage(old => old.filter(o => o !== item));
 											reset({ ...product, imageUrlList: img });
-											console.log(image, 'imge url', getValues('imageUrlList'));
 										}
 									}}
 								>

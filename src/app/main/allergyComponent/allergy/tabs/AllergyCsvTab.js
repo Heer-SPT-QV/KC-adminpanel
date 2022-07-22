@@ -69,7 +69,6 @@ function AllergyCsvTab(props) {
 				}
 			})
 			.then(response => {
-				console.log(response);
 				toast.success('Ingredient successfully addedd');
 				history.push('/allergies');
 			})

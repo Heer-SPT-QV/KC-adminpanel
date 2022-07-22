@@ -6,9 +6,7 @@ function AllergySet(props) {
 	const methods = useFormContext();
 	const { control, formState } = methods;
 	const { errors } = formState;
-	console.log(control);
 	const product = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.product);
-	console.log('allergySet', product.allergySet);
 
 	return (
 		<div>

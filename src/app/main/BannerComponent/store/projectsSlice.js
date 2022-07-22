@@ -3,30 +3,28 @@ import { API } from 'app/shared-components/API';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat, page, rowsPerPage }) => {
+export const getCategories = createAsyncThunk('BannerCommerceApp', async ({ setTotalCat, page, rowsPerPage }) => {
 	const response = await axios.get(`${API}/banner/all`);
 
 	const data = await response;
-	// console.log("banner",data.data.body);
-	// console.log('data of banner', data.body);
+
 	// setTotalCat(data.totalElements);
 	return data.data.body;
-	// return data.data.map(item => {
-	// 	return { ...item, id: item._id };
-	// });
 });
 
 export const removeCategoy = createAsyncThunk(
-	'CategoryeCommerceApp/products/removeProducts',
+	'BannerCommerceApp/products/removeProducts',
 	async (productIds, { dispatch, getState }) => {
 		productIds.forEach(id => {
 			axios
-				.delete(`${API}/ingredient/delete?id=${id}`)
-				.then(resp => {
-					toast.success(`Ingredient deleted successfully ${id}`);
+				.delete(`${API}/banner/${id}`)
+				.then(() => {
+					toast.success(`Banner deleted successfully ${id}`);
 				})
-				.catch(() => {
-					toast.error(`Cannot delete this ingredient as it is associated to existing products`);
+				.catch(error => {
+					console.log('err', error);
+					toast.error(error.isAxiosError ? error.response.data.message : error.message);
+					// toast.error(`Cannot delete this ingredient as it is associated to existing products`);
 				});
 		});
 		return productIds;
@@ -36,11 +34,11 @@ export const removeCategoy = createAsyncThunk(
 const categoriesAdapter = createEntityAdapter({});
 
 export const { selectAll: selectProducts, selectById: selectProductById } = categoriesAdapter.getSelectors(state => {
-	return state.CategoryeCommerceApp.products;
+	return state.BannerCommerceApp.products;
 });
 
 const categoriesSlice = createSlice({
-	name: 'CategoryeCommerceApp/products',
+	name: 'BannerCommerceApp/products',
 	initialState: categoriesAdapter.getInitialState({
 		searchText: ''
 	}),

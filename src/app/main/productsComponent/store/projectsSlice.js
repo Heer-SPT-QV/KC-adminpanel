@@ -15,10 +15,10 @@ export const removeCategoy = createAsyncThunk(
 	async (productIds, { dispatch, getState }) => {
 		productIds.forEach(id => {
 			axios
-				.delete(`${API}/allergy/delete?id=${id}`)
+				.delete(`${API}/product?id=${id}`)
 				.then(_res => toast.success(`deleted successfully ${id}`))
 				.catch(() => {
-					toast.error(`Error Deleting Category ${id}`);
+					toast.error(`Error Deleting Product ${id}`);
 				});
 		});
 		return productIds;

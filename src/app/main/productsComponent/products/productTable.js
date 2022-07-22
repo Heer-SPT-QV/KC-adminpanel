@@ -96,7 +96,6 @@ function CategoriesTable(props) {
 	}
 
 	function handleClick(item) {
-		console.log('product item ', item);
 		dispatch(getItemFunc(item));
 		props.history.push(`/product/${item.id}`);
 	}
@@ -119,12 +118,10 @@ function CategoriesTable(props) {
 	}
 
 	function handleChangePage(event, value) {
-		console.log('running', value);
 		setPage(value);
 	}
 
 	function handleChangeRowsPerPage(event) {
-		console.log('event', event.target.value);
 		setRowsPerPage(event.target.value);
 	}
 
@@ -223,10 +220,7 @@ function CategoriesTable(props) {
 										{n?.price}
 									</TableCell>
 									{/* <TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n?.disclaimer || '-'}
-									</TableCell> */}
-									{/* <TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n?.productType?.name}
+										{n?.priceUSD || '-'}
 									</TableCell> */}
 								</TableRow>
 							);
@@ -235,7 +229,7 @@ function CategoriesTable(props) {
 				</Table>
 			</FuseScrollbars>
 
-			<TablePagination
+			{/* <TablePagination
 				className="flex-shrink-0 border-t-1"
 				component="div"
 				count={totalCat}
@@ -249,7 +243,7 @@ function CategoriesTable(props) {
 				}}
 				onChangePage={handleChangePage}
 				onChangeRowsPerPage={handleChangeRowsPerPage}
-			/>
+			/> */}
 		</div>
 	);
 }

@@ -23,7 +23,6 @@ function CategoriesTable(props) {
 	const products = useSelector(selectProducts);
 	const searchText = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.products.searchText);
 
-	// console.log('Products...', products);
 	const [loading, setLoading] = useState(true);
 	const [selected, setSelected] = useState([]);
 	const [data, setData] = useState(products);
@@ -36,17 +35,12 @@ function CategoriesTable(props) {
 	const [totalCat, setTotalCat] = useState(0);
 
 	useEffect(() => {
-		dispatch(getCategories({ setTotalCat, page, rowsPerPage })).then(() => setLoading(false));
-	}, [dispatch, page, rowsPerPage]);
+		dispatch(getCategories({ setTotalCat, page, rowsPerPage, searchText })).then(() => setLoading(false));
+	}, [dispatch, page, rowsPerPage, searchText]);
 
 	useEffect(() => {
-		if (searchText.length !== 0) {
-			setData(_.filter(products, item => item.name.toLowerCase().includes(searchText.toLowerCase())));
-			setPage(0);
-		} else {
-			setData([...products]);
-		}
-	}, [products, searchText]);
+		setData([...products]);
+	}, [products]);
 
 	function handleRequestSort(event, property) {
 		const id = property;
@@ -128,10 +122,10 @@ function CategoriesTable(props) {
 					<CategoriesTableHead
 						selectedProductIds={selected}
 						order={order}
-						onSelectAllClick={() => handleSelectAllClick}
-						onRequestSort={() => handleRequestSort}
+						onSelectAllClick={handleSelectAllClick}
+						onRequestSort={handleRequestSort}
 						rowCount={data.length}
-						onMenuItemClick={() => handleDeselect}
+						onMenuItemClick={handleDeselect}
 					/>
 
 					<TableBody>

@@ -21,9 +21,8 @@ import CategoriesTableHead from './allergyTableHead';
 function CategoriesTable(props) {
 	const dispatch = useDispatch();
 	const products = useSelector(selectProducts);
-	const searchText = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.products.searchText);
+	const searchText = useSelector(({ AllergyCommerceApp }) => AllergyCommerceApp.products.searchText);
 
-	// console.log('Products...', products);
 	const [loading, setLoading] = useState(true);
 	const [selected, setSelected] = useState([]);
 	const [data, setData] = useState(products);
@@ -99,12 +98,10 @@ function CategoriesTable(props) {
 	}
 
 	function handleChangePage(event, value) {
-		console.log('running', value);
 		setPage(value);
 	}
 
 	function handleChangeRowsPerPage(event) {
-		console.log('event', event.target.value);
 		setRowsPerPage(event.target.value);
 	}
 
@@ -133,10 +130,10 @@ function CategoriesTable(props) {
 					<CategoriesTableHead
 						selectedProductIds={selected}
 						order={order}
-						onSelectAllClick={() => handleSelectAllClick}
-						onRequestSort={() => handleRequestSort}
+						onSelectAllClick={handleSelectAllClick}
+						onRequestSort={handleRequestSort}
 						rowCount={data.length}
-						onMenuItemClick={() => handleDeselect}
+						onMenuItemClick={handleDeselect}
 					/>
 
 					<TableBody>
@@ -179,9 +176,7 @@ function CategoriesTable(props) {
 									<TableCell className="p-4 md:p-16" component="th" scope="row">
 										{n.name}
 									</TableCell>
-									{/* <TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.iconUrl}
-									</TableCell> */}
+
 									<TableCell>
 										{n.iconUrl?.length ? (
 											<img
@@ -199,12 +194,6 @@ function CategoriesTable(props) {
 											/>
 										)}
 									</TableCell>
-									{/* <TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.airlin.name || ''}
-									</TableCell>
-									<TableCell className="p-4 md:p-16" component="th" scope="row">
-										{n.airline[0]?.country || ''}
-									</TableCell> */}
 								</TableRow>
 							);
 						})}

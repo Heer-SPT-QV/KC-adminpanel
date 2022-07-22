@@ -19,7 +19,7 @@ import { removeCategoy } from '../store/projectsSlice';
 
 const rows = [
 	{
-		id: 'englishName',
+		id: 'name',
 		align: 'left',
 		disablePadding: false,
 		label: 'English Name',
@@ -54,17 +54,10 @@ const rows = [
 		sort: true
 	}
 	// {
-	// 	id: 'disclaimer',
+	// 	id: 'priceUSD',
 	// 	align: 'left',
 	// 	disablePadding: false,
-	// 	label: 'Disclaimer',
-	// 	sort: true
-	// }
-	// {
-	// 	id: 'productType',
-	// 	align: 'left',
-	// 	disablePadding: false,
-	// 	label: 'Product Type',
+	// 	label: 'Price In USD',
 	// 	sort: true
 	// }
 ];

@@ -34,10 +34,9 @@ const schema = yup.object().shape({
 
 function Category(props) {
 	const dispatch = useDispatch();
-	const product = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.product);
+	const product = useSelector(({ AllergyCommerceApp }) => AllergyCommerceApp.product);
 
 	const routeParams = useParams();
-	console.log('routeParam', routeParams);
 	const [tabValue, setTabValue] = useState(0);
 	const [noProduct, setNoProduct] = useState(false);
 	const [isOldProduct, setIsOldProduct] = useState(false);
@@ -53,16 +52,13 @@ function Category(props) {
 	useDeepCompareEffect(() => {
 		function updateProductState() {
 			const { allergyId } = routeParams;
-			// console.log(productId);
 
 			if (allergyId === 'new') {
-				console.log('gone new');
 				/**
 				 * Create New Product data
 				 */
 				dispatch(newProduct());
 			} else if (allergyId === 'newcsv') {
-				console.log('qwe');
 				setNewCsv(true);
 			} else {
 				/**
@@ -207,4 +203,4 @@ function Category(props) {
 	);
 }
 
-export default withReducer('CategoryeCommerceApp', reducer)(Category);
+export default withReducer('AllergyCommerceApp', reducer)(Category);

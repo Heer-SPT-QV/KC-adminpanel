@@ -19,4 +19,4 @@ function Categories() {
 	);
 }
 
-export default withReducer('CategoryeCommerceApp', reducer)(Categories);
+export default withReducer('BannerCommerceApp', reducer)(Categories);

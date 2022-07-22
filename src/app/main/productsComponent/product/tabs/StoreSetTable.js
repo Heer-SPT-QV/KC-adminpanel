@@ -22,11 +22,9 @@ function StoreSetTable(props) {
 	const dispatch = useDispatch();
 
 	const product = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.product);
-	// console.log('insetTable', product.storeSet);
 
 	const searchText = useSelector(({ CategoryeCommerceApp }) => CategoryeCommerceApp.products.searchText);
 
-	// console.log('Products...', products);
 	// const [loading, setLoading] = useState(true);
 	const [selected, setSelected] = useState([]);
 	const [data, setData] = useState(product?.storeSet || []);
@@ -78,7 +76,6 @@ function StoreSetTable(props) {
 	}
 
 	function handleClick(item) {
-		console.log('product item ', item);
 		props.history.push(`/ingredient/${item.id}`);
 	}
 
@@ -100,12 +97,10 @@ function StoreSetTable(props) {
 	}
 
 	function handleChangePage(event, value) {
-		console.log('running', value);
 		setPage(value);
 	}
 
 	function handleChangeRowsPerPage(event) {
-		console.log('event', event.target.value);
 		setRowsPerPage(event.target.value);
 	}
 

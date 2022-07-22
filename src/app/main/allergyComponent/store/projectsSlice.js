@@ -3,13 +3,11 @@ import { API } from 'app/shared-components/API';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat, page, rowsPerPage }) => {
-	console.log('page', rowsPerPage);
+export const getCategories = createAsyncThunk('AllergyCommerceApp', async ({ setTotalCat, page, rowsPerPage }) => {
 	const response = await axios.get(
 		`${API}/allergy/admin/get_all_allergies?pageNumber=${page + 1}&pageSize=${rowsPerPage}`
 	);
 	const data = await response.data;
-	console.log('data of allergy', data);
 	setTotalCat(data.totalElements);
 
 	return data.content;
@@ -19,7 +17,7 @@ export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat,
 });
 
 export const removeCategoy = createAsyncThunk(
-	'CategoryeCommerceApp/products/removeProducts',
+	'AllergyCommerceApp/products/removeProducts',
 	async (productIds, { dispatch, getState }) => {
 		productIds.forEach(id => {
 			axios
@@ -36,11 +34,11 @@ export const removeCategoy = createAsyncThunk(
 const categoriesAdapter = createEntityAdapter({});
 
 export const { selectAll: selectProducts, selectById: selectProductById } = categoriesAdapter.getSelectors(state => {
-	return state.CategoryeCommerceApp.products;
+	return state.AllergyCommerceApp.products;
 });
 
 const categoriesSlice = createSlice({
-	name: 'CategoryeCommerceApp/products',
+	name: 'AllergyCommerceApp/products',
 	initialState: categoriesAdapter.getInitialState({
 		searchText: ''
 	}),

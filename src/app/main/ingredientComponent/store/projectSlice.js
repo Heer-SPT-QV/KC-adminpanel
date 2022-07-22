@@ -7,7 +7,6 @@ import { toast } from 'react-toastify';
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
 	const response = await axios.get(`${API}/ingredient?id=${params}`);
 	const data = await response.data;
-	// console.log(data);
 
 	// return data === undefined ? null : data;
 	return data.body;
@@ -30,25 +29,18 @@ export const removeCategory = createAsyncThunk(
 	}
 );
 
-export const productUser = createAsyncThunk('UsersCommerceApp/product/update', async productData => {
+export const productUser = createAsyncThunk('CategoryeCommerceApp/product/update', async productData => {
 	const proData = {
 		id: productData.id,
 		name: productData.name,
 		nameInHangul: productData.nameInHangul
 	};
-	console.log('proData', proData);
-	axios
-		.patch(`${API}/ingredient/update`, { ...proData })
-		.then(response => {
-			// console.log('upadted ingr', response);
-			toast.success('Ingredient Updated');
-			const { data } = response;
-			return data.body;
-		})
-		.catch(error => {
-			console.log('err', error);
-			toast.error(error.isAxiosError ? error.response.data.message : error.message);
-		});
+
+	const response = await axios.patch(`${API}/ingredient/update`, { ...proData }).catch(error => {
+		toast.error(error.isAxiosError ? error.response.data.message : error.message);
+	});
+
+	return response.data;
 });
 
 export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveProduct', async productData => {
@@ -56,18 +48,11 @@ export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveP
 		name: productData.name,
 		nameInHangul: productData.nameInHangul
 	};
-	console.log('ingr data', Prodata);
-	axios
-		.post(`${API}/ingredient/add`, Prodata)
-		.then(response => {
-			// console.log(response);
-			toast.success('Ingredient Created');
-			return response.data;
-		})
-		.catch(error => {
-			console.log(error.message);
-			toast.error(error.isAxiosError ? error.response.data.message : error.message);
-		});
+
+	const response = await axios.post(`${API}/ingredient/add`, Prodata).catch(error => {
+		toast.error(error.isAxiosError ? error.response.data.error : error.message);
+	});
+	return response.data;
 });
 
 const categorySlice = createSlice({
@@ -81,6 +66,7 @@ const categorySlice = createSlice({
 				payload: {
 					id: FuseUtils.generateGUID(),
 					name: '',
+					nameInHangul: '',
 					imageUrl: '',
 					imagePublicId: '',
 					images: []

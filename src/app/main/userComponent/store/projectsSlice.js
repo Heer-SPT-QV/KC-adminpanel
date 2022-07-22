@@ -4,15 +4,11 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat, page, rowsPerPage }) => {
-	const response = await axios.get(`${API}/get_all_users?pageNumber=${page + 1}&pageSize=${rowsPerPage + 15}`);
+	const response = await axios.get(`${API}/get_all_users?pageNumber=${page + 1}&pageSize=${rowsPerPage}`);
 	const data = await response.data;
-	console.log('data Cont', data.content);
-	setTotalCat(data.totalPages);
+	setTotalCat(data.totalElements);
 
 	return data.content;
-	// return data.data.map(item => {
-	// return { ...item, id: item._id };
-	// });
 });
 
 export const removeCategoy = createAsyncThunk(

@@ -7,7 +7,6 @@ import { toast } from 'react-toastify';
 export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
 	const response = await axios.get(`${API}/admin/product?id=${params}`);
 	const data = await response.data;
-	console.log(`get single`, data.body);
 	return { ...data.body };
 });
 
@@ -18,7 +17,6 @@ export const removeCategory = createAsyncThunk(
 		await axios
 			.patch(`${API}/product/admin/approve_reject_product?productId=${id}`)
 			.then(res => {
-				console.log(res, 'approv');
 				toast.success(`${res.data.message}`);
 			})
 			.catch(() => {
@@ -29,9 +27,15 @@ export const removeCategory = createAsyncThunk(
 	}
 );
 export const productUser = createAsyncThunk('UsersCommerceApp/product/update', async productData => {
-	console.log(`product`, productData);
 	axios
-		.patch(`${API}/product/update/new`, { ...productData })
+		.patch(`${API}/product/update/new`, {
+			...productData,
+			cookingTime: Number(productData.cookingTime),
+			preparationTime: Number(productData.preparationTime),
+			price: Number(productData.price),
+			// priceUSD: productData.priceUSD !== '' ? Number(productData.priceUSD) : '',
+			reportCount: Number(productData.reportCount)
+		})
 		.then(response => {
 			toast.success('Product Updated ');
 			const { data } = response;
@@ -52,6 +56,7 @@ export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveP
 			cookingTime: Number(allData.cookingTime),
 			preparationTime: Number(allData.preparationTime),
 			price: Number(allData.price),
+			priceUSD: allData.priceUSD && Number(allData.priceUSD),
 			reportCount: Number(allData.reportCount),
 			store: {
 				latitude: 17.4565312,
@@ -73,10 +78,6 @@ const categorySlice = createSlice({
 	initialState: null,
 	reducers: {
 		resetProduct: () => null,
-		// getSingle:(state,action)=>{
-		// 	console.log("in toolkit",action.payload);
-		// 	return action.payload;
-		// },
 		newProduct: {
 			reducer: (state, action) => action.payload,
 			prepare: event => ({
@@ -88,6 +89,7 @@ const categorySlice = createSlice({
 					cookingTime: '',
 					preparationTime: '',
 					price: '',
+					priceUSD: '',
 					reportCount: '',
 					description: '',
 					disclaimer: '',

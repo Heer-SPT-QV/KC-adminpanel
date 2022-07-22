@@ -15,7 +15,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeCategoy } from '../store/projectsSlice';
+import { removeCategory } from '../store/projectsSlice';
 
 const rows = [
 	{
@@ -93,7 +93,7 @@ function CategoriesTableHead(props) {
 								<MenuList>
 									<MenuItem
 										onClick={() => {
-											dispatch(removeCategoy(selectedProductIds));
+											dispatch(removeCategory(selectedProductIds));
 											props.onMenuItemClick();
 											closeSelectedProductsMenu();
 										}}
@@ -126,7 +126,7 @@ function CategoriesTableHead(props) {
 									<TableSortLabel
 										active={props.order.id === row.id}
 										direction={props.order.direction}
-										onClick={() => createSortHandler(row.id)}
+										onClick={createSortHandler(row.id)}
 										className="font-semibold"
 									>
 										{row.label}

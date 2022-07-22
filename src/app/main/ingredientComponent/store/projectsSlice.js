@@ -3,12 +3,11 @@ import { API } from 'app/shared-components/API';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat, page, rowsPerPage }) => {
+export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat, page, rowsPerPage, searchText }) => {
 	const response = await axios.get(
-		`${API}/ingredient/all?searchName=&ascSort=true&pageSize=${rowsPerPage}&pageNumber=${page + 1}`
+		`${API}/ingredient/all?searchName=${searchText}&ascSort=true&pageSize=${rowsPerPage}&pageNumber=${page + 1}`
 	);
 	const data = await response.data;
-	console.log('data of ingredient', data.content);
 	setTotalCat(data.totalElements);
 
 	return data.content;
@@ -17,7 +16,7 @@ export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat,
 	// });
 });
 
-export const removeCategoy = createAsyncThunk(
+export const removeCategory = createAsyncThunk(
 	'CategoryeCommerceApp/products/removeProducts',
 	async (productIds, { dispatch, getState }) => {
 		productIds.forEach(id => {
@@ -26,8 +25,8 @@ export const removeCategoy = createAsyncThunk(
 				.then(resp => {
 					toast.success(`Ingredient deleted successfully ${id}`);
 				})
-				.catch(() => {
-					toast.error(`Cannot delete this ingredient as it is associated to existing products`);
+				.catch(error => {
+					toast.error(error.isAxiosError ? error.response.data.message : error.message);
 				});
 		});
 		return productIds;
@@ -55,7 +54,7 @@ const categoriesSlice = createSlice({
 	},
 	extraReducers: {
 		[getCategories.fulfilled]: categoriesAdapter.setAll,
-		[removeCategoy.fulfilled]: (state, action) => categoriesAdapter.removeMany(state, action.payload)
+		[removeCategory.fulfilled]: (state, action) => categoriesAdapter.removeMany(state, action.payload)
 	}
 });
 
