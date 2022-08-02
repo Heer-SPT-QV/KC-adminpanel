@@ -26,7 +26,7 @@ export const removeCategory = createAsyncThunk(
 		return id;
 	}
 );
-export const productUser = createAsyncThunk('UsersCommerceApp/product/update', async productData => {
+export const productUser = createAsyncThunk('CategoryeCommerceApp/product/update', async ({ productData, history }) => {
 	axios
 		.patch(`${API}/product/update/new`, {
 			...productData,
@@ -38,8 +38,7 @@ export const productUser = createAsyncThunk('UsersCommerceApp/product/update', a
 		})
 		.then(response => {
 			toast.success('Product Updated ');
-			const { data } = response;
-			return { ...data.body };
+			history.push('/products');
 		})
 		.catch(error => {
 			console.log('err', error);

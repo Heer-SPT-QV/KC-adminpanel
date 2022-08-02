@@ -5,7 +5,7 @@ import { API } from 'app/shared-components/API';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router';
 
-export const getCategory = createAsyncThunk('CategoryeCommerceApp/product/getProduct', async params => {
+export const getCategory = createAsyncThunk('AllergyCommerceApp/product/getProduct', async params => {
 	const response = await axios.get(`${API}/allergy?id=${params}`);
 	const data = await response.data;
 	return data.body;

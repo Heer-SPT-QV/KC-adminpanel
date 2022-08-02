@@ -34,8 +34,7 @@ function CategoryHeader(props) {
 	}
 
 	function handleUpdateProduct() {
-		dispatch(productUser(getValues()));
-		history.push('/products');
+		dispatch(productUser({ productData: getValues(), history }));
 	}
 
 	return (
