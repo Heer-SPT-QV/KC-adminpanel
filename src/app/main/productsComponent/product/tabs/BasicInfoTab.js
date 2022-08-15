@@ -16,8 +16,10 @@ function BasicInfoTab(props) {
 	const [productType, setProductType] = useState([]);
 	const [allergySet, setAllergySet] = useState([]);
 	const [ingridientSet, setIngridientSet] = useState([]);
+	const [subtypeSet, setSubtypeSet] = useState([]);
 
 	const productTypeWatch = watch('productType');
+	const subtypeWatch = watch('subtype');
 	const allergySetWatch = watch('allergySet');
 	const ingredientSetWatch = watch('ingredientSet');
 
@@ -39,6 +41,18 @@ function BasicInfoTab(props) {
 	// 		})
 	// 		.catch(error => console.error('Error', error));
 	// };
+
+	useEffect(() => {
+		axios
+			.get(`${API}/subtype/all`)
+			.then(response => {
+				console.log("sub type in product",response.data);
+				setSubtypeSet(response.data.body);
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	}, []);
 
 	useEffect(() => {
 		axios
@@ -142,6 +156,38 @@ function BasicInfoTab(props) {
 			/>
 			{getValues('productType') === null && (
 				<p className="text-red-500 text-11 ml-14 mt-5">product type is a required field</p>
+			)}
+			<Controller
+				name="subtype"
+				control={control}
+				render={({ field }) => (
+					<Autocomplete
+						{...field}
+						id="subtype"
+						className="mt-8"
+						options={subtypeSet}
+						getOptionLabel={option => option?.name}
+						style={{ width: 300 }}
+						renderInput={params => (
+							<>
+								{getValues('subtype') === null ? (
+									<TextField {...params} label="Sub Type" variant="outlined" required error />
+								) : (
+									<TextField {...params} label="Sub Type" variant="outlined" required />
+								)}
+							</>
+						)}
+						value={subtypeWatch}
+						loadingText="Start Typing..."
+						noOptionsText="No Options"
+						onChange={(event, newValue) => {
+							setValue('subtype', newValue);
+						}}
+					/>
+				)}
+			/>
+			{getValues('subtype') === null && (
+				<p className="text-red-500 text-11 ml-14 mt-5">Sub Type is a required field</p>
 			)}
 
 			<Controller

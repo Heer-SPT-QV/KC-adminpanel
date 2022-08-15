@@ -1,14 +1,14 @@
-import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
 import { API } from 'app/shared-components/API';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import logger from 'redux-logger';
 
-export const getCategories = createAsyncThunk('product', async ({ setTotalCat }) => {
-	const response = await axios.get(`${API}/admin/product/all`);
+export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat, page, rowsPerPage }) => {
+	const response = await axios.get(`${API}/subtype/all`);
 	const data = await response.data;
-	console.log(`data`, data);
-	setTotalCat(response.data.body.length);
+	console.log(data)
+	// setTotalCat(data.totalPages);
+
 	return data.body;
 });
 
@@ -17,10 +17,12 @@ export const removeCategoy = createAsyncThunk(
 	async (productIds, { dispatch, getState }) => {
 		productIds.forEach(id => {
 			axios
-				.delete(`${API}/product?id=${id}`)
-				.then(_res => toast.success(`deleted successfully ${id}`))
+				.delete(`${API}/productType/delete?id=${id}`)
+				.then(resp => {
+					toast.success(`productType deleted Successfully ${id}`);
+				})
 				.catch(() => {
-					toast.error(`Error Deleting Product ${id}`);
+					toast.error(`Error Deleting Category ${id}`);
 				});
 		});
 		return productIds;
@@ -44,9 +46,6 @@ const categoriesSlice = createSlice({
 				state.searchText = action.payload;
 			},
 			prepare: event => ({ payload: event.target.value || '' })
-		},
-		toggleApprove: (state, action) => {
-			return state;
 		}
 	},
 	extraReducers: {
@@ -55,6 +54,6 @@ const categoriesSlice = createSlice({
 	}
 });
 
-export const { setProductsSearchText, toggleApprove } = categoriesSlice.actions;
+export const { setProductsSearchText } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

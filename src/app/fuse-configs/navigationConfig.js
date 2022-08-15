@@ -65,7 +65,15 @@ const navigationConfig = [
 				type: 'item',
 				icon: 'collections',
 				url: '/banners'
-			}
+			},
+			{
+				id: 'subTypes',
+				title: 'Sub Types',
+				translate: 'Sub Types',
+				type: 'item',
+				icon: 'TitleIcon',
+				url: '/subTypes'
+			},
 		]
 	}
 ];

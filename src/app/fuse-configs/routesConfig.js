@@ -8,6 +8,7 @@ import userComponentConfig from 'app/main/userComponent/userComponentConfig';
 import productTypeConfig from 'app/main/productTypeComponent/productTypeComponentConfig';
 import productConfig from 'app/main/productsComponent/productComponentConfig';
 import bannerComponentConfig from 'app/main/BannerComponent/bannerComponentConfig';
+import subTypeComponentConfig from 'app/main/subTypeComponent/subTypeComponentConfig';
 // import storeConfig from 'app/main';
 // import storeConfig from 'app/main/storeComponent/shopComponentConfig';
 
@@ -19,7 +20,8 @@ const routeConfigs = [
 	userComponentConfig,
 	productTypeConfig,
 	productConfig,
-	bannerComponentConfig
+	bannerComponentConfig,
+	subTypeComponentConfig
 	// storeConfig
 ];
 

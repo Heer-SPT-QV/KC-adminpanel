@@ -27,6 +27,7 @@ export const removeCategory = createAsyncThunk(
 	}
 );
 export const productUser = createAsyncThunk('CategoryeCommerceApp/product/update', async ({ productData, history }) => {
+	console.log("update prodData",productData);
 	axios
 		.patch(`${API}/product/update/new`, {
 			...productData,
@@ -48,28 +49,29 @@ export const productUser = createAsyncThunk('CategoryeCommerceApp/product/update
 
 export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveProduct', async productData => {
 	const { id, featuredImageId, approved, ...allData } = productData;
-	axios
+console.log("productData in product",productData);
+	// axios
 
-		.post(`${API}/product/add`, {
-			...allData,
-			cookingTime: Number(allData.cookingTime),
-			preparationTime: Number(allData.preparationTime),
-			price: Number(allData.price),
-			priceUSD: allData.priceUSD && Number(allData.priceUSD),
-			reportCount: Number(allData.reportCount),
-			store: {
-				latitude: 17.4565312,
-				longitude: 78.4447536
-			}
-		})
-		.then(response => {
-			toast.success('Product Created');
-			return response.data;
-		})
-		.catch(error => {
-			console.log(error.message);
-			toast.error(error.isAxiosError ? error.response.data.message : error.message);
-		});
+	// 	.post(`${API}/product/add`, {
+	// 		...allData,
+	// 		cookingTime: Number(allData.cookingTime),
+	// 		preparationTime: Number(allData.preparationTime),
+	// 		price: Number(allData.price),
+	// 		priceUSD: allData.priceUSD && Number(allData.priceUSD),
+	// 		reportCount: Number(allData.reportCount),
+	// 		store: {
+	// 			latitude: 17.4565312,
+	// 			longitude: 78.4447536
+	// 		}
+	// 	})
+	// 	.then(response => {
+	// 		toast.success('Product Created');
+	// 		return response.data;
+	// 	})
+	// 	.catch(error => {
+	// 		console.log(error.message);
+	// 		toast.error(error.isAxiosError ? error.response.data.message : error.message);
+	// 	});
 });
 
 const categorySlice = createSlice({
@@ -107,6 +109,9 @@ const categorySlice = createSlice({
 						id: null,
 						name: ''
 					},
+					// subtype: {
+					// 	id:
+					// },
 					imageUrlList: [],
 					allergySet: [],
 					ingredientSet: []

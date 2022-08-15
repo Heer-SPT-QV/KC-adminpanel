@@ -10,6 +10,7 @@ export const submitLogin =
 		return jwtService
 			.signInWithEmailAndPassword(email, password)
 			.then(user => {
+				// console.log("user",user);
 				dispatch(setUserData(user));
 				return dispatch(loginSuccess());
 			})
