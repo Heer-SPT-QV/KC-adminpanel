@@ -46,7 +46,7 @@ function BasicInfoTab(props) {
 		axios
 			.get(`${API}/subtype/all`)
 			.then(response => {
-				console.log("sub type in product",response.data);
+				console.log(`sub type in product`, response.data);
 				setSubtypeSet(response.data.body);
 			})
 			.catch(error => {
