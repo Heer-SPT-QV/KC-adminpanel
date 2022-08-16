@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export const getCategories = createAsyncThunk('passegers', async ({ setTotalCat, page, rowsPerPage }) => {
 	const response = await axios.get(`${API}/subtype/all`);
 	const data = await response.data;
-	console.log(data)
+	console.log(data);
 	// setTotalCat(data.totalPages);
 
 	return data.body;

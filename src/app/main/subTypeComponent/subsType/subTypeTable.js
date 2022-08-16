@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import FuseLoading from '@fuse/core/FuseLoading';
 import FuseScrollbars from '@fuse/core/FuseScrollbars';
 import _ from '@lodash';
@@ -42,7 +43,7 @@ function CategoriesTable(props) {
 
 	useEffect(() => {
 		if (searchText.length !== 0) {
-			console.log("src data",data);
+			console.log('src data', data);
 			setData(
 				_.filter(products, item => item.productType?.name.toLowerCase().includes(searchText.toLowerCase()))
 			);

@@ -27,7 +27,7 @@ export const removeCategory = createAsyncThunk(
 	}
 );
 export const productUser = createAsyncThunk('CategoryeCommerceApp/product/update', async ({ productData, history }) => {
-	console.log("update prodData",productData);
+	console.log('update prodData', productData);
 	axios
 		.patch(`${API}/product/update/new`, {
 			...productData,
@@ -49,7 +49,7 @@ export const productUser = createAsyncThunk('CategoryeCommerceApp/product/update
 
 export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveProduct', async productData => {
 	const { id, featuredImageId, approved, ...allData } = productData;
-console.log("productData in product",productData);
+	console.log('productData in product', productData);
 	// axios
 
 	// 	.post(`${API}/product/add`, {

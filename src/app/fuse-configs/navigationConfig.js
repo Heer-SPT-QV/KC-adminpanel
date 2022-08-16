@@ -73,7 +73,7 @@ const navigationConfig = [
 				type: 'item',
 				icon: 'TitleIcon',
 				url: '/subTypes'
-			},
+			}
 		]
 	}
 ];
