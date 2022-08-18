@@ -1,9 +1,11 @@
 import _ from '@lodash';
+import { CircularProgress } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import { useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
@@ -20,6 +22,7 @@ function CategoryHeader(props) {
 	const theme = useTheme();
 	const history = useHistory();
 	const approve = watch('approved');
+	const [isLoading, setIsLoading] = useState(false);
 
 	function handleSaveProduct() {
 		dispatch(saveCategory(getValues()));
@@ -34,7 +37,8 @@ function CategoryHeader(props) {
 	}
 
 	function handleUpdateProduct() {
-		dispatch(productUser({ productData: getValues(), history }));
+		setIsLoading(true);
+		dispatch(productUser({ productData: getValues(), history, setIsLoading }));
 	}
 
 	return (
@@ -107,7 +111,7 @@ function CategoryHeader(props) {
 						// disabled={!dirtyFields || !isValid}
 						onClick={handleUpdateProduct}
 					>
-						Update
+						{isLoading ? <CircularProgress /> : 'Update'}
 					</Button>
 				)}
 			</motion.div>

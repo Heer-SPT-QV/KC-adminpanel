@@ -132,7 +132,7 @@ function BasicInfoTab(props) {
 					<Autocomplete
 						{...field}
 						id="productType"
-						className="mt-8"
+						className="mt-8 mb-16"
 						options={productType}
 						getOptionLabel={option => option?.name}
 						style={{ width: 300 }}
@@ -169,13 +169,15 @@ function BasicInfoTab(props) {
 						getOptionLabel={option => option?.name}
 						style={{ width: 300 }}
 						renderInput={params => (
-							<>
-								{getValues('subtype') === null ? (
-									<TextField {...params} label="Sub Type" variant="outlined" required error />
-								) : (
-									<TextField {...params} label="Sub Type" variant="outlined" required />
-								)}
-							</>
+							<TextField {...params} label="Sub Type" variant="outlined" />
+
+							// <>
+							// 	{getValues('subtype') === null ? (
+							// 		<TextField {...params} label="Sub Type" variant="outlined" />
+							// 	) : (
+							// 		<TextField {...params} label="Sub Type" variant="outlined" />
+							// 	)}
+							// </>
 						)}
 						value={subtypeWatch}
 						loadingText="Start Typing..."
@@ -186,9 +188,6 @@ function BasicInfoTab(props) {
 					/>
 				)}
 			/>
-			{getValues('subtype') === null && (
-				<p className="text-red-500 text-11 ml-14 mt-5">Sub Type is a required field</p>
-			)}
 
 			<Controller
 				name="price"
@@ -209,13 +208,13 @@ function BasicInfoTab(props) {
 					/>
 				)}
 			/>
-			{/* <Controller
+			<Controller
 				name="priceUSD"
 				control={control}
 				render={({ field }) => (
 					<TextField
 						{...field}
-						className="mt-24 mb-16"
+						className="mt-8 mb-16"
 						label="Price In USD"
 						type="number"
 						id="priceUSD"
@@ -224,7 +223,7 @@ function BasicInfoTab(props) {
 						inputProps={{ min: 0 }}
 					/>
 				)}
-			/> */}
+			/>
 			<Controller
 				name="brand"
 				control={control}

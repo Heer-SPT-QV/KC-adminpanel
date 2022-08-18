@@ -26,26 +26,29 @@ export const removeCategory = createAsyncThunk(
 		return id;
 	}
 );
-export const productUser = createAsyncThunk('CategoryeCommerceApp/product/update', async ({ productData, history }) => {
-	console.log('update prodData', productData);
-	axios
-		.patch(`${API}/product/update/new`, {
-			...productData,
-			cookingTime: Number(productData.cookingTime),
-			preparationTime: Number(productData.preparationTime),
-			price: Number(productData.price),
-			// priceUSD: productData.priceUSD !== '' ? Number(productData.priceUSD) : '',
-			reportCount: Number(productData.reportCount)
-		})
-		.then(response => {
-			toast.success('Product Updated ');
-			history.push('/products');
-		})
-		.catch(error => {
-			console.log('err', error);
-			toast.error(error.isAxiosError ? error.response.data.message : error.message);
-		});
-});
+export const productUser = createAsyncThunk(
+	'CategoryeCommerceApp/product/update',
+	async ({ productData, history, setIsLoading }) => {
+		axios
+			.patch(`${API}/product/update/new`, {
+				...productData,
+				cookingTime: Number(productData.cookingTime),
+				preparationTime: Number(productData.preparationTime),
+				price: Number(productData.price),
+				priceUSD: productData.priceUSD !== '' ? Number(productData.priceUSD) : '',
+				reportCount: Number(productData.reportCount)
+			})
+			.then(response => {
+				toast.success('Product Updated ');
+				setIsLoading(true);
+				history.push('/products');
+			})
+			.catch(error => {
+				console.log('err', error);
+				toast.error(error.isAxiosError ? error.response.data.message : error.message);
+			});
+	}
+);
 
 export const saveCategory = createAsyncThunk('CategoryeCommerceApp/product/saveProduct', async productData => {
 	const { id, featuredImageId, approved, ...allData } = productData;
