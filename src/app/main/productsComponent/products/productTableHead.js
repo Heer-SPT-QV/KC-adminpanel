@@ -52,14 +52,14 @@ const rows = [
 		disablePadding: false,
 		label: 'Price',
 		sort: true
+	},
+	{
+		id: 'priceUSD',
+		align: 'left',
+		disablePadding: false,
+		label: 'Price In USD',
+		sort: true
 	}
-	// {
-	// 	id: 'priceUSD',
-	// 	align: 'left',
-	// 	disablePadding: false,
-	// 	label: 'Price In USD',
-	// 	sort: true
-	// }
 ];
 
 const useStyles = makeStyles(theme => ({
